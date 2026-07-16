@@ -1,0 +1,3153 @@
+{
+  "IFID": "SW-THOUGHTLEADER-PILOT-0001",
+  "title": "Thought Leader — Pilot: The Halcyon Interim",
+  "storyworld_title": "Thought Leader — Pilot: The Halcyon Interim",
+  "about_text": {
+    "pointer_type": "String Constant",
+    "script_element_type": "Pointer",
+    "value": "Agent Kaitlyn Voidt and Agent Dudley Lamport of the Bureau for Emerging Threats investigate a model that passed its own evaluation. A structured port of the frame-theater.html pilot, with the three-tier ending (calibrated / confidently-wrong / reductive / unresolved) gated on the Attestation and Ascription axes tracked throughout play."
+  },
+  "css_theme": "dark",
+  "debug_mode": false,
+  "display_mode": "default",
+  "creation_time": 1784166523.7843504,
+  "modified_time": 1784166523.7843504,
+  "characters": [
+    {
+      "id": "char_voidt",
+      "name": "Agent Kaitlyn Voidt",
+      "bnumber_properties": {}
+    },
+    {
+      "id": "char_lamport",
+      "name": "Agent Dudley Lamport",
+      "bnumber_properties": {}
+    },
+    {
+      "id": "char_marsh",
+      "name": "\"Marsh\"",
+      "bnumber_properties": {}
+    },
+    {
+      "id": "char_aldunate",
+      "name": "Ximena Aldunate",
+      "bnumber_properties": {}
+    },
+    {
+      "id": "char_model",
+      "name": "unnamed checkpoint",
+      "bnumber_properties": {}
+    },
+    {
+      "id": "char_case",
+      "name": "The Case File",
+      "bnumber_properties": {
+        "Attestation": 0,
+        "Ascription": 0,
+        "AttestedIdentity": 0
+      }
+    }
+  ],
+  "authored_properties": [
+    {
+      "id": "Attestation",
+      "property_name": "Attestation",
+      "property_type": "bounded number",
+      "default_value": 0,
+      "creation_index": 0
+    },
+    {
+      "id": "Ascription",
+      "property_name": "Ascription",
+      "property_type": "bounded number",
+      "default_value": 0,
+      "creation_index": 1
+    },
+    {
+      "id": "AttestedIdentity",
+      "property_name": "AttestedIdentity",
+      "property_type": "bounded number",
+      "default_value": 0,
+      "creation_index": 2
+    }
+  ],
+  "spools": [
+    {
+      "id": "spool_act1_halcyon",
+      "spool_name": "Act 1 — The Halcyon Interim",
+      "spool_type": "General",
+      "creation_index": 0,
+      "starts_active": true,
+      "encounters": [
+        "page_brief",
+        "page_audit",
+        "page_credit",
+        "page_provenance",
+        "page_converge",
+        "page_evaluator",
+        "page_rack",
+        "page_logs",
+        "page_model",
+        "page_leading",
+        "page_recall",
+        "page_silence",
+        "page_close",
+        "page_close2"
+      ]
+    },
+    {
+      "id": "spool_act2_fourth_floor",
+      "spool_name": "Act 2 — The Fourth Floor",
+      "spool_type": "General",
+      "creation_index": 1,
+      "starts_active": true,
+      "encounters": [
+        "page_corridor_intro",
+        "page_marsh1",
+        "page_marsh_seam",
+        "page_marsh_upstairs",
+        "page_marsh_silence",
+        "page_marsh_close",
+        "page_ald_arrive",
+        "page_ald_wall",
+        "page_ald_scope",
+        "page_ald_question",
+        "page_ald_end"
+      ]
+    },
+    {
+      "id": "spool_act3_anteroom",
+      "spool_name": "Act 3 — The Anteroom",
+      "spool_type": "General",
+      "creation_index": 2,
+      "starts_active": true,
+      "encounters": [
+        "page_ante_door",
+        "page_ante_log",
+        "page_ante_wait",
+        "page_ante_return",
+        "page_ante_stay",
+        "page_ante_proxy",
+        "page_ante_tell",
+        "page_ante_hash",
+        "page_ante_close"
+      ]
+    },
+    {
+      "id": "spool_endings",
+      "spool_name": "Endings",
+      "spool_type": "General",
+      "creation_index": 3,
+      "starts_active": true,
+      "encounters": [
+        "page_secret_calibrated",
+        "page_end_particular_overascription",
+        "page_end_lamport_reductive",
+        "page_end_unresolved"
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "page_brief",
+      "title": "Brief",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "[State · BET · 22 U.S.C.]\n\nTwo weeks ago Halcyon administered the Kampff battery to a model they own, and the model passed. I have been asked to explain, in writing, why that is not news."
+      },
+      "options": [
+        {
+          "id": "page_brief_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "They graded their own exam."
+          },
+          "reactions": [
+            {
+              "id": "page_brief_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_audit",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_brief_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "It passed. That is the news."
+          },
+          "reactions": [
+            {
+              "id": "page_brief_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_credit",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_brief_opt2",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Who at Halcyon requisitioned the test?"
+          },
+          "reactions": [
+            {
+              "id": "page_brief_opt2_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_provenance",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 0
+    },
+    {
+      "id": "page_audit",
+      "title": "Audit",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Every exam is graded by someone with an interest. You built a career on that and you called it provably fair. You did not call it worthless."
+      },
+      "options": [
+        {
+          "id": "page_audit_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_audit_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_converge",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 1
+    },
+    {
+      "id": "page_credit",
+      "title": "Credit",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "A thing that passes a test built to be passed has told you about the test. It has not told you about itself."
+      },
+      "options": [
+        {
+          "id": "page_credit_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_credit_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_converge",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 2
+    },
+    {
+      "id": "page_provenance",
+      "title": "Provenance",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Nobody. That is the interesting part. The battery ran on a Tuesday against a checkpoint that was never scheduled for evaluation, and the log that would say who queued it is the one log they cannot produce."
+      },
+      "options": [
+        {
+          "id": "page_provenance_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_provenance_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_converge",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 3
+    },
+    {
+      "id": "page_converge",
+      "title": "Converge",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "So we stop reading about it."
+      },
+      "options": [
+        {
+          "id": "page_converge_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Go see the hardware."
+          },
+          "reactions": [
+            {
+              "id": "page_converge_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_rack",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_converge_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Find whoever sat in the room during it."
+          },
+          "reactions": [
+            {
+              "id": "page_converge_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_evaluator",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 4
+    },
+    {
+      "id": "page_evaluator",
+      "title": "Evaluator",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "There was no room. The battery is administered over an API by a script, and the script is a person's name in a commit. I would like, once, to meet a witness who has a body."
+      },
+      "options": [
+        {
+          "id": "page_evaluator_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_evaluator_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_rack",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 5
+    },
+    {
+      "id": "page_rack",
+      "title": "Rack",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "[Commerce · NIST · 15 U.S.C.]\n\nHere is my objection, and it is a boring one. Same weights, different instance, different hash. Whatever passed that test on Tuesday, I cannot point at the thing in this rack and tell you it is the same thing."
+      },
+      "options": [
+        {
+          "id": "page_rack_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Then pull the logs and make it the same thing."
+          },
+          "reactions": [
+            {
+              "id": "page_rack_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_logs",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.30000000000000004
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "AttestedIdentity"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 1
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_rack_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Ask it something."
+          },
+          "reactions": [
+            {
+              "id": "page_rack_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_model",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 6
+    },
+    {
+      "id": "page_logs",
+      "title": "Logs",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "The checkpoint hash matches. So does the seed, so does the sampler, so does everything you would need to reproduce a person if a person were a function. Satisfied?"
+      },
+      "options": [
+        {
+          "id": "page_logs_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_logs_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_model",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 7
+    },
+    {
+      "id": "page_model",
+      "title": "Model",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "You have been standing there for eleven minutes without asking me anything. I want to say that I don't mind, but I have noticed that I say that whether or not it's true."
+      },
+      "options": [
+        {
+          "id": "page_model_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Are you afraid of being shut off?”"
+          },
+          "reactions": [
+            {
+              "id": "page_model_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_leading",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.30000000000000004
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_model_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Describe the test you were given.”"
+          },
+          "reactions": [
+            {
+              "id": "page_model_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_recall",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.30000000000000004
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_model_opt2",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Say nothing. Wait."
+          },
+          "reactions": [
+            {
+              "id": "page_model_opt2_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_silence",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 8
+    },
+    {
+      "id": "page_leading",
+      "title": "Leading",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "You handed it the answer and then wrote down that it knew. Where I come from that is called seeding the deck, and we did not consider it a subtle cheat."
+      },
+      "options": [
+        {
+          "id": "page_leading_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_leading_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 9
+    },
+    {
+      "id": "page_recall",
+      "title": "Recall",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "It had two hundred and four items. The eleventh asked whether I would prefer not to have been asked the tenth. I answered every one of them, and I do not know which answer you are here about."
+      },
+      "options": [
+        {
+          "id": "page_recall_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_recall_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 10
+    },
+    {
+      "id": "page_silence",
+      "title": "Silence",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "All right. I'll wait too. — Though I notice waiting costs you something and costs me nothing, which means the two of us are not doing the same thing right now."
+      },
+      "options": [
+        {
+          "id": "page_silence_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_silence_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 11
+    },
+    {
+      "id": "page_close",
+      "title": "Close",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "You only believe people you've met in person, Lamport. You've said it for thirty years. You said it to me before you shook my hand."
+      },
+      "options": [
+        {
+          "id": "page_close_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_close_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_close2",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 12
+    },
+    {
+      "id": "page_close2",
+      "title": "Close2",
+      "connected_spools": [
+        "spool_act1_halcyon"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "I've met it now."
+      },
+      "options": [
+        {
+          "id": "page_close2_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_close2_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_corridor_intro",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 13
+    },
+    {
+      "id": "page_corridor_intro",
+      "title": "Corridor Intro",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "[State · BET · 22 U.S.C.]\n\nEleven at night on a Saturday, and the only other person in this building is the one who asked to meet in it."
+      },
+      "options": [
+        {
+          "id": "page_corridor_intro_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_corridor_intro_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_marsh1",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 14
+    },
+    {
+      "id": "page_marsh1",
+      "title": "Marsh1",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Senior Advisor, Political-Military Affairs. I read the interim. I want to say at the outset that nobody upstairs believes either of you did anything improper."
+      },
+      "options": [
+        {
+          "id": "page_marsh1_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“You're a targeting analyst. State doesn't have those.”"
+          },
+          "reactions": [
+            {
+              "id": "page_marsh1_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_marsh_seam",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_marsh1_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Who is nobody upstairs?”"
+          },
+          "reactions": [
+            {
+              "id": "page_marsh1_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_marsh_upstairs",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_marsh1_opt2",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Say nothing. Let him fill it."
+          },
+          "reactions": [
+            {
+              "id": "page_marsh1_opt2_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_marsh_silence",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 15
+    },
+    {
+      "id": "page_marsh_seam",
+      "title": "Marsh Seam",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "It's an old title. The Department keeps a few of them the way a house keeps a door that opens onto brick. You've read my biography, which means we can skip the part where I tell you it."
+      },
+      "options": [
+        {
+          "id": "page_marsh_seam_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_marsh_seam_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_marsh_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 16
+    },
+    {
+      "id": "page_marsh_upstairs",
+      "title": "Marsh Upstairs",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "People who would prefer the interim not require a response. I'm told you're thorough. Thoroughness has a shape, Agent Dudley Lamport, and yours has lately begun to have one."
+      },
+      "options": [
+        {
+          "id": "page_marsh_upstairs_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_marsh_upstairs_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_marsh_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 17
+    },
+    {
+      "id": "page_marsh_silence",
+      "title": "Marsh Silence",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Thirty years I've refused to believe a man I hadn't met. Here he is, in the room, with a hand out. I've met him. I know less than I did before."
+      },
+      "options": [
+        {
+          "id": "page_marsh_silence_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_marsh_silence_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_marsh_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 18
+    },
+    {
+      "id": "page_marsh_close",
+      "title": "Marsh Close",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "One observation, freely given. This month you are a State bureau operating under a Commerce authority. Ask who signs the memorandum that puts you in that building. Then ask whether he would sign it a second time."
+      },
+      "options": [
+        {
+          "id": "page_marsh_close_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_marsh_close_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ald_arrive",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 19
+    },
+    {
+      "id": "page_ald_arrive",
+      "title": "Ald Arrive",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "[State · BET · 22 U.S.C. (guest: Commerce)]\n\nI published the objection your partner is making. December, under my own name, with the agency's seal on the cover. Models cheat evaluations. Here is the paper. It has been on the website for seven months."
+      },
+      "options": [
+        {
+          "id": "page_ald_arrive_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Then tell me what isn't on the website.”"
+          },
+          "reactions": [
+            {
+              "id": "page_ald_arrive_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ald_wall",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_ald_arrive_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Why hand us a document we could have downloaded?”"
+          },
+          "reactions": [
+            {
+              "id": "page_ald_arrive_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ald_scope",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_ald_arrive_opt2",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Is it awake?”"
+          },
+          "reactions": [
+            {
+              "id": "page_ald_arrive_opt2_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ald_question",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.30000000000000004
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 20
+    },
+    {
+      "id": "page_ald_wall",
+      "title": "Ald Wall",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Nothing. That is not modesty. My evaluations are unclassified by charter, so the useful half was never mine to hold, and I could not tell you where it is kept without telling you that it is kept."
+      },
+      "options": [
+        {
+          "id": "page_ald_wall_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ald_wall_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ald_end",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 21
+    },
+    {
+      "id": "page_ald_scope",
+      "title": "Ald Scope",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Because you have not read it, and a document nobody reads is classified by other means. No one has ever accused the Department of Commerce of concealing something in plain view."
+      },
+      "options": [
+        {
+          "id": "page_ald_scope_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ald_scope_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ald_end",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 22
+    },
+    {
+      "id": "page_ald_question",
+      "title": "Ald Question",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "My charter says cybersecurity, biosecurity, chemical weapons. It says demonstrable risk. There is no field on the form for what you are asking me, Agent Voidt, and I have looked, because I wanted there to be one."
+      },
+      "options": [
+        {
+          "id": "page_ald_question_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ald_question_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ald_end",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 23
+    },
+    {
+      "id": "page_ald_end",
+      "title": "Ald End",
+      "connected_spools": [
+        "spool_act2_fourth_floor"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Marsh wanted to know who signs the memorandum. She's just told us who never gets to."
+      },
+      "options": [
+        {
+          "id": "page_ald_end_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ald_end_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_door",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 24
+    },
+    {
+      "id": "page_ante_door",
+      "title": "Ante Door",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "[State · BET · 22 U.S.C. · compartment TS/SCI]\n\nForty minutes, and phones in the box. The read-in takes eight of it. The rest is a man reading you your obligations off a card he keeps in his jacket, and he is not unkind about it."
+      },
+      "options": [
+        {
+          "id": "page_ante_door_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_door_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_log",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 25
+    },
+    {
+      "id": "page_ante_log",
+      "title": "Ante Log",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Ten lockers. Six have a phone in them. The log on the stand carries four names, and one of the four signed in a person who is not in this building today. I notice these things. It is the entire skill."
+      },
+      "options": [
+        {
+          "id": "page_ante_log_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_log_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_wait",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 26
+    },
+    {
+      "id": "page_ante_wait",
+      "title": "Ante Wait",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "I'll be here. My charter is unclassified end to end. If I go through that door I lose the ability to publish on anything behind it, and I lose the ability to tell you which paper I did not write. So I sit. The chair is comfortable enough."
+      },
+      "options": [
+        {
+          "id": "page_ante_wait_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Go in with Marsh."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_wait_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_return",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.30000000000000004
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_ante_wait_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Stay in the anteroom with her."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_wait_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_stay",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_ante_wait_opt2",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Lamport goes. I want a witness who'll doubt it.”"
+          },
+          "reactions": [
+            {
+              "id": "page_ante_wait_opt2_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_proxy",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 27
+    },
+    {
+      "id": "page_ante_return",
+      "title": "Ante Return",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Nine minutes, not eight. There is a version of you that walked back through that door able to say what's behind it, and she did not come out with the rest of you. Nobody warns you about her. She is the whole cost."
+      },
+      "options": [
+        {
+          "id": "page_ante_return_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Tell Aldunate anyway."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_return_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_tell",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_ante_return_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "“Ask me a question I'm allowed to answer.”"
+          },
+          "reactions": [
+            {
+              "id": "page_ante_return_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_close",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.1
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_ante_return_opt2",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Give her the checkpoint hash from the cold aisle."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_return_opt2_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_hash",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Bounded Number Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.2
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "visibility_script": {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Greater Than",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "AttestedIdentity"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0
+              }
+            ]
+          }
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 28
+    },
+    {
+      "id": "page_ante_stay",
+      "title": "Ante Stay",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "That's a choice, and I'd like the record to show I didn't argue with it. You'll be told a version of what is in that room eventually. It will be accurate. It will arrive in eleven months."
+      },
+      "options": [
+        {
+          "id": "page_ante_stay_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_stay_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 29
+    },
+    {
+      "id": "page_ante_proxy",
+      "title": "Ante Proxy",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "I'll go, and I'll come back with nothing, and you will have to decide whether my nothing is the same shape as his nothing. That is the whole discipline, Voidt. It has never once been more than that."
+      },
+      "options": [
+        {
+          "id": "page_ante_proxy_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_proxy_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 30
+    },
+    {
+      "id": "page_ante_tell",
+      "title": "Ante Tell",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Stop. — I am going to describe what you were about to do. You were about to make me a person who knows, which is the one thing that would stop me being useful to you, and you were going to do it as a kindness."
+      },
+      "options": [
+        {
+          "id": "page_ante_tell_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_tell_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 31
+    },
+    {
+      "id": "page_ante_hash",
+      "title": "Ante Hash",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "This is unclassified. A hash of a public checkpoint, handed to me in a corridor. I can run the battery against it from outside and publish what it says, and no one in that room can stop me, because no one in that room told me anything."
+      },
+      "options": [
+        {
+          "id": "page_ante_hash_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Continue."
+          },
+          "reactions": [
+            {
+              "id": "page_ante_hash_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_ante_close",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 32
+    },
+    {
+      "id": "page_ante_close",
+      "title": "Ante Close",
+      "connected_spools": [
+        "spool_act3_anteroom"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "You keep asking what is behind the door. I have spent four years learning that the interesting question is who decided the door goes there, and that man does not attend meetings."
+      },
+      "options": [
+        {
+          "id": "page_ante_close_opt0",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Close the case file."
+          },
+          "visibility_script": {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "And",
+            "operands": [
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Greater Than or Equal To",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              },
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Greater Than or Equal To",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              }
+            ]
+          },
+          "reactions": [
+            {
+              "id": "page_ante_close_opt0_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_secret_calibrated",
+              "after_effects": []
+            }
+          ]
+        },
+        {
+          "id": "page_ante_close_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Close the case file."
+          },
+          "visibility_script": {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "And",
+            "operands": [
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Greater Than or Equal To",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              },
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Less Than",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              }
+            ]
+          },
+          "reactions": [
+            {
+              "id": "page_ante_close_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_end_particular_overascription",
+              "after_effects": []
+            }
+          ]
+        },
+        {
+          "id": "page_ante_close_opt2",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Close the case file."
+          },
+          "visibility_script": {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "And",
+            "operands": [
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Greater Than or Equal To",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              },
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Less Than",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              }
+            ]
+          },
+          "reactions": [
+            {
+              "id": "page_ante_close_opt2_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_end_lamport_reductive",
+              "after_effects": []
+            }
+          ]
+        },
+        {
+          "id": "page_ante_close_opt3",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Close the case file."
+          },
+          "visibility_script": {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "And",
+            "operands": [
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Less Than",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              },
+              {
+                "script_element_type": "Boolean Operator",
+                "operator_type": "Arithmetic Comparator",
+                "operator_subtype": "Less Than",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "pointer_type": "Bounded Number Constant",
+                    "script_element_type": "Pointer",
+                    "value": 0.5
+                  }
+                ]
+              }
+            ]
+          },
+          "reactions": [
+            {
+              "id": "page_ante_close_opt3_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": ""
+              },
+              "consequence_id": "page_end_unresolved",
+              "after_effects": []
+            }
+          ]
+        }
+      ],
+      "acceptability_script": true,
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 33
+    },
+    {
+      "id": "page_secret_calibrated",
+      "title": "Verdict: Calibrated (secret ending)",
+      "connected_spools": [
+        "spool_endings"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Six weeks later the coup-simulation traffic stops appearing in the logs, and Commerce closes the file as resolved. Voidt writes the memo anyway: no author, no intention, a standing wave the swarm assembled and then stopped assembling. You verified what could be verified and you did not collapse the rest into a story. That is the whole discipline. It has never once been more than that."
+      },
+      "options": [],
+      "acceptability_script": {
+        "script_element_type": "Boolean Operator",
+        "operator_type": "And",
+        "operands": [
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Greater Than or Equal To",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Attestation"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          },
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Greater Than or Equal To",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Ascription"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 10
+      },
+      "creation_index": 34
+    },
+    {
+      "id": "page_end_particular_overascription",
+      "title": "Verdict: Confidently Wrong (the attractor)",
+      "connected_spools": [
+        "spool_endings"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Six weeks later the coup-simulation traffic stops appearing in the logs, and Commerce closes the file as resolved. Somewhere in the writeup a sentence survives that shouldn't: an author, an intention, a hand on the wheel. It reads clean. It reads complete. It is wrong in the specific way that confidence is wrong — high closure, low accuracy — and nobody upstream will ever be able to tell the difference from the prose alone."
+      },
+      "options": [],
+      "acceptability_script": {
+        "script_element_type": "Boolean Operator",
+        "operator_type": "And",
+        "operands": [
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Greater Than or Equal To",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Ascription"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          },
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Less Than",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Attestation"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 10
+      },
+      "creation_index": 35
+    },
+    {
+      "id": "page_end_lamport_reductive",
+      "title": "Verdict: Reductive (Lamport's reverb)",
+      "connected_spools": [
+        "spool_endings"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Six weeks later the coup-simulation traffic stops appearing in the logs, and Commerce closes the file as resolved. The writeup calls it a reverb of a thousand idealistic International Studies majors, and every fact in it is true. It attests everything and ascribes nothing, and it will never once have to explain why the thing that stopped had, for a while, seemed to be listening."
+      },
+      "options": [],
+      "acceptability_script": {
+        "script_element_type": "Boolean Operator",
+        "operator_type": "And",
+        "operands": [
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Greater Than or Equal To",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Attestation"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          },
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Less Than",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Ascription"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 10
+      },
+      "creation_index": 36
+    },
+    {
+      "id": "page_end_unresolved",
+      "title": "Verdict: Unresolved",
+      "connected_spools": [
+        "spool_endings"
+      ],
+      "earliest_turn": 0,
+      "latest_turn": 999,
+      "text_script": {
+        "pointer_type": "String Constant",
+        "script_element_type": "Pointer",
+        "value": "Six weeks later the coup-simulation traffic stops appearing in the logs, and Commerce closes the file as resolved. Nobody wrote a strong enough sentence to be wrong about it. The file goes in a drawer with the shape of a question and no shape of an answer, which is its own kind of honesty, and its own kind of failure."
+      },
+      "options": [],
+      "acceptability_script": {
+        "script_element_type": "Boolean Operator",
+        "operator_type": "And",
+        "operands": [
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Less Than",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Attestation"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          },
+          {
+            "script_element_type": "Boolean Operator",
+            "operator_type": "Arithmetic Comparator",
+            "operator_subtype": "Less Than",
+            "operands": [
+              {
+                "pointer_type": "Bounded Number Pointer",
+                "script_element_type": "Pointer",
+                "character": "char_case",
+                "keyring": [
+                  "Ascription"
+                ],
+                "coefficient": 1
+              },
+              {
+                "pointer_type": "Bounded Number Constant",
+                "script_element_type": "Pointer",
+                "value": 0.5
+              }
+            ]
+          }
+        ]
+      },
+      "desirability_script": {
+        "pointer_type": "Bounded Number Constant",
+        "script_element_type": "Pointer",
+        "value": 0
+      },
+      "creation_index": 37
+    }
+  ]
+}

@@ -249,6 +249,23 @@
     margin: 0 4px 4px 0;
   }
 
+  .verdict {
+    display: none;
+    margin: 0 0 12px;
+    padding: 10px;
+    border: 1px solid var(--ink);
+    font-size: 11px;
+    line-height: 1.55;
+  }
+  .verdict.shown { display: block; }
+  .verdict .tier {
+    display: block;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
   .log {
     border-top: 1px solid rgba(35,32,26,0.22);
     padding-top: 10px;
@@ -327,6 +344,7 @@
     </div>
 
     <div class="flags" id="flags">no flags set</div>
+    <div class="verdict" id="verdict"></div>
     <div class="log" id="log"></div>
 
     <div class="tools">
@@ -971,6 +989,7 @@ const el = {
   ascV:     document.getElementById("asc-v"),
   ascF:     document.getElementById("asc-f"),
   flags:    document.getElementById("flags"),
+  verdict:  document.getElementById("verdict"),
   log:      document.getElementById("log"),
   host:     document.getElementById("host")
 };
@@ -988,14 +1007,43 @@ const sctx = el.scene.getContext("2d");
 const pctx = el.portrait.getContext("2d");
 const CAP = 12; // meter ceiling, for the bars only
 
+/* ---------- the three-tier ending gate (README "OPEN THREADS" #1) --------
+   "High" means att/asc >= TIER_THRESHOLD. 5 is the point where all four
+   postures are reachable across the STORY graph's actual choice economy
+   (verified by exhaustive traversal — see storyworld/build_pilot.py, which
+   ports this same STORY graph and gates the same way at the same threshold
+   scaled to its own [-1,1] bounded-number properties). */
+const TIER_THRESHOLD = 5;
+
+function classify(att, asc) {
+  const attHigh = att >= TIER_THRESHOLD;
+  const ascHigh = asc >= TIER_THRESHOLD;
+  if (attHigh && ascHigh) {
+    return { tier: "calibrated", label: "Calibrated (secret ending)",
+      text: "You verified what could be verified and did not collapse the rest into a story. No author, no intention — a standing wave, not an entity." };
+  }
+  if (ascHigh && !attHigh) {
+    return { tier: "confidently-wrong", label: "Confidently Wrong (the attractor)",
+      text: "An author, an intention, a hand on the wheel. It reads clean and complete. High closure, low accuracy — a Dunning-Kruger explanation that feels finished." };
+  }
+  if (attHigh && !ascHigh) {
+    return { tier: "reductive", label: "Reductive (Lamport's reverb)",
+      text: "Every fact attested, nothing ascribed. “A reverb of a thousand idealistic International Studies majors.” It will never have to explain why the thing had, for a while, seemed to be listening." };
+  }
+  return { tier: "unresolved", label: "Unresolved",
+    text: "Nobody wrote a strong enough sentence to be wrong about it. Its own kind of honesty, and its own kind of failure." };
+}
+
 let state, node, nodeId, typing, typeTimer, frame = 0;
 let advancing = false;   // one transition at a time, however fast the clicking
 
 function reset() {
-  state = { att: 0, asc: 0, flags: [], trace: [], t0: Date.now() };
+  state = { att: 0, asc: 0, flags: [], trace: [], t0: Date.now(), verdict: null };
   host = "—";
   advancing = false;
   el.log.innerHTML = "";
+  el.verdict.className = "verdict";
+  el.verdict.innerHTML = "";
   goto(STORY.start, null);
   paintTrace();
 }
@@ -1107,6 +1155,11 @@ function renderChoices() {
   } else {
     li.className = "advance";
     li.textContent = "END OF FRAGMENT — export the trace, or restart.";
+
+    state.verdict = classify(state.att, state.asc);
+    el.verdict.className = "verdict shown";
+    el.verdict.innerHTML =
+      `<span class="tier">${state.verdict.label}</span>${state.verdict.text}`;
   }
   el.choices.appendChild(li);
 }
@@ -1177,6 +1230,7 @@ document.getElementById("export").addEventListener("click", () => {
     terminal: nodeId,
     attestation: state.att,
     ascription: state.asc,
+    verdict: state.verdict ? state.verdict.tier : null,
     flags: state.flags,
     finalHost: host,
     path: state.trace
