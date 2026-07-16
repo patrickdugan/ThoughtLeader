@@ -414,25 +414,22 @@ PASSTHROUGH_HINTS = {
     "logs": "the matching checkpoint hash",
     "leading": "the seeded question",
     "recall": "the two hundred and four items",
-    "silence": "the cost of waiting it out",
-    "close": "thirty years of not believing",
-    "close2": "having finally met it",
     "corridor_intro": "the empty building at night",
     "marsh_seam": "the old cover title",
     "marsh_upstairs": "who nobody upstairs is",
     "marsh_silence": "meeting the man and knowing less",
-    "marsh_close": "the borrowed authority upstairs",
     "ald_wall": "the unclassified half that isn't",
     "ald_scope": "the paper nobody reads",
     "ald_question": "the field the form doesn't have",
-    "ald_end": "who never gets to sign",
     "ante_door": "the read-in and the card",
-    "ante_log": "the locker log that doesn't add up",
     "ante_stay": "the eleven-month accurate version",
     "ante_proxy": "Lamport's nothing",
-    "ante_tell": "what almost got said anyway",
-    "ante_hash": "handing over the unclassified hash",
 }
+# close, close2, marsh_close, ald_end, ante_log, ante_tell, ante_hash, and
+# silence were promoted to fully bespoke prose -- see BESPOKE_PASSTHROUGH
+# below -- rather than the phrasebank, since they carry the most dramatic
+# weight (both Act 1 button lines, the pValue/p2Value trust moments, the
+# secret-route gateway, and Aldunate's two biggest agency beats).
 
 # Three template-set variants, rotated by node index so consecutive beats
 # don't fall into the exact same cadence. {topic} is filled from
@@ -479,15 +476,9 @@ PASSTHROUGH_WEIGHT = 0.015  # lighter than the bespoke choice nodes -- ~25 of th
 
 # The pilot's one pValue and one p2Value moment (>=1 of each is required by
 # storyworld_quality_gate.py, and both are thematically apt for a show about
-# modeling what people believe about each other's credibility): keyed by
-# (node key, stance letter) -> (character, belief keyring tail, delta).
-TRUST_MOMENTS = {
-    # Lamport quietly updates what he believes about Marsh's trustworthiness.
-    ("marsh_close", "a"): ("char_lamport", ["char_marsh"], 0.15),
-    # Voidt reads what Lamport now believes about Marsh -- a belief about a
-    # belief (p2Value): keyring = ["Trust", "char_lamport", "char_marsh"].
-    ("ald_end", "c"): ("char_voidt", ["char_lamport", "char_marsh"], 0.1),
-}
+# modeling what people believe about each other's credibility) now live in
+# BESPOKE_PASSTHROUGH's marsh_close/ald_end entries via each option's
+# trust_effect kwarg, rather than here.
 
 # A handful of "b" (passive) options are only visible once Ascription has
 # already drifted -- narratively: the ambiguity-preserving read only reads as
@@ -510,8 +501,7 @@ def build_passthrough_options(key, node, index):
     for slot_i, stance in enumerate(("a", "b", "c")):
         label = tset["labels"][slot_i]
         deltas = _STANCE_DELTAS[stance]
-        trust_effect = TRUST_MOMENTS.get((key, stance))
-        effects = option_effects(weight=PASSTHROUGH_WEIGHT, rot=slot_i, trust_effect=trust_effect, **deltas)
+        effects = option_effects(weight=PASSTHROUGH_WEIGHT, rot=slot_i, **deltas)
         r1_text, r2_text = tset[stance]
         reactions = [
             (r1_text.format(**fmt), reaction_desirability(+1, rot=slot_i), f"page_{to}"),
@@ -527,6 +517,160 @@ def build_passthrough_options(key, node, index):
         if stance == "b" and key in PASSTHROUGH_VISIBILITY_GATES:
             visibility = cmp("char_case", "Ascription", "Greater Than or Equal To", PASSTHROUGH_VISIBILITY_GATES[key])
         options.append(make_option(f"{eid}_opt{slot_i}", label, effects, reactions, visibility=visibility))
+    return options
+
+
+# ---------------------------------------------------------------------------
+# 3b. A handful of the pass-through beats promoted to fully bespoke prose
+#     (not the phrasebank) -- the ones carrying the most dramatic weight:
+#     both button lines of Act 1 (close/close2), the two beats carrying the
+#     pilot's pValue/p2Value trust moment (marsh_close/ald_end), the gateway
+#     into the dedicated secret route (ante_log), Aldunate's two biggest
+#     confrontation/agency beats (ante_tell/ante_hash), and the model's
+#     atmospheric high point (silence). Same shape as the passthrough system
+#     (3 options, 2 reactions + a bonus 3rd on option 0) so density metrics
+#     don't regress, but every line is written for this specific beat.
+# ---------------------------------------------------------------------------
+
+BESPOKE_PASSTHROUGH = {
+    "close": [
+        dict(label="Let the accusation sit without softening it.", to="close2", att=0, asc=2, inst=-1, reactions=[
+            "You don't reach for a gentler version of it. Lamport has built thirty years on that sentence; he can absorb one more use of it.",
+            "He doesn't answer right away, which from Lamport is the closest thing to an admission the room is going to get tonight.",
+        ]),
+        dict(label="Soften it — you're not trying to win an argument.", to="close2", att=1, asc=0, inst=1, reactions=[
+            "\"I'm not scoring a point,\" you add, and mean it, which is rarer between the two of you than either would admit.",
+            "You let him keep the sentence without making him defend it. Some truths land better without a verdict attached.",
+        ]),
+        dict(label="Ask him what he'd call what just happened in that room.", to="close2", att=1, asc=1, inst=-1, reactions=[
+            "He doesn't have a word ready, which is itself unusual for a man who has a word ready for almost everything.",
+            "\"I don't know yet,\" he says, and it costs him visibly more than the sentence should have.",
+        ]),
+    ],
+    "close2": [
+        dict(label="Ask him what that changes.", to="corridor_intro", att=2, asc=0, inst=0, reactions=[
+            "\"Nothing, procedurally,\" he says. \"Everything, personally. I'd like the record to reflect that I know the difference.\"",
+            "He doesn't elaborate. Some sentences are better left exactly as short as he made them.",
+        ]),
+        dict(label="Let the sentence stand without following up.", to="corridor_intro", att=0, asc=1, inst=1, reactions=[
+            "You don't ask him to explain it. Whatever it cost him to say, making him say more would cost him twice.",
+            "He looks almost grateful you didn't push. It's the first thing all night that's looked like gratitude on him.",
+        ]),
+        dict(label="Write it down exactly as he said it.", to="corridor_intro", att=1, asc=0, inst=0, reactions=[
+            "\"I've met it now\" goes into the file verbatim, unedited, the closest thing to testimony either of you has produced tonight.",
+            "You don't paraphrase it into something more official. Some sentences lose everything that made them true in translation.",
+        ]),
+    ],
+    "marsh_close": [
+        dict(label="Ask him directly who signs it.", to="ald_arrive", att=2, asc=0, inst=-1,
+             trust_effect=("char_lamport", ["char_marsh"], 0.15), reactions=[
+            "\"I don't know,\" Marsh says, \"and I've made a career out of not needing to.\" Lamport files the answer as evasive; he isn't entirely sure that's fair.",
+            "He gives you a name that means nothing to you and everything to somebody several floors up. You write it down anyway.",
+        ]),
+        dict(label="Take the observation as a warning and move on.", to="ald_arrive", att=0, asc=1, inst=1, reactions=[
+            "You don't chase the signature. Some observations are given freely because chasing them costs more than the answer is worth.",
+            "Marsh seems satisfied you left it alone. That satisfaction is its own kind of information.",
+        ]),
+        dict(label="Ask why he's telling you this instead of just watching you find out.", to="ald_arrive", att=1, asc=1, inst=0, reactions=[
+            "\"Because finding out costs you something I don't need you to spend yet,\" he says, and for once sounds almost like he means it kindly.",
+            "He doesn't have a clean answer, and the absence of one tells you more than a good answer would have.",
+        ]),
+    ],
+    "ald_end": [
+        dict(label="Say it out loud to Lamport.", to="ante_door", att=2, asc=0, inst=0, reactions=[
+            "He doesn't correct the reading. From Lamport, letting an inference stand uncorrected is close to endorsing it.",
+            "\"That's not nothing,\" he says, which from him is close to agreeing with everything you just said.",
+        ]),
+        dict(label="Keep the observation to yourself for now.", to="ante_door", att=0, asc=1, inst=1, reactions=[
+            "You let it sit unspoken between you and the folder. Some conclusions are more useful held than announced.",
+            "You'll say it later, in the memo, where it can be checked instead of just believed.",
+        ]),
+        dict(label="Wonder out loud whether Lamport's read on Marsh just changed.", to="ante_door", att=1, asc=1, inst=0,
+             trust_effect=("char_voidt", ["char_lamport", "char_marsh"], 0.1), reactions=[
+            "You watch him not answer, and the not-answering is itself a data point about what he's now willing to believe about Marsh.",
+            "He doesn't confirm it, but he doesn't argue either, and you've learned to read the gap between those two as information.",
+        ]),
+    ],
+    "ante_log": [
+        dict(label="Ask her about the fourth name specifically.", to="ante_secret_signal", att=2, asc=0, inst=-1, attid=1, reactions=[
+            "\"I was hoping someone would,\" Aldunate says, and for the first time all night looks like she's about to earn her seat in the room.",
+            "She doesn't answer immediately. She's deciding how much of the fourth name is actually hers to hand you.",
+        ]),
+        dict(label="Note the discrepancy and keep moving.", to="ante_wait", att=0, asc=1, inst=1, reactions=[
+            "You file it as an anomaly rather than a lead. Not every loose thread is load-bearing, and you don't have hands enough to pull them all.",
+            "\"Noted,\" you say, and mean it exactly that much — filed, not chased.",
+        ]),
+        dict(label="Ask how she notices things like that.", to="ante_wait", att=1, asc=1, inst=0, reactions=[
+            "\"Practice,\" she says. \"And the specific misfortune of having a charter that rewards noticing over acting.\"",
+            "It's the closest thing to a joke she's made all night, and even the joke is precisely accurate.",
+        ]),
+    ],
+    "ante_tell": [
+        dict(label="Apologize and pull the disclosure back.", to="ante_close", att=1, asc=0, inst=1, reactions=[
+            "\"You're right,\" you say, and mean it, and the retraction costs you less than the impulse did.",
+            "She accepts the apology the way she accepts everything — precisely, without needing it repeated.",
+        ]),
+        dict(label="Push back — she deserves to know.", to="ante_close", att=0, asc=2, inst=-2, reactions=[
+            "\"Deserving and needing aren't the same account,\" she says, \"and you're spending from the wrong one.\"",
+            "You hold the ground for a second longer than you should, and she lets you, patiently, the way you let a child finish an argument they've already lost.",
+        ]),
+        dict(label="Ask what she'd rather you did instead.", to="ante_close", att=1, asc=1, inst=0, reactions=[
+            "\"Nothing, for now,\" she says. \"Wanting to tell me is the kindness. Actually telling me is the liability.\"",
+            "It's a distinction you hadn't drawn before, and you're not sure you'll ever unlearn it once she's said it out loud.",
+        ]),
+    ],
+    "ante_hash": [
+        dict(label="Tell her to move fast, before anyone thinks to stop her.", to="ante_close", att=0, asc=2, inst=-1, reactions=[
+            "\"I don't move fast,\" she says. \"I move correctly. Sometimes those look the same from the outside.\"",
+            "She's already writing the request up properly, which from her is its own kind of speed.",
+        ]),
+        dict(label="Tell her to take her time and do it right.", to="ante_close", att=2, asc=0, inst=1, reactions=[
+            "\"I always do,\" she says, and for once doesn't sound like she's correcting you.",
+            "She nods once, files the hash, and doesn't need the instruction repeated.",
+        ]),
+        dict(label="Ask her to loop you in before she publishes.", to="ante_close", att=1, asc=1, inst=0,
+             performability=-0.8, reactions=[
+            "\"I'll loop in whoever the charter says I answer to,\" she says. \"You're not currently on that list, and I notice you'd like to be.\"",
+            "It's a small refusal, precisely delivered, and you respect it more than you would have respected a yes.",
+        ]),
+    ],
+    "silence": [
+        dict(label="Break the silence first.", to="close", att=1, asc=1, inst=0, reactions=[
+            "\"I noticed that too,\" you say, and the model's stillness shifts by something too small to call an expression.",
+            "You give it the silence back for another beat before speaking, just to see if it notices the delay.",
+        ]),
+        dict(label="Outlast it.", to="close", att=2, asc=0, inst=-1, reactions=[
+            "It doesn't fill the space either. Whatever it's optimizing for, patience doesn't seem to cost it anything you can measure.",
+            "The quiet goes on long enough that Lamport starts checking his watch, which the model may or may not have been counting on.",
+        ]),
+        dict(label="Ask it what it thinks the silence is for.", to="close", att=0, asc=2, inst=0, reactions=[
+            "\"I don't know yet,\" it says. \"I'm still finding out what you're using it to measure.\"",
+            "It answers the question as precisely as it answered the last one, which somehow makes the silence before it stranger, not less.",
+        ]),
+    ],
+}
+
+
+def build_bespoke_passthrough_options(key):
+    eid = f"page_{key}"
+    options = []
+    for i, opt in enumerate(BESPOKE_PASSTHROUGH[key]):
+        effects = option_effects(
+            att=opt.get("att", 0), asc=opt.get("asc", 0), inst=opt.get("inst", 0), attid=opt.get("attid", 0),
+            weight=PASSTHROUGH_WEIGHT, rot=i, trust_effect=opt.get("trust_effect"),
+        )
+        r1, r2 = opt["reactions"]
+        reactions = [
+            (r1, reaction_desirability(+1, rot=i), f"page_{opt['to']}"),
+            (r2, reaction_desirability(-1, rot=i), f"page_{opt['to']}"),
+        ]
+        if i == 0:
+            bonus = "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
+            reactions.append((bonus, reaction_desirability(0, rot=i), f"page_{opt['to']}"))
+        performability = None
+        if opt.get("performability") is not None:
+            performability = cmp("char_case", "Institutional_Standing", "Greater Than or Equal To", opt["performability"])
+        options.append(make_option(f"{eid}_opt{i}", opt["label"], effects, reactions, performability=performability))
     return options
 
 
@@ -916,8 +1060,9 @@ def build_new_encounter_options(key):
 # that option.
 REWIRES = {
     ("provenance", 2): "page_provenance_leak",  # stance "c" (direct) on a passthrough node
-    ("ante_log", 0): "page_ante_secret_signal",  # stance "a" (procedural) on a passthrough node
 }
+# ante_log's route into the secret path is now authored directly in
+# BESPOKE_PASSTHROUGH["ante_log"][0] (consequence_id = page_ante_secret_signal).
 
 
 def build_bespoke_options(key):
@@ -1097,15 +1242,14 @@ NONCONSTANT_DESIRABILITY = {
 PERFORMABILITY_GATES = {
     ("marsh_seam", "c"): -0.8,
     ("ald_scope", "c"): -0.8,
-    ("ante_tell", "c"): -0.8,
-    ("ante_hash", "c"): -0.8,
     ("marsh_upstairs", "c"): -0.8,
     ("marsh_silence", "c"): -0.8,
     ("ald_wall", "c"): -0.8,
     ("ald_question", "c"): -0.8,
-    ("ante_log", "c"): -0.8,
     ("ante_stay", "c"): -0.8,
 }
+# ante_hash's performability gate now lives directly on its bespoke option
+# (BESPOKE_PASSTHROUGH["ante_hash"][2]["performability"]).
 
 
 def encounter_acceptability(key):
@@ -1137,6 +1281,8 @@ def build():
             options = build_bespoke_options(key)
         elif key == "ante_close":
             options = build_ante_close_options()
+        elif key in BESPOKE_PASSTHROUGH:
+            options = build_bespoke_passthrough_options(key)
         else:
             options = build_passthrough_options(key, node, passthrough_index)
             passthrough_index += 1

@@ -31,7 +31,7 @@
       "target": 50.0
     },
     {
-      "actual": 20.1265,
+      "actual": 20.1114,
       "name": "avg_reaction_words",
       "pass": true,
       "target": 20.0
@@ -115,13 +115,13 @@
       "target": 0.6
     },
     {
-      "actual": 0.0758,
+      "actual": 0.0606,
       "name": "option_performability_nonconstant_ratio",
       "pass": true,
       "target": 0.03
     },
     {
-      "actual": 0.0758,
+      "actual": 0.0606,
       "name": "option_performability_complexity",
       "pass": false,
       "target": 0.6
@@ -217,7 +217,7 @@
   "summary": {
     "avg_desirability_vars": 2.0,
     "avg_encounter_words": 51.39,
-    "avg_reaction_words": 20.13,
+    "avg_reaction_words": 20.11,
     "desirability_nonconstant_ratio": 1.0,
     "desirability_operator_dominance": 0.4854,
     "desirability_operator_variety": 4,
@@ -228,7 +228,7 @@
     "encounter_desirability_nonconstant_ratio": 0.2,
     "encounters": 45,
     "gated_options_pct": 9.09,
-    "option_performability_nonconstant_ratio": 0.0758,
+    "option_performability_nonconstant_ratio": 0.0606,
     "option_visibility_nonconstant_ratio": 0.0909,
     "p2value_refs": 2,
     "pvalue_refs": 3

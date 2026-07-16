@@ -10,8 +10,8 @@
   "css_theme": "dark",
   "debug_mode": false,
   "display_mode": "default",
-  "creation_time": 1784178960.8627687,
-  "modified_time": 1784178960.8627687,
+  "creation_time": 1784180351.8431456,
+  "modified_time": 1784180351.8431456,
   "characters": [
     {
       "id": "char_voidt",
@@ -24738,7 +24738,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Take it at face value and file it."
+            "value": "Break the silence first."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -24748,7 +24748,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "the cost of waiting it out goes into the record exactly as delivered -- no gloss, no follow-up question wasted on it."
+                "value": "\"I noticed that too,\" you say, and the model's stillness shifts by something too small to call an expression."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -24814,7 +24814,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -24846,7 +24846,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.015
                       }
                     ]
                   }
@@ -24878,7 +24878,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -24964,7 +24964,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.0
                       }
                     ]
                   }
@@ -24976,7 +24976,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You write it down the way it was said. Model watches you do it and says nothing further."
+                "value": "You give it the silence back for another beat before speaking, just to see if it notices the delay."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -25042,7 +25042,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -25074,7 +25074,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.015
                       }
                     ]
                   }
@@ -25106,7 +25106,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -25192,7 +25192,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.0
                       }
                     ]
                   }
@@ -25204,7 +25204,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether the cost of waiting it out needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -25270,6 +25270,474 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
+                        "value": 0.015
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.015
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Institutional_Standing"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Nudge",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Institutional_Standing"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "AttestedIdentity"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "script_element_type": "Operator",
+                        "operator_type": "Addition",
+                        "operands": [
+                          {
+                            "pointer_type": "Bounded Number Pointer",
+                            "script_element_type": "Pointer",
+                            "character": "char_case",
+                            "keyring": [
+                              "AttestedIdentity"
+                            ],
+                            "coefficient": 1
+                          },
+                          {
+                            "pointer_type": "Bounded Number Constant",
+                            "script_element_type": "Pointer",
+                            "value": 0
+                          }
+                        ]
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Multiplication",
+                    "operands": [
+                      {
+                        "script_element_type": "Operator",
+                        "operator_type": "Addition",
+                        "operands": [
+                          {
+                            "pointer_type": "Bounded Number Pointer",
+                            "script_element_type": "Pointer",
+                            "character": "char_case",
+                            "keyring": [
+                              "Ascription"
+                            ],
+                            "coefficient": 1
+                          },
+                          {
+                            "pointer_type": "Bounded Number Constant",
+                            "script_element_type": "Pointer",
+                            "value": 0
+                          }
+                        ]
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 1.0
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "page_silence_opt1",
+          "text_script": {
+            "pointer_type": "String Constant",
+            "script_element_type": "Pointer",
+            "value": "Outlast it."
+          },
+          "visibility_script": true,
+          "performability_script": true,
+          "reactions": [
+            {
+              "id": "page_silence_opt1_rxn0",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": "It doesn't fill the space either. Whatever it's optimizing for, patience doesn't seem to cost it anything you can measure."
+              },
+              "desirability_script": {
+                "script_element_type": "Operator",
+                "operator_type": "Addition",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Institutional_Standing"
+                    ],
+                    "coefficient": 1
+                  },
+                  {
+                    "script_element_type": "Operator",
+                    "operator_type": "Multiplication",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.3
+                      }
+                    ]
+                  }
+                ]
+              },
+              "consequence_id": "page_close",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.03
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Institutional_Standing"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Nudge",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Institutional_Standing"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": -0.015
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "AttestedIdentity"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "script_element_type": "Operator",
+                        "operator_type": "Addition",
+                        "operands": [
+                          {
+                            "pointer_type": "Bounded Number Pointer",
+                            "script_element_type": "Pointer",
+                            "character": "char_case",
+                            "keyring": [
+                              "AttestedIdentity"
+                            ],
+                            "coefficient": 1
+                          },
+                          {
+                            "pointer_type": "Bounded Number Constant",
+                            "script_element_type": "Pointer",
+                            "value": 0
+                          }
+                        ]
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Ascription"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Multiplication",
+                    "operands": [
+                      {
+                        "script_element_type": "Operator",
+                        "operator_type": "Addition",
+                        "operands": [
+                          {
+                            "pointer_type": "Bounded Number Pointer",
+                            "script_element_type": "Pointer",
+                            "character": "char_case",
+                            "keyring": [
+                              "Ascription"
+                            ],
+                            "coefficient": 1
+                          },
+                          {
+                            "pointer_type": "Bounded Number Constant",
+                            "script_element_type": "Pointer",
+                            "value": 0
+                          }
+                        ]
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.96
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "page_silence_opt1_rxn1",
+              "text_script": {
+                "pointer_type": "String Constant",
+                "script_element_type": "Pointer",
+                "value": "The quiet goes on long enough that Lamport starts checking his watch, which the model may or may not have been counting on."
+              },
+              "desirability_script": {
+                "script_element_type": "Operator",
+                "operator_type": "Addition",
+                "operands": [
+                  {
+                    "pointer_type": "Bounded Number Pointer",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Institutional_Standing"
+                    ],
+                    "coefficient": -1
+                  },
+                  {
+                    "script_element_type": "Operator",
+                    "operator_type": "Multiplication",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Ascription"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
+                        "value": 0.3
+                      }
+                    ]
+                  }
+                ]
+              },
+              "consequence_id": "page_close",
+              "after_effects": [
+                {
+                  "effect_type": "Bounded Number Effect",
+                  "Set": {
+                    "pointer_type": "Bounded Number Property",
+                    "script_element_type": "Pointer",
+                    "character": "char_case",
+                    "keyring": [
+                      "Attestation"
+                    ],
+                    "coefficient": 1
+                  },
+                  "to": {
+                    "script_element_type": "Operator",
+                    "operator_type": "Addition",
+                    "operands": [
+                      {
+                        "pointer_type": "Bounded Number Pointer",
+                        "script_element_type": "Pointer",
+                        "character": "char_case",
+                        "keyring": [
+                          "Attestation"
+                        ],
+                        "coefficient": 1
+                      },
+                      {
+                        "pointer_type": "Bounded Number Constant",
+                        "script_element_type": "Pointer",
                         "value": 0.03
                       }
                     ]
@@ -25430,479 +25898,11 @@
           ]
         },
         {
-          "id": "page_silence_opt1",
-          "text_script": {
-            "pointer_type": "String Constant",
-            "script_element_type": "Pointer",
-            "value": "Don't make him say more than he did."
-          },
-          "visibility_script": true,
-          "performability_script": true,
-          "reactions": [
-            {
-              "id": "page_silence_opt1_rxn0",
-              "text_script": {
-                "pointer_type": "String Constant",
-                "script_element_type": "Pointer",
-                "value": "You could ask what the cost of waiting it out is standing in for. You don't. Some rooms punish curiosity on a delay."
-              },
-              "desirability_script": {
-                "script_element_type": "Operator",
-                "operator_type": "Addition",
-                "operands": [
-                  {
-                    "pointer_type": "Bounded Number Pointer",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Institutional_Standing"
-                    ],
-                    "coefficient": 1
-                  },
-                  {
-                    "script_element_type": "Operator",
-                    "operator_type": "Multiplication",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Ascription"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.3
-                      }
-                    ]
-                  }
-                ]
-              },
-              "consequence_id": "page_close",
-              "after_effects": [
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Attestation"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Addition",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Attestation"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.0
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Ascription"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Addition",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Ascription"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.03
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Institutional_Standing"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Nudge",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Institutional_Standing"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.015
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "AttestedIdentity"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Addition",
-                    "operands": [
-                      {
-                        "script_element_type": "Operator",
-                        "operator_type": "Addition",
-                        "operands": [
-                          {
-                            "pointer_type": "Bounded Number Pointer",
-                            "script_element_type": "Pointer",
-                            "character": "char_case",
-                            "keyring": [
-                              "AttestedIdentity"
-                            ],
-                            "coefficient": 1
-                          },
-                          {
-                            "pointer_type": "Bounded Number Constant",
-                            "script_element_type": "Pointer",
-                            "value": 0
-                          }
-                        ]
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.0
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Ascription"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Multiplication",
-                    "operands": [
-                      {
-                        "script_element_type": "Operator",
-                        "operator_type": "Addition",
-                        "operands": [
-                          {
-                            "pointer_type": "Bounded Number Pointer",
-                            "script_element_type": "Pointer",
-                            "character": "char_case",
-                            "keyring": [
-                              "Ascription"
-                            ],
-                            "coefficient": 1
-                          },
-                          {
-                            "pointer_type": "Bounded Number Constant",
-                            "script_element_type": "Pointer",
-                            "value": 0
-                          }
-                        ]
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 1.04
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "id": "page_silence_opt1_rxn1",
-              "text_script": {
-                "pointer_type": "String Constant",
-                "script_element_type": "Pointer",
-                "value": "Model leaves the cost of waiting it out exactly as vague as it arrived, and you decide that's a decision, not an accident."
-              },
-              "desirability_script": {
-                "script_element_type": "Operator",
-                "operator_type": "Addition",
-                "operands": [
-                  {
-                    "pointer_type": "Bounded Number Pointer",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Institutional_Standing"
-                    ],
-                    "coefficient": -1
-                  },
-                  {
-                    "script_element_type": "Operator",
-                    "operator_type": "Multiplication",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Ascription"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.3
-                      }
-                    ]
-                  }
-                ]
-              },
-              "consequence_id": "page_close",
-              "after_effects": [
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Attestation"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Addition",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Attestation"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.0
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Ascription"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Addition",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Ascription"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.03
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Institutional_Standing"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Nudge",
-                    "operands": [
-                      {
-                        "pointer_type": "Bounded Number Pointer",
-                        "script_element_type": "Pointer",
-                        "character": "char_case",
-                        "keyring": [
-                          "Institutional_Standing"
-                        ],
-                        "coefficient": 1
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.015
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "AttestedIdentity"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Addition",
-                    "operands": [
-                      {
-                        "script_element_type": "Operator",
-                        "operator_type": "Addition",
-                        "operands": [
-                          {
-                            "pointer_type": "Bounded Number Pointer",
-                            "script_element_type": "Pointer",
-                            "character": "char_case",
-                            "keyring": [
-                              "AttestedIdentity"
-                            ],
-                            "coefficient": 1
-                          },
-                          {
-                            "pointer_type": "Bounded Number Constant",
-                            "script_element_type": "Pointer",
-                            "value": 0
-                          }
-                        ]
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 0.0
-                      }
-                    ]
-                  }
-                },
-                {
-                  "effect_type": "Bounded Number Effect",
-                  "Set": {
-                    "pointer_type": "Bounded Number Property",
-                    "script_element_type": "Pointer",
-                    "character": "char_case",
-                    "keyring": [
-                      "Ascription"
-                    ],
-                    "coefficient": 1
-                  },
-                  "to": {
-                    "script_element_type": "Operator",
-                    "operator_type": "Multiplication",
-                    "operands": [
-                      {
-                        "script_element_type": "Operator",
-                        "operator_type": "Addition",
-                        "operands": [
-                          {
-                            "pointer_type": "Bounded Number Pointer",
-                            "script_element_type": "Pointer",
-                            "character": "char_case",
-                            "keyring": [
-                              "Ascription"
-                            ],
-                            "coefficient": 1
-                          },
-                          {
-                            "pointer_type": "Bounded Number Constant",
-                            "script_element_type": "Pointer",
-                            "value": 0
-                          }
-                        ]
-                      },
-                      {
-                        "pointer_type": "Bounded Number Constant",
-                        "script_element_type": "Pointer",
-                        "value": 1.04
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
           "id": "page_silence_opt2",
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Push until it costs something."
+            "value": "Ask it what it thinks the silence is for."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -25912,7 +25912,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You ask the question Model was hoping the silence would answer for them about the cost of waiting it out."
+                "value": "\"I don't know yet,\" it says. \"I'm still finding out what you're using it to measure.\""
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -25978,7 +25978,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -26042,7 +26042,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -26128,7 +26128,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.0
+                        "value": 1.04
                       }
                     ]
                   }
@@ -26140,7 +26140,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Model answers faster than they meant to. the cost of waiting it out was closer to the surface than the pause suggested."
+                "value": "It answers the question as precisely as it answered the last one, which somehow makes the silence before it stranger, not less."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -26206,7 +26206,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -26270,7 +26270,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -26356,7 +26356,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.0
+                        "value": 1.04
                       }
                     ]
                   }
@@ -26393,7 +26393,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Mark it and hold your face still."
+            "value": "Let the accusation sit without softening it."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -26403,7 +26403,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Your face gives back nothing while Voidt finishes with thirty years of not believing. Later, in the file, this counts as composure."
+                "value": "You don't reach for a gentler version of it. Lamport has built thirty years on that sentence; he can absorb one more use of it."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -26469,7 +26469,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -26501,7 +26501,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -26619,7 +26619,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.04
                       }
                     ]
                   }
@@ -26631,7 +26631,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Voidt reads your stillness as agreement about thirty years of not believing. You let the misreading stand."
+                "value": "He doesn't answer right away, which from Lamport is the closest thing to an admission the room is going to get tonight."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -26697,7 +26697,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -26729,7 +26729,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -26847,7 +26847,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.04
                       }
                     ]
                   }
@@ -26859,7 +26859,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether thirty years of not believing needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -26925,7 +26925,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -26957,7 +26957,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -27075,7 +27075,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.04
                       }
                     ]
                   }
@@ -27089,7 +27089,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Grant the easier reading."
+            "value": "Soften it — you're not trying to win an argument."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -27099,7 +27099,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You grant Voidt the kinder interpretation of thirty years of not believing, the one that doesn't require anyone to have lied."
+                "value": "\"I'm not scoring a point,\" you add, and mean it, which is rarer between the two of you than either would admit."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -27165,7 +27165,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.015
                       }
                     ]
                   }
@@ -27197,7 +27197,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -27315,7 +27315,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 0.98
                       }
                     ]
                   }
@@ -27327,7 +27327,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "It costs you nothing to let thirty years of not believing mean the smaller thing. You do, for now."
+                "value": "You let him keep the sentence without making him defend it. Some truths land better without a verdict attached."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -27393,7 +27393,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.015
                       }
                     ]
                   }
@@ -27425,7 +27425,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -27543,7 +27543,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 0.98
                       }
                     ]
                   }
@@ -27557,7 +27557,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Make them own the harder one."
+            "value": "Ask him what he'd call what just happened in that room."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -27567,7 +27567,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make Voidt choose a specific claim about thirty years of not believing instead of a comfortable range of them."
+                "value": "He doesn't have a word ready, which is itself unusual for a man who has a word ready for almost everything."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -27633,7 +27633,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -27665,7 +27665,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -27697,7 +27697,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": -0.015
                       }
                     ]
                   }
@@ -27795,7 +27795,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Which one,\" you ask, and thirty years of not believing stops being able to mean everything at once."
+                "value": "\"I don't know yet,\" he says, and it costs him visibly more than the sentence should have."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -27861,7 +27861,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -27893,7 +27893,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -27925,7 +27925,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": -0.015
                       }
                     ]
                   }
@@ -28048,7 +28048,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Log it and keep moving."
+            "value": "Ask him what that changes."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -28058,7 +28058,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make a note of having finally met it and let the record hold it, unglossed."
+                "value": "\"Nothing, procedurally,\" he says. \"Everything, personally. I'd like the record to reflect that I know the difference.\""
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -28188,7 +28188,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -28286,7 +28286,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Lamport doesn't wait for the note to finish before moving on. It stands anyway."
+                "value": "He doesn't elaborate. Some sentences are better left exactly as short as he made them."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -28416,7 +28416,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -28514,7 +28514,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether having finally met it needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -28644,7 +28644,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -28744,7 +28744,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Let it stand unremarked."
+            "value": "Let the sentence stand without following up."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -28754,7 +28754,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Nobody presses on having finally met it. The quiet after it is doing some of the work the words didn't."
+                "value": "You don't ask him to explain it. Whatever it cost him to say, making him say more would cost him twice."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -28852,7 +28852,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -28970,7 +28970,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -28982,7 +28982,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You let having finally met it sit there unclaimed -- the kind of gap the file will never show."
+                "value": "He looks almost grateful you didn't push. It's the first thing all night that's looked like gratitude on him."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -29080,7 +29080,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -29198,7 +29198,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -29212,7 +29212,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Say what it actually implies."
+            "value": "Write it down exactly as he said it."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -29222,7 +29222,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Say that again, plainly,\" you tell Lamport, and having finally met it loses whatever cover the first phrasing gave it."
+                "value": "\"I've met it now\" goes into the file verbatim, unedited, the closest thing to testimony either of you has produced tonight."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -29288,7 +29288,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -29320,7 +29320,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -29352,7 +29352,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -29438,7 +29438,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.0
+                        "value": 0.98
                       }
                     ]
                   }
@@ -29450,7 +29450,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You push past the comfortable version of it. Lamport lets you, which is its own answer about having finally met it."
+                "value": "You don't paraphrase it into something more official. Some sentences lose everything that made them true in translation."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -29516,7 +29516,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -29548,7 +29548,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -29580,7 +29580,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -29666,7 +29666,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.0
+                        "value": 0.98
                       }
                     ]
                   }
@@ -39962,7 +39962,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Mark it and hold your face still."
+            "value": "Ask him directly who signs it."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -39972,7 +39972,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Your face gives back nothing while Marsh finishes with the borrowed authority upstairs. Later, in the file, this counts as composure."
+                "value": "\"I don't know,\" Marsh says, \"and I've made a career out of not needing to.\" Lamport files the answer as evasive; he isn't entirely sure that's fair."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -40234,7 +40234,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Marsh reads your stillness as agreement about the borrowed authority upstairs. You let the misreading stand."
+                "value": "He gives you a name that means nothing to you and everything to somebody several floors up. You write it down anyway."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -40496,7 +40496,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether the borrowed authority upstairs needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -40760,7 +40760,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Grant the easier reading."
+            "value": "Take the observation as a warning and move on."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -40770,7 +40770,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You grant Marsh the kinder interpretation of the borrowed authority upstairs, the one that doesn't require anyone to have lied."
+                "value": "You don't chase the signature. Some observations are given freely because chasing them costs more than the answer is worth."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -40868,7 +40868,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -40986,7 +40986,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -40998,7 +40998,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "It costs you nothing to let the borrowed authority upstairs mean the smaller thing. You do, for now."
+                "value": "Marsh seems satisfied you left it alone. That satisfaction is its own kind of information."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -41096,7 +41096,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -41214,7 +41214,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -41228,7 +41228,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Make them own the harder one."
+            "value": "Ask why he's telling you this instead of just watching you find out."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -41238,7 +41238,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make Marsh choose a specific claim about the borrowed authority upstairs instead of a comfortable range of them."
+                "value": "\"Because finding out costs you something I don't need you to spend yet,\" he says, and for once sounds almost like he means it kindly."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -41304,7 +41304,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -41336,7 +41336,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -41368,7 +41368,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -41466,7 +41466,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Which one,\" you ask, and the borrowed authority upstairs stops being able to mean everything at once."
+                "value": "He doesn't have a clean answer, and the absence of one tells you more than a good answer would have."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -41532,7 +41532,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -41564,7 +41564,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -41596,7 +41596,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -45278,7 +45278,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Log it and keep moving."
+            "value": "Mark it and hold your face still."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -45288,7 +45288,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make a note of the unclassified half that isn't and let the record hold it, unglossed."
+                "value": "Your face gives back nothing while Aldunate finishes with the unclassified half that isn't. Later, in the file, this counts as composure."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -45516,7 +45516,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Aldunate doesn't wait for the note to finish before moving on. It stands anyway."
+                "value": "Aldunate reads your stillness as agreement about the unclassified half that isn't. You let the misreading stand."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -45974,7 +45974,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Let it stand unremarked."
+            "value": "Grant the easier reading."
           },
           "visibility_script": {
             "script_element_type": "Operator",
@@ -46004,7 +46004,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Nobody presses on the unclassified half that isn't. The quiet after it is doing some of the work the words didn't."
+                "value": "You grant Aldunate the kinder interpretation of the unclassified half that isn't, the one that doesn't require anyone to have lied."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -46232,7 +46232,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You let the unclassified half that isn't sit there unclaimed -- the kind of gap the file will never show."
+                "value": "It costs you nothing to let the unclassified half that isn't mean the smaller thing. You do, for now."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -46462,7 +46462,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Say what it actually implies."
+            "value": "Make them own the harder one."
           },
           "visibility_script": true,
           "performability_script": {
@@ -46492,7 +46492,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Say that again, plainly,\" you tell Aldunate, and the unclassified half that isn't loses whatever cover the first phrasing gave it."
+                "value": "You make Aldunate choose a specific claim about the unclassified half that isn't instead of a comfortable range of them."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -46720,7 +46720,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You push past the comfortable version of it. Aldunate lets you, which is its own answer about the unclassified half that isn't."
+                "value": "\"Which one,\" you ask, and the unclassified half that isn't stops being able to mean everything at once."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -46993,7 +46993,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Take it at face value and file it."
+            "value": "Log it and keep moving."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -47003,7 +47003,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "the paper nobody reads goes into the record exactly as delivered -- no gloss, no follow-up question wasted on it."
+                "value": "You make a note of the paper nobody reads and let the record hold it, unglossed."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -47231,7 +47231,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You write it down the way it was said. Aldunate watches you do it and says nothing further."
+                "value": "Aldunate doesn't wait for the note to finish before moving on. It stands anyway."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -47689,7 +47689,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Don't make him say more than he did."
+            "value": "Let it stand unremarked."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -47699,7 +47699,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You could ask what the paper nobody reads is standing in for. You don't. Some rooms punish curiosity on a delay."
+                "value": "Nobody presses on the paper nobody reads. The quiet after it is doing some of the work the words didn't."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -47927,7 +47927,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Aldunate leaves the paper nobody reads exactly as vague as it arrived, and you decide that's a decision, not an accident."
+                "value": "You let the paper nobody reads sit there unclaimed -- the kind of gap the file will never show."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -48157,7 +48157,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Push until it costs something."
+            "value": "Say what it actually implies."
           },
           "visibility_script": true,
           "performability_script": {
@@ -48187,7 +48187,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You ask the question Aldunate was hoping the silence would answer for them about the paper nobody reads."
+                "value": "\"Say that again, plainly,\" you tell Aldunate, and the paper nobody reads loses whatever cover the first phrasing gave it."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -48415,7 +48415,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Aldunate answers faster than they meant to. the paper nobody reads was closer to the surface than the pause suggested."
+                "value": "You push past the comfortable version of it. Aldunate lets you, which is its own answer about the paper nobody reads."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -48668,7 +48668,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Mark it and hold your face still."
+            "value": "Take it at face value and file it."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -48678,7 +48678,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Your face gives back nothing while Aldunate finishes with the field the form doesn't have. Later, in the file, this counts as composure."
+                "value": "the field the form doesn't have goes into the record exactly as delivered -- no gloss, no follow-up question wasted on it."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -48906,7 +48906,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Aldunate reads your stillness as agreement about the field the form doesn't have. You let the misreading stand."
+                "value": "You write it down the way it was said. Aldunate watches you do it and says nothing further."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -49364,7 +49364,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Grant the easier reading."
+            "value": "Don't make him say more than he did."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -49374,7 +49374,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You grant Aldunate the kinder interpretation of the field the form doesn't have, the one that doesn't require anyone to have lied."
+                "value": "You could ask what the field the form doesn't have is standing in for. You don't. Some rooms punish curiosity on a delay."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -49602,7 +49602,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "It costs you nothing to let the field the form doesn't have mean the smaller thing. You do, for now."
+                "value": "Aldunate leaves the field the form doesn't have exactly as vague as it arrived, and you decide that's a decision, not an accident."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -49832,7 +49832,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Make them own the harder one."
+            "value": "Push until it costs something."
           },
           "visibility_script": true,
           "performability_script": {
@@ -49862,7 +49862,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make Aldunate choose a specific claim about the field the form doesn't have instead of a comfortable range of them."
+                "value": "You ask the question Aldunate was hoping the silence would answer for them about the field the form doesn't have."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -50090,7 +50090,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Which one,\" you ask, and the field the form doesn't have stops being able to mean everything at once."
+                "value": "Aldunate answers faster than they meant to. the field the form doesn't have was closer to the surface than the pause suggested."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -50343,7 +50343,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Log it and keep moving."
+            "value": "Say it out loud to Lamport."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -50353,7 +50353,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make a note of who never gets to sign and let the record hold it, unglossed."
+                "value": "He doesn't correct the reading. From Lamport, letting an inference stand uncorrected is close to endorsing it."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -50483,7 +50483,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -50581,7 +50581,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Voidt doesn't wait for the note to finish before moving on. It stands anyway."
+                "value": "\"That's not nothing,\" he says, which from him is close to agreeing with everything you just said."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -50711,7 +50711,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -50809,7 +50809,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether who never gets to sign needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -50939,7 +50939,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.0
                       }
                     ]
                   }
@@ -51039,7 +51039,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Let it stand unremarked."
+            "value": "Keep the observation to yourself for now."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -51049,7 +51049,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Nobody presses on who never gets to sign. The quiet after it is doing some of the work the words didn't."
+                "value": "You let it sit unspoken between you and the folder. Some conclusions are more useful held than announced."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -51147,7 +51147,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -51265,7 +51265,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -51277,7 +51277,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You let who never gets to sign sit there unclaimed -- the kind of gap the file will never show."
+                "value": "You'll say it later, in the memo, where it can be checked instead of just believed."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -51375,7 +51375,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -51493,7 +51493,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -51507,7 +51507,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Say what it actually implies."
+            "value": "Wonder out loud whether Lamport's read on Marsh just changed."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -51517,7 +51517,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Say that again, plainly,\" you tell Voidt, and who never gets to sign loses whatever cover the first phrasing gave it."
+                "value": "You watch him not answer, and the not-answering is itself a data point about what he's now willing to believe about Marsh."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -51583,7 +51583,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -51615,7 +51615,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -51647,7 +51647,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -51781,7 +51781,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You push past the comfortable version of it. Voidt lets you, which is its own answer about who never gets to sign."
+                "value": "He doesn't confirm it, but he doesn't argue either, and you've learned to read the gap between those two as information."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -51847,7 +51847,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -51879,7 +51879,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -51911,7 +51911,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -52090,7 +52090,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Take it at face value and file it."
+            "value": "Mark it and hold your face still."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -52100,7 +52100,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "the read-in and the card goes into the record exactly as delivered -- no gloss, no follow-up question wasted on it."
+                "value": "Your face gives back nothing while Marsh finishes with the read-in and the card. Later, in the file, this counts as composure."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -52328,7 +52328,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You write it down the way it was said. Marsh watches you do it and says nothing further."
+                "value": "Marsh reads your stillness as agreement about the read-in and the card. You let the misreading stand."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -52786,7 +52786,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Don't make him say more than he did."
+            "value": "Grant the easier reading."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -52796,7 +52796,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You could ask what the read-in and the card is standing in for. You don't. Some rooms punish curiosity on a delay."
+                "value": "You grant Marsh the kinder interpretation of the read-in and the card, the one that doesn't require anyone to have lied."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -53024,7 +53024,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Marsh leaves the read-in and the card exactly as vague as it arrived, and you decide that's a decision, not an accident."
+                "value": "It costs you nothing to let the read-in and the card mean the smaller thing. You do, for now."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -53254,7 +53254,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Push until it costs something."
+            "value": "Make them own the harder one."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -53264,7 +53264,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You ask the question Marsh was hoping the silence would answer for them about the read-in and the card."
+                "value": "You make Marsh choose a specific claim about the read-in and the card instead of a comfortable range of them."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -53492,7 +53492,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Marsh answers faster than they meant to. the read-in and the card was closer to the surface than the pause suggested."
+                "value": "\"Which one,\" you ask, and the read-in and the card stops being able to mean everything at once."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -53745,7 +53745,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Mark it and hold your face still."
+            "value": "Ask her about the fourth name specifically."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -53755,7 +53755,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Your face gives back nothing while Aldunate finishes with the locker log that doesn't add up. Later, in the file, this counts as composure."
+                "value": "\"I was hoping someone would,\" Aldunate says, and for the first time all night looks like she's about to earn her seat in the room."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -53928,7 +53928,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.015
                       }
                     ]
                   }
@@ -53983,7 +53983,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Aldunate reads your stillness as agreement about the locker log that doesn't add up. You let the misreading stand."
+                "value": "She doesn't answer immediately. She's deciding how much of the fourth name is actually hers to hand you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -54156,7 +54156,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.015
                       }
                     ]
                   }
@@ -54211,7 +54211,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether the locker log that doesn't add up needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -54384,7 +54384,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.015
                       }
                     ]
                   }
@@ -54441,7 +54441,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Grant the easier reading."
+            "value": "Note the discrepancy and keep moving."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -54451,7 +54451,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You grant Aldunate the kinder interpretation of the locker log that doesn't add up, the one that doesn't require anyone to have lied."
+                "value": "You file it as an anomaly rather than a lead. Not every loose thread is load-bearing, and you don't have hands enough to pull them all."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -54549,7 +54549,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -54667,7 +54667,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -54679,7 +54679,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "It costs you nothing to let the locker log that doesn't add up mean the smaller thing. You do, for now."
+                "value": "\"Noted,\" you say, and mean it exactly that much — filed, not chased."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -54777,7 +54777,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -54895,7 +54895,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 1.02
                       }
                     ]
                   }
@@ -54909,37 +54909,17 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Make them own the harder one."
+            "value": "Ask how she notices things like that."
           },
           "visibility_script": true,
-          "performability_script": {
-            "script_element_type": "Operator",
-            "operator_type": "Arithmetic Comparator",
-            "operator_subtype": "Greater Than or Equal To",
-            "operands": [
-              {
-                "pointer_type": "Bounded Number Pointer",
-                "script_element_type": "Pointer",
-                "character": "char_case",
-                "keyring": [
-                  "Institutional_Standing"
-                ],
-                "coefficient": 1
-              },
-              {
-                "pointer_type": "Bounded Number Constant",
-                "script_element_type": "Pointer",
-                "value": -0.8
-              }
-            ]
-          },
+          "performability_script": true,
           "reactions": [
             {
               "id": "page_ante_log_opt2_rxn0",
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make Aldunate choose a specific claim about the locker log that doesn't add up instead of a comfortable range of them."
+                "value": "\"Practice,\" she says. \"And the specific misfortune of having a charter that rewards noticing over acting.\""
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -55005,7 +54985,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -55037,7 +55017,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -55069,7 +55049,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -55167,7 +55147,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Which one,\" you ask, and the locker log that doesn't add up stops being able to mean everything at once."
+                "value": "It's the closest thing to a joke she's made all night, and even the joke is precisely accurate."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -55233,7 +55213,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -55265,7 +55245,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -55297,7 +55277,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -64496,7 +64476,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Mark it and hold your face still."
+            "value": "Apologize and pull the disclosure back."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -64506,7 +64486,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Your face gives back nothing while Aldunate finishes with what almost got said anyway. Later, in the file, this counts as composure."
+                "value": "\"You're right,\" you say, and mean it, and the retraction costs you less than the impulse did."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -64572,7 +64552,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -64636,7 +64616,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.015
                       }
                     ]
                   }
@@ -64722,7 +64702,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 0.98
                       }
                     ]
                   }
@@ -64734,7 +64714,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Aldunate reads your stillness as agreement about what almost got said anyway. You let the misreading stand."
+                "value": "She accepts the apology the way she accepts everything — precisely, without needing it repeated."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -64800,7 +64780,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -64864,7 +64844,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.015
                       }
                     ]
                   }
@@ -64950,7 +64930,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 0.98
                       }
                     ]
                   }
@@ -64962,7 +64942,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether what almost got said anyway needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -65028,7 +65008,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -65092,7 +65072,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.015
+                        "value": 0.015
                       }
                     ]
                   }
@@ -65178,7 +65158,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 0.98
                       }
                     ]
                   }
@@ -65192,7 +65172,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Grant the easier reading."
+            "value": "Push back — she deserves to know."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -65202,7 +65182,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You grant Aldunate the kinder interpretation of what almost got said anyway, the one that doesn't require anyone to have lied."
+                "value": "\"Deserving and needing aren't the same account,\" she says, \"and you're spending from the wrong one.\""
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -65332,7 +65312,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.015
+                        "value": -0.03
                       }
                     ]
                   }
@@ -65430,7 +65410,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "It costs you nothing to let what almost got said anyway mean the smaller thing. You do, for now."
+                "value": "You hold the ground for a second longer than you should, and she lets you, patiently, the way you let a child finish an argument they've already lost."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -65560,7 +65540,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.015
+                        "value": -0.03
                       }
                     ]
                   }
@@ -65660,37 +65640,17 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Make them own the harder one."
+            "value": "Ask what she'd rather you did instead."
           },
           "visibility_script": true,
-          "performability_script": {
-            "script_element_type": "Operator",
-            "operator_type": "Arithmetic Comparator",
-            "operator_subtype": "Greater Than or Equal To",
-            "operands": [
-              {
-                "pointer_type": "Bounded Number Pointer",
-                "script_element_type": "Pointer",
-                "character": "char_case",
-                "keyring": [
-                  "Institutional_Standing"
-                ],
-                "coefficient": 1
-              },
-              {
-                "pointer_type": "Bounded Number Constant",
-                "script_element_type": "Pointer",
-                "value": -0.8
-              }
-            ]
-          },
+          "performability_script": true,
           "reactions": [
             {
               "id": "page_ante_tell_opt2_rxn0",
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make Aldunate choose a specific claim about what almost got said anyway instead of a comfortable range of them."
+                "value": "\"Nothing, for now,\" she says. \"Wanting to tell me is the kindness. Actually telling me is the liability.\""
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -65756,7 +65716,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -65788,7 +65748,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -65820,7 +65780,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -65918,7 +65878,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Which one,\" you ask, and what almost got said anyway stops being able to mean everything at once."
+                "value": "It's a distinction you hadn't drawn before, and you're not sure you'll ever unlearn it once she's said it out loud."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -65984,7 +65944,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -66016,7 +65976,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -66048,7 +66008,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -66171,7 +66131,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Log it and keep moving."
+            "value": "Tell her to move fast, before anyone thinks to stop her."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -66181,7 +66141,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You make a note of handing over the unclassified hash and let the record hold it, unglossed."
+                "value": "\"I don't move fast,\" she says. \"I move correctly. Sometimes those look the same from the outside.\""
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -66247,7 +66207,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -66279,7 +66239,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -66397,7 +66357,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.04
                       }
                     ]
                   }
@@ -66409,7 +66369,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Aldunate doesn't wait for the note to finish before moving on. It stands anyway."
+                "value": "She's already writing the request up properly, which from her is its own kind of speed."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -66475,7 +66435,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -66507,7 +66467,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -66625,7 +66585,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.04
                       }
                     ]
                   }
@@ -66637,7 +66597,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "The room moves on before anyone can decide whether handing over the unclassified hash needed more than that, and the not-deciding becomes its own line in the record, unremarked but not unnoticed."
+                "value": "The room moves on before anyone can decide whether that needed more than what it got, and the not-deciding becomes its own line in the record, unremarked but not unnoticed by either of you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -66703,7 +66663,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -66735,7 +66695,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -66853,7 +66813,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.96
+                        "value": 1.04
                       }
                     ]
                   }
@@ -66867,7 +66827,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Let it stand unremarked."
+            "value": "Tell her to take her time and do it right."
           },
           "visibility_script": true,
           "performability_script": true,
@@ -66877,7 +66837,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "Nobody presses on handing over the unclassified hash. The quiet after it is doing some of the work the words didn't."
+                "value": "\"I always do,\" she says, and for once doesn't sound like she's correcting you."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -66943,7 +66903,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -66975,7 +66935,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -67093,7 +67053,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 0.96
                       }
                     ]
                   }
@@ -67105,7 +67065,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You let handing over the unclassified hash sit there unclaimed -- the kind of gap the file will never show."
+                "value": "She nods once, files the hash, and doesn't need the instruction repeated."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -67171,7 +67131,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.0
+                        "value": 0.03
                       }
                     ]
                   }
@@ -67203,7 +67163,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -67321,7 +67281,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 1.04
+                        "value": 0.96
                       }
                     ]
                   }
@@ -67335,7 +67295,7 @@
           "text_script": {
             "pointer_type": "String Constant",
             "script_element_type": "Pointer",
-            "value": "Say what it actually implies."
+            "value": "Ask her to loop you in before she publishes."
           },
           "visibility_script": true,
           "performability_script": {
@@ -67365,7 +67325,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "\"Say that again, plainly,\" you tell Aldunate, and handing over the unclassified hash loses whatever cover the first phrasing gave it."
+                "value": "\"I'll loop in whoever the charter says I answer to,\" she says. \"You're not currently on that list, and I notice you'd like to be.\""
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -67431,7 +67391,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -67463,7 +67423,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -67495,7 +67455,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
@@ -67593,7 +67553,7 @@
               "text_script": {
                 "pointer_type": "String Constant",
                 "script_element_type": "Pointer",
-                "value": "You push past the comfortable version of it. Aldunate lets you, which is its own answer about handing over the unclassified hash."
+                "value": "It's a small refusal, precisely delivered, and you respect it more than you would have respected a yes."
               },
               "desirability_script": {
                 "script_element_type": "Operator",
@@ -67659,7 +67619,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -67691,7 +67651,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": 0.03
+                        "value": 0.015
                       }
                     ]
                   }
@@ -67723,7 +67683,7 @@
                       {
                         "pointer_type": "Bounded Number Constant",
                         "script_element_type": "Pointer",
-                        "value": -0.03
+                        "value": 0.0
                       }
                     ]
                   }
