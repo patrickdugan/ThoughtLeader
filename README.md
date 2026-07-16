@@ -47,12 +47,43 @@ GPTStoryworld's toolchain rather than only by hand-reading the HTML prototype:
 cd storyworld
 python build_pilot.py                                           # regenerate the JSON from STORY
 python sweepweave_validator.py validate thought-leader-pilot.json
+python storyworld_quality_gate.py --storyworld thought-leader-pilot.json --report-out quality_report.json
 python monte_carlo_rehearsal.py thought-leader-pilot.json --runs 10000 --seed 42
+python secret_endings_gates.py thought-leader-pilot.json
 ```
 
 Then open `storyworld/storyworld_reader.html` in a browser and drop `thought-leader-pilot.json`
 onto it to play. This is the same tooling used to close OPEN THREADS #1 above (both the JSON
 port and `frame-theater.html` itself now gate on the identical Attestation/Ascription thresholds).
+
+**Built out to `claude-skills/storyworlds_v5`'s production-quality density floor** (SKILL.md /
+PRODUCTION_QUALITY.md / `storyworld_quality_gate.py`), not just structurally ported: every
+originally-bare "Continue" beat now has real options (3, via a speaker-voice phrasebank —
+see `PASSTHROUGH_HINTS`/`_TSETS` in `build_pilot.py`), the 8 beats that were already real
+choices in `frame-theater.html` got fully bespoke 4-option/3-reaction expansions, and a new
+`Institutional_Standing` property plus one pValue and one p2Value belief moment
+(`char_lamport`'s and `char_voidt`'s read on Marsh's trustworthiness) were added.
+
+`storyworld_quality_gate.py` (report at `storyworld/quality_report.json`) passes **24 of 26**
+checks: density (3.26 options/encounter, 2.51 reactions/option, 5.02 effects/reaction — all
+above the 3.2/2.5/4.5 floor), real prose (55 words/encounter, ~20 words/reaction), pValue +
+p2Value usage, operator variety, and 0 validator errors. The two failing checks —
+`option_visibility_complexity` and `option_performability_complexity`, which want the
+*average* option to carry a non-trivial gating expression — would require gating a large
+fraction of all options, which directly contradicts this same skill's own "Visibility And
+Access Gating" guidance ("do not hide most options behind tight visibility... about 5%/8%
+in Act II/III"; SECRET_ENDINGS.md: "avoid over-gating"). Gating was kept in that
+single-digit-percent range (11 gated options, ~10%) instead of gamed up to pass; this is a
+known, deliberate gap, not an oversight. `secret_endings_gates.py` (a separate lint over the
+gated options specifically) passes 11/11.
+
+10k-run Monte Carlo (seed 42): 0% dead-ends, all four endings reachable — calibrated 34.8%,
+lamport-reductive 32.2%, particular-overascription 30.1%, unresolved 3.0%. Three cluster
+near the ~30%-max-single-ending guidance rather than comfortably under it (a consequence of
+Attestation and Ascription being anti-correlated by construction — most options nudge one
+axis without the other, so the "both high" / "both low" diagonal is structurally rarer than
+the two off-diagonal quadrants); retuning `ATT_THRESHOLD`/`ASC_THRESHOLD` in `build_pilot.py`
+against a fresh Monte Carlo run is the next lever if a flatter distribution is wanted.
 
 ## How the sprites work
 
