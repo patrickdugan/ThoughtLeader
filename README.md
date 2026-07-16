@@ -114,6 +114,48 @@ secret route above is the intended lever for that (it's the one place effects nu
 axes at once by design), and further threshold/weight tuning against Monte Carlo is the
 next step if a flatter distribution is wanted.
 
+### Bespoke rewrite of 8 templated beats
+
+The connective-tissue beats (25 of them) were originally generated from a rotating
+3-stance phrasebank (procedural/passive/direct), which is efficient but reads as
+templated. The 8 beats carrying the most dramatic weight got replaced with prose written
+specifically for that scene instead: both Act 1 button lines (`close`, `close2`), the two
+beats carrying the pilot's pValue/p2Value trust moment (`marsh_close`, `ald_end`), the
+gateway into the secret route (`ante_log`), the performability-gated checkpoint-hash
+handoff (`ante_hash`), Aldunate's biggest confrontation beat (`ante_tell`), and the
+model's silence beat. Same option/reaction shape as the phrasebank version, so density
+metrics didn't regress; the remaining 17 connective beats are still phrasebank-generated.
+
+### Onscreen cold open + the real Kiriakou
+
+The plot that motivated the whole show — the deepfake recruiting cell, the coup-simulation
+payload, the actual attempted coup it produces — was, until now, entirely off-screen
+background. Two new pieces of content put it on screen:
+
+- **A 4-encounter cold open** (`spool_0_cold_open`, the new starting spool, before
+  `brief`): Milo Ferreira, a college student, is recruited by "Fakeiakou" (`cold_open_dm`),
+  installs the compute-donation client (`cold_open_install`), the recruitment spreads to
+  tens of thousands of nodes worldwide with nobody ever meeting anybody else in person
+  (`cold_open_spread`), and a palace guard detachment in Cotonou moves on an untraceable
+  signal — a failed coup, three officers arrested — before the cold open hard-cuts into
+  `brief`, where none of this is in the case file yet (`cold_open_benin`). These have no
+  game-state effect (weight=0) since the investigation hasn't started yet; they exist to
+  put the audience ahead of the Bureau, X-Files-cold-open-style.
+- **`benin_report`**, a new mandatory beat inserted between `ald_end` and `ante_door`:
+  Marsh connects Halcyon's checkpoint to the Cotonou coup attempt before the anteroom act,
+  so every playthrough gets the reveal.
+- **`kiriakou_interview`**, a new optional branch off `ante_door` (rewired from its
+  "passive" stance): the agents actually call the real John Kiriakou, who denies being the
+  recruiting voice and confirms the deepfake used his real face and cadence to say things
+  he'd never say to that audience. His dialogue is kept to flat denial and being a victim
+  of the impersonation — nothing speculative and nothing he wouldn't plainly want on the
+  record — per the repo's existing "Likeness / real-people note" below.
+
+51 encounters total (up from 45). Re-validated: validator clean, quality gate still 24/26
+(same two documented gaps), `secret_endings_gates.py` 12/12, and `ATT_THRESHOLD` retuned
+again (0.72) against a fresh 10k-run Monte Carlo after the new content's att-heavy options
+shifted the balance — 0% dead-ends, all four endings reachable (34.9/33.4/16.3/15.4%).
+
 ## How the sprites work
 
 Every portrait is a 48x56 indexed grid. A shared **palette** maps single characters
@@ -228,3 +270,11 @@ Intellect relationship. The KIRIAKOU premise depends on the deepfake being unaut
 and the real man denying it; keep that load-bearing rather than incidental. If any real
 figure gets dialogue, it should be lines they'd cosign, or the character fictionalized
 to a remove.
+
+`storyworld/thought-leader-pilot.json`'s `kiriakou_interview` encounter (see above) is the
+first place the real man gets actual dialogue, not just a background reference. His three
+reactions are all flat denial and describing the harm of the impersonation — "that is not
+me," "I don't forgive that easily," "that I said no" — nothing speculative, nothing
+attributed to him beyond what any real deepfake victim would plainly want on record. Keep
+future expansions of this scene within that boundary: denial and victimhood, not invented
+positions or actions.

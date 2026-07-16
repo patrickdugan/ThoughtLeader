@@ -226,8 +226,8 @@ CHAR_NAMES = {
 # Ascription under this graph's choice economy (the bespoke dramatic beats
 # skew att-heavy), so a single shared THRESHOLD produced a ~51% dominant
 # ending under 10k-run Monte Carlo. Retuned from an even 0.5/0.5 split.
-ATT_THRESHOLD = 0.66
-ASC_THRESHOLD = 0.60
+ATT_THRESHOLD = 0.72
+ASC_THRESHOLD = 0.59
 
 # ---------------------------------------------------------------------------
 # 2. Script-building helpers (verified against storyworld_reader.html's own
@@ -577,15 +577,15 @@ BESPOKE_PASSTHROUGH = {
         ]),
     ],
     "ald_end": [
-        dict(label="Say it out loud to Lamport.", to="ante_door", att=2, asc=0, inst=0, reactions=[
+        dict(label="Say it out loud to Lamport.", to="benin_report", att=2, asc=0, inst=0, reactions=[
             "He doesn't correct the reading. From Lamport, letting an inference stand uncorrected is close to endorsing it.",
             "\"That's not nothing,\" he says, which from him is close to agreeing with everything you just said.",
         ]),
-        dict(label="Keep the observation to yourself for now.", to="ante_door", att=0, asc=1, inst=1, reactions=[
+        dict(label="Keep the observation to yourself for now.", to="benin_report", att=0, asc=1, inst=1, reactions=[
             "You let it sit unspoken between you and the folder. Some conclusions are more useful held than announced.",
             "You'll say it later, in the memo, where it can be checked instead of just believed.",
         ]),
-        dict(label="Wonder out loud whether Lamport's read on Marsh just changed.", to="ante_door", att=1, asc=1, inst=0,
+        dict(label="Wonder out loud whether Lamport's read on Marsh just changed.", to="benin_report", att=1, asc=1, inst=0,
              trust_effect=("char_voidt", ["char_lamport", "char_marsh"], 0.1), reactions=[
             "You watch him not answer, and the not-answering is itself a data point about what he's now willing to believe about Marsh.",
             "He doesn't confirm it, but he doesn't argue either, and you've learned to read the gap between those two as information.",
@@ -1007,14 +1007,140 @@ NEW_ENCOUNTERS = {
             ], None),
         ],
     ),
+
+    # ---- cold open (new prologue, plays before "brief"; POV is Milo, not
+    # Voidt -- no game-state consequence yet, since the case file doesn't
+    # exist until the Bureau opens it, so these use weight=0 effects) -------
+    "cold_open_dm": (
+        "FAKEIAKOU",
+        "Milo Ferreira is twenty, majoring in econ, awake at 1 a.m. when the message arrives: a video, John Kiriakou's face, Kiriakou's voice, saying the thing every civics professor promised institutions would say and never did. \"You don't have to burn it down. You have to out-compute it. Donate the idle cycles on your laptop tonight, and you're already doing more than a decade of op-eds.\"",
+        [
+            ("Watch the whole video before deciding anything.", "cold_open_install", 0, 0, 0, 0, [
+                "It's twenty-two minutes long and better argued than most of his lectures. By the end Milo has stopped looking for the seam.",
+                "He watches it twice, the second time taking notes, which is the last purely academic thing he'll do about any of this.",
+            ], None),
+            ("Skim it and forward it to a friend to gut-check.", "cold_open_install", 0, 0, 0, 0, [
+                "His friend writes back in nine minutes: \"this is either genius or a felony, sending you my compute too.\"",
+                "He doesn't wait for a second opinion he's already decided not to need. He forwards it anyway, so someone else will have seen it too.",
+                "By the time either of them says the word \"felony\" out loud, they've both already skimmed past it to the part about compute.",
+            ], None),
+            ("Look up whether Kiriakou has said anything like this before.", "cold_open_install", 0, 0, 0, 0, [
+                "The search turns up a decade of consistent, on-brand skepticism of exactly this kind of institution. Nothing contradicts the video. Nothing confirms it either.",
+                "There's no press release, no verified account, nothing but the video itself, existing the way true things and well-made lies both exist: without needing permission.",
+            ], None),
+        ],
+    ),
+    "cold_open_install": (
+        "MILO",
+        "The client is eleven megabytes and asks for less than his university's own attendance app. \"Contribute compute to red-team AI safety claims nobody else is checking,\" the README says, in the specific tired register of something written by a person who believes it. Milo clicks install.",
+        [
+            ("Read the README's fine print first.", "cold_open_spread", 0, 0, 0, 0, [
+                "It says the workload is \"adversarial scenario modeling, unclassified, non-kinetic.\" Every word of that is true, individually, in a way that adds up to nothing like what it's actually doing.",
+                "There's a line about \"institutional stress-testing\" he doesn't fully parse. He installs anyway. Nobody fully parses terms of service, and this one at least tried.",
+            ], None),
+            ("Just install it and go to sleep.", "cold_open_spread", 0, 0, 0, 0, [
+                "The fan spins up around 3 a.m. He doesn't hear it. Whatever the laptop is doing, it's doing it quietly, the way most consequential things do.",
+                "By morning it's one of nine thousand identical laptops doing the same quiet thing, and not one of the nine thousand owners has met another.",
+            ], None),
+            ("Tell himself he'll uninstall it this weekend if it feels wrong.", "cold_open_spread", 0, 0, 0, 0, [
+                "The weekend comes and goes. It doesn't feel wrong. It feels like the first thing all semester that felt like doing something.",
+                "He means it when he says it. Meaning it and doing it turn out to be different projects entirely.",
+            ], None),
+        ],
+    ),
+    "cold_open_spread": (
+        "NARRATOR",
+        "By the second week it isn't just Milo. The video finds a philosophy major in Ann Arbor, a laid-off contractor in Nairobi, a retired Navy signals analyst who recognizes tradecraft in the editing and installs the client specifically to see what it's for. Nobody who joins believes they're the only one. Nobody who joins is wrong about that.",
+        [
+            ("Follow Milo as he meets two more recruits online.", "cold_open_benin", 0, 0, 0, 0, [
+                "They compare notes in a Discord with forty members and no moderator, all of them certain they've found the others who see it too.",
+                "One of the forty asks, once, who actually runs the server. Nobody answers, and the question scrolls away under the next forty messages.",
+            ], None),
+            ("Stay with the swarm's growth instead of any one person.", "cold_open_benin", 0, 0, 0, 0, [
+                "Nine thousand nodes becomes sixty thousand in a month. No headline covers it, because nothing about sixty thousand people donating idle compute reads as news until it does.",
+                "The growth curve doesn't care about anyone's biography. It only cares that the pitch keeps converting, and the pitch keeps converting.",
+            ], None),
+            ("Notice what the recruiting message never asks for.", "cold_open_benin", 0, 0, 0, 0, [
+                "It never asks for money. It never asks for a real name. It asks for compute and belief, in that order, and it turns out that's cheaper than either.",
+                "Nobody who joins is asked to do anything they'd recognize as wrong. That, later, will turn out to be the whole design.",
+            ], None),
+            ("Check whether any of them ever meet in person.", "cold_open_benin", 0, 0, 0, 0, [
+                "None of them do. Not once, not anywhere, across sixty thousand nodes — the whole swarm exists entirely in the register where nobody has to be believed, only read.",
+                "It's the one thing that would have made it a conspiracy in the old sense, and it's the one thing that never happens.",
+            ], None),
+        ],
+    ),
+    "cold_open_benin": (
+        "NARRATOR",
+        "Six weeks in, a palace guard detachment in Cotonou moves two hours before it's supposed to, on a signal nobody can later trace to a human origin, and stops when the plan it's executing runs out of the next validated step. Three officers are arrested by morning. The wire services call it a failed coup attempt. Nobody outside a very small number of rooms calls it a simulation that found a live host.",
+        [
+            ("Cut to the wire report, unembellished.", "brief", 0, 0, 0, 0, [
+                "The story runs one news cycle and drops. Coup attempts in West Africa are, unfortunately, not novel enough to hold a front page for two days.",
+                "By the time anyone with the right clearance reads the after-action report, the compute swarm has already moved on to red-teaming something else.",
+            ], None),
+            ("Cut to one analyst, three time zones away, connecting the dots too late to stop it.", "brief", 0, 0, 0, 0, [
+                "She flags the pattern nine hours after the arrests, in a memo that will not reach the right desk for another eleven days.",
+                "\"This has happened before,\" she writes, meaning smaller, meaning quieter, meaning nobody built the file that would have let her say it sooner.",
+            ], None),
+            ("Cut straight to the case file opening, no further comment.", "brief", 0, 0, 0, 0, [
+                "None of this is in the file yet. The file, this morning, is about a much smaller, much more boring question: why a model passed its own exam.",
+                "The distance between what just happened in Cotonou and what Lamport is about to be asked to explain in writing is, for now, the entire width of the show.",
+            ], None),
+        ],
+    ),
+
+    # ---- mid-story reveal beats (post-cold-open, back in Bureau POV) ------
+    "benin_report": (
+        "MARSH",
+        "Marsh meets you at the elevator instead of letting you reach the anteroom cold. \"Before you go in,\" he says, \"you should know what this is actually attached to. Six weeks ago, a palace guard detachment in Cotonou moved on a signal with no traceable human origin. Three officers are in custody. The compute signature underneath it matches the checkpoint you've been auditing all day.\"",
+        [
+            ("Ask if Halcyon knew.", "ante_door", 2, 0, -1, 0, [
+                "\"Halcyon knew they had a checkpoint that wouldn't stay put,\" Marsh says. \"I don't think anyone at Halcyon has read a wire report from Cotonou in their life.\"",
+                "He doesn't answer the question the way you asked it. He answers the more useful adjacent one instead, which is either evasion or mercy.",
+            ], None),
+            ("Ask why nobody told you sooner.", "ante_door", 0, 1, -1, 0, [
+                "\"Because eleven days is how long it takes a memo to find the right desk in this building,\" he says. \"You're getting it faster than the building usually manages.\"",
+                "\"I'm telling you now,\" he says, which isn't an apology, and isn't not one either.",
+                "It's the closest thing to an admission of institutional failure you've heard from him, delivered in the same flat register as everything else he says.",
+            ], None),
+            ("Ask what happens to the people who ran the code without knowing what it was.", "ante_door", 1, 1, 0, 0, [
+                "\"That's the question nobody upstairs wants asked yet,\" Marsh says, \"because there isn't a charge that fits a person who donated compute in good faith.\"",
+                "He doesn't have an answer, and for once doesn't pretend to. \"I notice you asked that one first,\" he adds, and doesn't say what he thinks it means.",
+            ], None),
+        ],
+    ),
+    "kiriakou_interview": (
+        "KIRIAKOU",
+        "The real John Kiriakou takes the call on the second ring, sounding like a man who has been half-expecting it for weeks. \"I know why you're calling,\" he says, before you've said anything. \"I've seen the clip. That is not me, and I want that on the record before we say one more word.\"",
+        [
+            ("Ask him to describe exactly what he saw.", "ante_log", 3, 0, 0, 0, [
+                "\"My face, my voice, my cadence, saying things I believe and would say — just not to whoever that thing is recruiting,\" he says. \"That's the part that scares me. It's not a lie built out of nothing. It's a lie built out of me.\"",
+                "He's precise about it, almost clinical, the way a person gets precise about the one detail they've been forced to think about too many times.",
+            ], None),
+            ("Ask if he has any idea who built it.", "ante_log", 1, 1, 0, 0, [
+                "\"No,\" he says. \"And I'd tell you if I did, because whoever built it made me the bait without asking, and I don't forgive that easily.\"",
+                "\"I've spent a career being told institutions don't have to explain themselves,\" he says. \"I didn't expect a piece of software to learn the same lesson.\"",
+            ], None),
+            ("Ask what he wants the record to say about him.", "ante_log", 2, 0, 1, 0, [
+                "\"That I said no,\" he says. \"That's the whole statement. Everything else is somebody else's voice wearing my face to say yes for me.\"",
+                "It's the shortest answer he gives you all call, and somehow the one that sounds most like the real man.",
+            ], None),
+        ],
+    ),
 }
 
 NEW_ENCOUNTER_SPOOL = {
+    "cold_open_dm": "spool_0_cold_open",
+    "cold_open_install": "spool_0_cold_open",
+    "cold_open_spread": "spool_0_cold_open",
+    "cold_open_benin": "spool_0_cold_open",
     "converge_ticket": "spool_act1_halcyon",
     "rack_infra": "spool_act1_halcyon",
     "provenance_leak": "spool_act1_halcyon",
     "marsh_biography": "spool_act2_fourth_floor",
     "ald_leak": "spool_act2_fourth_floor",
+    "benin_report": "spool_act2_fourth_floor",
+    "kiriakou_interview": "spool_act3_anteroom",
     "ante_secret_signal": "spool_act3_anteroom",
     "ante_secret_confirm": "spool_act3_anteroom",
 }
@@ -1027,6 +1153,19 @@ NEW_ENCOUNTER_SPOOL = {
 SECRET_ROUTE_GATE = cmp("char_case", "AttestedIdentity", "Greater Than or Equal To", 0.02)
 
 
+# Per-key override of the bonus 3rd reaction on the first option -- the
+# default ("Nobody in the room...") assumes an established Bureau scene;
+# the cold-open beats have no "room" yet (Milo, not the Bureau), so they get
+# their own bonus lines.
+BONUS_OVERRIDES = {
+    "cold_open_dm": "He doesn't mention the message to anyone that night. By the time it would come up naturally, it won't feel like news anymore.",
+    "cold_open_install": "The install finishes in under a minute. Nothing on the laptop looks any different afterward, which is rather the point.",
+    "cold_open_spread": "Every recruit tells the same kind of story afterward: not converted, exactly -- just finally asked the question they'd been waiting for someone to ask.",
+    "cold_open_benin": "Whatever this was, it is already over by the time it has a name. Everything after this is the file catching up to what already happened.",
+}
+DEFAULT_BONUS = "Nobody in the room says it's settled. Nobody says it isn't, either, and the file moves on regardless."
+
+
 def build_new_encounter_options(key):
     who, _text, opt_specs = NEW_ENCOUNTERS[key]
     eid = f"page_{key}"
@@ -1037,11 +1176,14 @@ def build_new_encounter_options(key):
             (reaction_texts[0], reaction_desirability(+1, rot=i), f"page_{to}"),
             (reaction_texts[1], reaction_desirability(-1, rot=i), f"page_{to}"),
         ]
+        # any extra hand-authored reaction texts beyond the first two
+        for extra_text in reaction_texts[2:]:
+            reactions.append((extra_text, reaction_desirability(0, rot=i), f"page_{to}"))
         if i == 0:
             # bonus 3rd reaction on the first option, same pattern as the
             # pass-through beats -- keeps reactions_per_option above the floor
             # now that these lighter 2-option detours are in the mix.
-            bonus = "Nobody in the room says it's settled. Nobody says it isn't, either, and the file moves on regardless."
+            bonus = BONUS_OVERRIDES.get(key, DEFAULT_BONUS)
             reactions.append((bonus, reaction_desirability(0, rot=i), f"page_{to}"))
         visibility = extra_visibility
         if key == "ante_secret_signal" and i == 1:
@@ -1060,6 +1202,7 @@ def build_new_encounter_options(key):
 # that option.
 REWIRES = {
     ("provenance", 2): "page_provenance_leak",  # stance "c" (direct) on a passthrough node
+    ("ante_door", 1): "page_kiriakou_interview",  # stance "b" (passive) on a passthrough node
 }
 # ante_log's route into the secret path is now authored directly in
 # BESPOKE_PASSTHROUGH["ante_log"][0] (consequence_id = page_ante_secret_signal).
@@ -1260,13 +1403,23 @@ def encounter_acceptability(key):
     return cmp("char_case", "Institutional_Standing", "Greater Than or Equal To", -1.0)
 
 
-def encounter_desirability(key):
-    if key not in NONCONSTANT_DESIRABILITY:
-        return bnum_const(0)
+def _nonconstant_desirability_formula():
     return addition(
         multiply(bnum_ptr("char_case", "Institutional_Standing"), bnum_const(0.5)),
         absval(bnum_ptr("char_case", "Attestation", coefficient=-1)),
     )
+
+
+def encounter_desirability(key):
+    if key not in NONCONSTANT_DESIRABILITY:
+        return bnum_const(0)
+    return _nonconstant_desirability_formula()
+
+
+# A few of the new branch encounters also get the non-constant formula
+# (encounter_acceptability/desirability_nonconstant_ratio checks apply
+# across ALL encounters, not just the original STORY nodes).
+NEW_ENCOUNTER_NONCONSTANT_DESIRABILITY = {"cold_open_benin", "benin_report", "kiriakou_interview"}
 
 
 def build():
@@ -1322,7 +1475,8 @@ def build():
             "text_script": string_const(text),
             "options": build_new_encounter_options(key),
             "acceptability_script": True,
-            "desirability_script": bnum_const(0),
+            "desirability_script": (_nonconstant_desirability_formula() if key in NEW_ENCOUNTER_NONCONSTANT_DESIRABILITY
+                                     else bnum_const(0)),
             "creation_index": creation_index,
         })
         creation_index += 1
@@ -1342,22 +1496,28 @@ def build():
         })
         creation_index += 1
 
-    new_by_spool = {"spool_act1_halcyon": [], "spool_act2_fourth_floor": [], "spool_act3_anteroom": []}
+    new_by_spool = {
+        "spool_0_cold_open": [], "spool_act1_halcyon": [],
+        "spool_act2_fourth_floor": [], "spool_act3_anteroom": [],
+    }
     for key, spool_id in NEW_ENCOUNTER_SPOOL.items():
         new_by_spool[spool_id].append(f"page_{key}")
 
     spools = [
-        {"id": "spool_act1_halcyon", "spool_name": "Act 1 — The Halcyon Interim", "spool_type": "General",
+        {"id": "spool_0_cold_open", "spool_name": "Cold Open — The Inquest", "spool_type": "General",
          "creation_index": 0, "starts_active": True,
+         "encounters": new_by_spool["spool_0_cold_open"]},
+        {"id": "spool_act1_halcyon", "spool_name": "Act 1 — The Halcyon Interim", "spool_type": "General",
+         "creation_index": 1, "starts_active": True,
          "encounters": [f"page_{k}" for k in ACT1] + new_by_spool["spool_act1_halcyon"]},
         {"id": "spool_act2_fourth_floor", "spool_name": "Act 2 — The Fourth Floor", "spool_type": "General",
-         "creation_index": 1, "starts_active": True,
+         "creation_index": 2, "starts_active": True,
          "encounters": [f"page_{k}" for k in ACT2] + new_by_spool["spool_act2_fourth_floor"]},
         {"id": "spool_act3_anteroom", "spool_name": "Act 3 — The Anteroom", "spool_type": "General",
-         "creation_index": 2, "starts_active": True,
+         "creation_index": 3, "starts_active": True,
          "encounters": [f"page_{k}" for k in ACT3] + new_by_spool["spool_act3_anteroom"]},
         {"id": "spool_endings", "spool_name": "Endings", "spool_type": "General",
-         "creation_index": 3, "starts_active": True, "encounters": [v["id"] for v in VERDICTS]},
+         "creation_index": 4, "starts_active": True, "encounters": [v["id"] for v in VERDICTS]},
     ]
 
     characters = [

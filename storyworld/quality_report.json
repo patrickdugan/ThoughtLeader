@@ -1,19 +1,19 @@
 {
   "checks": [
     {
-      "actual": 3.2195,
+      "actual": 3.2128,
       "name": "options_per_encounter",
       "pass": true,
       "target": 3.2
     },
     {
-      "actual": 2.5152,
+      "actual": 2.5033,
       "name": "reactions_per_option",
       "pass": true,
       "target": 2.5
     },
     {
-      "actual": 5.0151,
+      "actual": 5.0132,
       "name": "effects_per_reaction",
       "pass": true,
       "target": 4.5
@@ -25,13 +25,13 @@
       "target": 1.6
     },
     {
-      "actual": 51.3902,
+      "actual": 52.5106,
       "name": "avg_encounter_words",
       "pass": true,
       "target": 50.0
     },
     {
-      "actual": 20.1114,
+      "actual": 20.6481,
       "name": "avg_reaction_words",
       "pass": true,
       "target": 20.0
@@ -49,7 +49,7 @@
       "target": 1.0
     },
     {
-      "actual": 9.0909,
+      "actual": 7.947,
       "name": "visibility_gated_options_pct",
       "pass": true,
       "target": 3.0
@@ -67,13 +67,13 @@
       "target": 2.0
     },
     {
-      "actual": 0.4854,
+      "actual": 0.4871,
       "name": "desirability_operator_dominance",
       "pass": true,
       "target": 0.9
     },
     {
-      "actual": 0.7149,
+      "actual": 0.7148,
       "name": "effect_operator_dominance",
       "pass": true,
       "target": 0.92
@@ -91,7 +91,7 @@
       "target": 0.999
     },
     {
-      "actual": 1.3988,
+      "actual": 1.3989,
       "name": "effect_script_complexity",
       "pass": true,
       "target": 1.2
@@ -103,31 +103,31 @@
       "target": 1.2
     },
     {
-      "actual": 0.0909,
+      "actual": 0.0795,
       "name": "option_visibility_nonconstant_ratio",
       "pass": true,
       "target": 0.03
     },
     {
-      "actual": 0.1515,
+      "actual": 0.1325,
       "name": "option_visibility_complexity",
       "pass": false,
       "target": 0.6
     },
     {
-      "actual": 0.0606,
+      "actual": 0.053,
       "name": "option_performability_nonconstant_ratio",
       "pass": true,
       "target": 0.03
     },
     {
-      "actual": 0.0606,
+      "actual": 0.053,
       "name": "option_performability_complexity",
       "pass": false,
       "target": 0.6
     },
     {
-      "actual": 0.3778,
+      "actual": 0.3333,
       "name": "encounter_acceptability_nonconstant_ratio",
       "pass": true,
       "target": 0.2
@@ -151,13 +151,13 @@
       "target": 0.25
     },
     {
-      "actual": 0.2,
+      "actual": 0.2353,
       "name": "encounter_desirability_nonconstant_ratio",
       "pass": true,
       "target": 0.2
     },
     {
-      "actual": 0.6,
+      "actual": 0.7059,
       "name": "encounter_desirability_complexity",
       "pass": true,
       "target": 0.5
@@ -175,35 +175,35 @@
   ],
   "operator_counts": {
     "desirability": {
-      "Addition": 332,
+      "Addition": 378,
       "And": 4,
       "Arithmetic Comparator": 16,
-      "Multiplication": 332
+      "Multiplication": 378
     },
     "effects": {
-      "Addition": 1665,
-      "Multiplication": 332,
-      "Nudge": 332
+      "Addition": 1895,
+      "Multiplication": 378,
+      "Nudge": 378
     }
   },
   "pass": false,
   "polish_metrics": {
     "act2": [
-      4.761904761904762,
+      4.444444444444445,
       1.0,
-      42,
+      45,
       2
     ],
     "act3": [
-      17.647058823529413,
+      16.216216216216218,
       1.6666666666666667,
-      34,
+      37,
       6
     ],
     "desirability_vars_avg": 2.0,
-    "effects_per_reaction": 5.015060240963855,
-    "options_per_encounter": 3.2195121951219514,
-    "reactions_per_option": 2.515151515151515,
+    "effects_per_reaction": 5.0132275132275135,
+    "options_per_encounter": 3.2127659574468086,
+    "reactions_per_option": 2.5033112582781456,
     "secret_checks": [
       [
         "page_secret_calibrated",
@@ -216,20 +216,20 @@
   "storyworld": "C:\\projects\\ThoughtLeader\\storyworld\\thought-leader-pilot.json",
   "summary": {
     "avg_desirability_vars": 2.0,
-    "avg_encounter_words": 51.39,
-    "avg_reaction_words": 20.11,
+    "avg_encounter_words": 52.51,
+    "avg_reaction_words": 20.65,
     "desirability_nonconstant_ratio": 1.0,
-    "desirability_operator_dominance": 0.4854,
+    "desirability_operator_dominance": 0.4871,
     "desirability_operator_variety": 4,
     "effect_nonconstant_ratio": 1.0,
-    "effect_operator_dominance": 0.7149,
+    "effect_operator_dominance": 0.7148,
     "effect_operator_variety": 3,
-    "encounter_acceptability_nonconstant_ratio": 0.3778,
-    "encounter_desirability_nonconstant_ratio": 0.2,
-    "encounters": 45,
-    "gated_options_pct": 9.09,
-    "option_performability_nonconstant_ratio": 0.0606,
-    "option_visibility_nonconstant_ratio": 0.0909,
+    "encounter_acceptability_nonconstant_ratio": 0.3333,
+    "encounter_desirability_nonconstant_ratio": 0.2353,
+    "encounters": 51,
+    "gated_options_pct": 7.95,
+    "option_performability_nonconstant_ratio": 0.053,
+    "option_visibility_nonconstant_ratio": 0.0795,
     "p2value_refs": 2,
     "pvalue_refs": 3
   },
