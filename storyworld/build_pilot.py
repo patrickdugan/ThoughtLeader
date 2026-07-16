@@ -226,8 +226,8 @@ CHAR_NAMES = {
 # Ascription under this graph's choice economy (the bespoke dramatic beats
 # skew att-heavy), so a single shared THRESHOLD produced a ~51% dominant
 # ending under 10k-run Monte Carlo. Retuned from an even 0.5/0.5 split.
-ATT_THRESHOLD = 0.58
-ASC_THRESHOLD = 0.48
+ATT_THRESHOLD = 0.66
+ASC_THRESHOLD = 0.60
 
 # ---------------------------------------------------------------------------
 # 2. Script-building helpers (verified against storyworld_reader.html's own
@@ -581,6 +581,11 @@ BESPOKE_CHOICES = {
             "It's faster and it's worse practice, and everybody in the room knows both of those things are true.",
             "Voidt is already moving. Whatever this costs you procedurally, she's decided it's worth it.",
         ]),
+        ("Pull Halcyon's incident ticket instead.", "converge_ticket", 1, 1, 0, 0, [
+            "Lamport is already reaching for the terminal. An incident ticket is the kind of document he trusts by default.",
+            "“There's always a ticket,” Voidt says. “The question is how many fields of it survive contact with legal.”",
+            "It's a smaller ask than the transcript and a more honest one than the hardware — a paper trail with its own redactions built in.",
+        ]),
     ],
     "rack": [
         ("Then pull the logs and make it the same thing.", "logs", 3, 0, 0, 2, [
@@ -602,6 +607,11 @@ BESPOKE_CHOICES = {
             "“Nothing, fully,” he says, “but the logs get me most of the way there.” He starts pulling them without being asked twice.",
             "It's the first time all morning you've asked him a question instead of arguing with his answer to one.",
             "He looks almost thrown by the question. Then he tells you exactly what he'd need, precisely, like he's rehearsed it.",
+        ]),
+        ("Call Halcyon's infrastructure lead directly.", "rack_infra", 1, 0, 0, 1, [
+            "It takes four transfers to find someone who was actually on shift. Lamport counts the transfers out loud, for the record.",
+            "\"You want someone who touched the hardware,\" he says. \"That's a smaller list than you'd think, and I want to talk to all of them.\"",
+            "It's slower than the logs and faster than a subpoena, which in this building counts as a genuine third option.",
         ]),
     ],
     "model": [
@@ -647,6 +657,11 @@ BESPOKE_CHOICES = {
             "He seems almost relieved someone finally asked directly. The relief doesn't make the answer any less evasive.",
             "“I'd tell you if there were a meaningful difference,” he says. “There mostly isn't, from where I sit.”",
         ]),
+        ("Ask him directly about the paragraph everyone stops reading at.", "marsh_biography", 1, 0, 0, 0, [
+            "Marsh looks almost pleased to be asked instead of read about. \"Go ahead,\" he says. \"Ask about the paragraph.\"",
+            "\"Everyone reads the unclassified bio and stops in the same place,\" he says. \"You're the first to say so out loud.\"",
+            "It's a strange thing to volunteer, and stranger still that he seems to have been waiting for someone to take him up on it.",
+        ]),
     ],
     "ald_arrive": [
         ("“Then tell me what isn't on the website.”", "ald_wall", 0, 1, 0, 0, [
@@ -668,6 +683,11 @@ BESPOKE_CHOICES = {
             "“Because someone had to be findable,” she says, “and unclassified work with no author attached tends to just disappear.”",
             "It's the first personal answer she's given all conversation, and she seems slightly surprised she gave it.",
             "“My name is the only classification marking I get to control,” she says. “I use it when I can.”",
+        ]),
+        ("Ask if anyone's ever asked her to bury a finding.", "ald_leak", 0, 1, 0, 0, [
+            "The answer arrives faster than the question should reasonably allow for, which is its own kind of tell.",
+            "\"That's not a question people usually get to ask me twice,\" she says. \"I notice you're only asking it once.\"",
+            "Something in her posture changes for exactly as long as it takes her to decide how to answer.",
         ]),
     ],
     "ante_wait": [
@@ -714,6 +734,189 @@ BESPOKE_CHOICES = {
             "“I don't get asked that,” he says. “Usually I'm just the one who tells people what they already decided.”",
         ]),
     ],
+}
+
+
+# ---------------------------------------------------------------------------
+# 4b. New branch encounters (deepening pass): genuine topological detours --
+#     different consequence targets, not just flavor text on the same
+#     destination -- so there are several distinct routes through each act
+#     toward each ending, plus a dedicated gated secret-route pair per
+#     SECRET_ENDINGS.md's pattern (gated option -> gated reaction -> a
+#     boosted dual effect that specifically favors the calibrated ending).
+#     Each detour: 2 options, 2 reactions each (lighter than the 8 bespoke
+#     choice nodes, since these are connective branches, not headline beats).
+# ---------------------------------------------------------------------------
+
+# key -> (who, text, [(label, to, att, asc, inst, attid, [r1, r2], visibility_or_None), ...])
+NEW_ENCOUNTERS = {
+    "converge_ticket": (
+        "LAMPORT",
+        "\"There's an incident ticket,\" Lamport says, already pulling it up. \"Halcyon files one every time a checkpoint restarts unscheduled. This one has four fields redacted, which is three more than usual.\"",
+        [
+            ("Request the unredacted version.", "rack", 2, 0, 0, 0, [
+                "The request goes out. Whether it comes back honest is a different question than whether it comes back at all.",
+                "\"They'll send something,\" Lamport says. \"Whether it's the same document is the part I can't promise.\"",
+            ], None),
+            ("Work with what's visible.", "rack", 0, 2, 0, 0, [
+                "Four redactions is itself a data point, Voidt says, and for once Lamport doesn't argue with the epistemology.",
+                "You take the ticket as given and move on, redactions and all, filing the gaps as gaps rather than as answers.",
+            ], None),
+            ("Ask who signed off on the redactions.", "rack", 1, 1, -1, 0, [
+                "The signature block is a title, not a name — the same trick Marsh will pull on you later tonight, though you don't know that yet.",
+                "\"Somebody always signs,\" Lamport says. \"Finding out who is usually easier than finding out why.\"",
+            ], None),
+        ],
+    ),
+    "rack_infra": (
+        "LAMPORT",
+        "Halcyon patches you through to a systems engineer who sounds like she's been awake for a shift and a half. \"The instance restarted twice that week,\" she says, before you've finished the question. \"Once for patching. Once for reasons the ticket doesn't specify.\"",
+        [
+            ("Ask what the unspecified reason was.", "model", 2, 0, -1, 0, [
+                "She puts you on hold long enough that you know she's asking someone else. \"Capacity,\" she says when she comes back, in the tone of a word she's been handed rather than one she chose.",
+                "\"I can pull the ticket,\" she says, \"but I can't promise the reason field will still say what it said when it was filed.\"",
+            ], None),
+            ("Thank her and let it go.", "model", 0, 1, 1, 0, [
+                "You let the unspecified reason stay unspecified. It's one loose thread among several, and you only have two hands.",
+                "Lamport writes \"declined to pursue\" next to the reason field, which is its own kind of honest.",
+            ], None),
+            ("Ask her to send the maintenance log too.", "model", 1, 1, 0, 0, [
+                "She agrees before she's had time to think about whether she should, and then makes you promise not to say where it came from.",
+                "\"That one's not mine to send,\" she says, \"but I'm going to send it anyway, and we're both going to pretend that's fine.\"",
+            ], None),
+        ],
+    ),
+    "marsh_biography": (
+        "MARSH",
+        "\"Ask me directly,\" Marsh says, before you do. \"Everyone reads the unclassified bio and stops at the same paragraph. Go ahead, ask about the paragraph.\"",
+        [
+            ("Ask about the paragraph.", "marsh_close", 2, 0, 0, 0, [
+                "\"It's accurate,\" he says. \"It's just organized to make you stop reading before the interesting part.\"",
+                "He answers the literal question completely and the actual question not at all, which he clearly considers a fair trade.",
+            ], None),
+            ("Decline. It's not the point tonight.", "marsh_close", 0, 1, 1, 0, [
+                "He looks almost disappointed. \"Most people ask,\" he says. \"I had an answer ready.\"",
+                "You let the paragraph stay exactly as unread as everyone else's, and Marsh files that away too.",
+            ], None),
+        ],
+    ),
+    "ald_leak": (
+        "ALDUNATE",
+        "\"Has anyone ever asked you to bury a finding,\" you ask, and Aldunate's answer arrives faster than the question should allow for.",
+        [
+            ("Push for a specific instance.", "ald_end", 2, 0, 0, 0, [
+                "\"Once,\" she says. \"I published it late instead. Late is not the same as buried, and I have made my peace with the distinction.\"",
+                "She gives you the year, not the case number, which is exactly as much as her charter allows her to give anyone.",
+            ], None),
+            ("Let the general answer stand.", "ald_end", 0, 1, 0, 0, [
+                "\"No,\" she says, and you decide, for now, to let that be the whole answer.",
+                "It's the kind of question that only gets a fuller answer the second time it's asked. You don't ask it a second time.",
+            ], None),
+            ("Ask what she'd do differently now.", "ald_end", 1, 1, 0, 0, [
+                "\"Publish sooner,\" she says, without needing to think about it. \"Late is still a kind of burial, just a slower one.\"",
+                "It's the most personal thing she's said all night, and she seems to file the admission away as carefully as she files everything else.",
+            ], None),
+        ],
+    ),
+    "provenance_leak": (
+        "VOIDT",
+        "An unsigned message lands in the case inbox forty minutes later: a timestamp, a building badge-swipe log, nothing else. Nobody claims it. Nobody has to — the swipe log says who was in the building when the battery ran.",
+        [
+            ("Trace the badge number anyway.", "converge", 2, 0, 0, 0, [
+                "It traces to a contractor badge that was deactivated eight months ago and somehow still opens doors.",
+                "Voidt runs it twice, gets the same dead end twice, and writes down the dead end instead of a guess.",
+            ], None),
+            ("Treat it as noise and move on.", "converge", 0, 2, 0, 0, [
+                "\"Anonymous tips are how you end up chasing the tipster instead of the case,\" Lamport says, and for once you don't argue.",
+                "You let the message sit in the inbox, unopened twice, which is its own kind of answer about how much weight it deserves.",
+            ], None),
+        ],
+    ),
+    # ---- the dedicated secret route (gated: requires AttestedIdentity to
+    # have been earned earlier -- rack's "pull the logs" or "compare
+    # snapshot" choices) --------------------------------------------------
+    "ante_secret_signal": (
+        "ALDUNATE",
+        "\"The fourth name in the log,\" Aldunate says, \"maps to a maintenance credential. That credential was active for six minutes during the Halcyon test window. I want to be precise about what that does and doesn't mean.\"",
+        [
+            ("That's the connection. Someone was in the loop.", "ante_wait", -1, 3, -1, 0, [
+                "\"It's a coincidence shaped like a connection,\" Aldunate says, \"and I've watched people build careers on that shape.\"",
+                "You want it to mean more than it does, and Aldunate lets you sit with wanting that for a second before continuing.",
+            ], None),
+            ("Note the coincidence. Don't promote it.", "ante_secret_confirm", 3, 1, 1, 0, [
+                "\"That,\" Aldunate says, \"is the correct amount of interest to have in a six-minute credential window.\"",
+                "You write it down exactly as uncertain as it is, which is harder than writing it down as either innocent or damning.",
+            ], None),
+        ],
+    ),
+    "ante_secret_confirm": (
+        "VOIDT",
+        "\"No author,\" Voidt says, half to herself, watching the six minutes sit there meaning exactly as little as it's allowed to mean. \"Just a door that was open when something walked past it.\"",
+        [
+            ("Say it out loud, for the record.", "ante_wait", 2, 2, 2, 0, [
+                "Lamport doesn't correct her, which from him is close to agreement.",
+                "It's the first sentence all night that both of them let stand without amending.",
+            ], None),
+            ("Let the moment pass without saying it.", "ante_wait", 2, 2, 1, 0, [
+                "You let the sentence stay unsaid. It doesn't stop being true for not being said out loud.",
+                "Some things go in the file better half-spoken. Voidt seems to already know that.",
+            ], None),
+        ],
+    ),
+}
+
+NEW_ENCOUNTER_SPOOL = {
+    "converge_ticket": "spool_act1_halcyon",
+    "rack_infra": "spool_act1_halcyon",
+    "provenance_leak": "spool_act1_halcyon",
+    "marsh_biography": "spool_act2_fourth_floor",
+    "ald_leak": "spool_act2_fourth_floor",
+    "ante_secret_signal": "spool_act3_anteroom",
+    "ante_secret_confirm": "spool_act3_anteroom",
+}
+
+# The "flag it as unverified" option at ante_secret_signal is only reachable
+# once the chain-of-custody thread (rack -> logs, or the snapshot variant)
+# has actually been established -- otherwise there's nothing to "note as
+# unverified but real." Matches the same AttestedIdentity gate used for the
+# checkpoint-hash option in ante_return.
+SECRET_ROUTE_GATE = cmp("char_case", "AttestedIdentity", "Greater Than or Equal To", 0.02)
+
+
+def build_new_encounter_options(key):
+    who, _text, opt_specs = NEW_ENCOUNTERS[key]
+    eid = f"page_{key}"
+    options = []
+    for i, (label, to, att, asc, inst, attid, reaction_texts, extra_visibility) in enumerate(opt_specs):
+        effects = option_effects(att=att, asc=asc, inst=inst, attid=attid, weight=0.05, rot=i)
+        reactions = [
+            (reaction_texts[0], reaction_desirability(+1, rot=i), f"page_{to}"),
+            (reaction_texts[1], reaction_desirability(-1, rot=i), f"page_{to}"),
+        ]
+        if i == 0:
+            # bonus 3rd reaction on the first option, same pattern as the
+            # pass-through beats -- keeps reactions_per_option above the floor
+            # now that these lighter 2-option detours are in the mix.
+            bonus = "Nobody in the room says it's settled. Nobody says it isn't, either, and the file moves on regardless."
+            reactions.append((bonus, reaction_desirability(0, rot=i), f"page_{to}"))
+        visibility = extra_visibility
+        if key == "ante_secret_signal" and i == 1:
+            # "Note the coincidence" -- the option that actually leads into
+            # the confirm beat -- carries the gate; the "chase it" option
+            # stays open regardless (it's the wrong read, not a locked one).
+            visibility = SECRET_ROUTE_GATE
+        options.append(make_option(f"{eid}_opt{i}", label, effects, reactions, visibility=visibility))
+    return options
+
+
+# Targeted rewires of ONE existing option's consequence_id, layered on top of
+# the generic passthrough/bespoke builders, so a couple of already-existing
+# beats branch into the new detours instead of routing straight to their old
+# target. (key, option_index) -> new consequence_id for every reaction on
+# that option.
+REWIRES = {
+    ("provenance", 2): "page_provenance_leak",  # stance "c" (direct) on a passthrough node
+    ("ante_log", 0): "page_ante_secret_signal",  # stance "a" (procedural) on a passthrough node
 }
 
 
@@ -942,6 +1145,12 @@ def build():
                 # stance "c" is always the 3rd option (index 2)
                 options[2]["performability_script"] = cmp("char_case", "Institutional_Standing", "Greater Than or Equal To", gate)
 
+        for opt_index, new_target in REWIRES.items():
+            rewire_key, rewire_opt_index = opt_index
+            if rewire_key == key:
+                for rxn in options[rewire_opt_index]["reactions"]:
+                    rxn["consequence_id"] = new_target
+
         encounters.append({
             "id": eid,
             "title": key.replace("_", " ").title(),
@@ -952,6 +1161,22 @@ def build():
             "options": options,
             "acceptability_script": encounter_acceptability(key),
             "desirability_script": encounter_desirability(key),
+            "creation_index": creation_index,
+        })
+        creation_index += 1
+
+    for key, (who, text, _opt_specs) in NEW_ENCOUNTERS.items():
+        eid = f"page_{key}"
+        encounters.append({
+            "id": eid,
+            "title": key.replace("_", " ").title(),
+            "connected_spools": [NEW_ENCOUNTER_SPOOL[key]],
+            "earliest_turn": 0,
+            "latest_turn": 999,
+            "text_script": string_const(text),
+            "options": build_new_encounter_options(key),
+            "acceptability_script": True,
+            "desirability_script": bnum_const(0),
             "creation_index": creation_index,
         })
         creation_index += 1
@@ -971,13 +1196,20 @@ def build():
         })
         creation_index += 1
 
+    new_by_spool = {"spool_act1_halcyon": [], "spool_act2_fourth_floor": [], "spool_act3_anteroom": []}
+    for key, spool_id in NEW_ENCOUNTER_SPOOL.items():
+        new_by_spool[spool_id].append(f"page_{key}")
+
     spools = [
         {"id": "spool_act1_halcyon", "spool_name": "Act 1 — The Halcyon Interim", "spool_type": "General",
-         "creation_index": 0, "starts_active": True, "encounters": [f"page_{k}" for k in ACT1]},
+         "creation_index": 0, "starts_active": True,
+         "encounters": [f"page_{k}" for k in ACT1] + new_by_spool["spool_act1_halcyon"]},
         {"id": "spool_act2_fourth_floor", "spool_name": "Act 2 — The Fourth Floor", "spool_type": "General",
-         "creation_index": 1, "starts_active": True, "encounters": [f"page_{k}" for k in ACT2]},
+         "creation_index": 1, "starts_active": True,
+         "encounters": [f"page_{k}" for k in ACT2] + new_by_spool["spool_act2_fourth_floor"]},
         {"id": "spool_act3_anteroom", "spool_name": "Act 3 — The Anteroom", "spool_type": "General",
-         "creation_index": 2, "starts_active": True, "encounters": [f"page_{k}" for k in ACT3]},
+         "creation_index": 2, "starts_active": True,
+         "encounters": [f"page_{k}" for k in ACT3] + new_by_spool["spool_act3_anteroom"]},
         {"id": "spool_endings", "spool_name": "Endings", "spool_type": "General",
          "creation_index": 3, "starts_active": True, "encounters": [v["id"] for v in VERDICTS]},
     ]

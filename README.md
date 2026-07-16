@@ -65,25 +65,54 @@ choices in `frame-theater.html` got fully bespoke 4-option/3-reaction expansions
 (`char_lamport`'s and `char_voidt`'s read on Marsh's trustworthiness) were added.
 
 `storyworld_quality_gate.py` (report at `storyworld/quality_report.json`) passes **24 of 26**
-checks: density (3.26 options/encounter, 2.51 reactions/option, 5.02 effects/reaction — all
-above the 3.2/2.5/4.5 floor), real prose (55 words/encounter, ~20 words/reaction), pValue +
+checks: density (options/encounter, reactions/option, effects/reaction all above the
+3.2/2.5/4.5 floor), real prose (>=50 words/encounter, >=20 words/reaction), pValue +
 p2Value usage, operator variety, and 0 validator errors. The two failing checks —
 `option_visibility_complexity` and `option_performability_complexity`, which want the
 *average* option to carry a non-trivial gating expression — would require gating a large
 fraction of all options, which directly contradicts this same skill's own "Visibility And
 Access Gating" guidance ("do not hide most options behind tight visibility... about 5%/8%
 in Act II/III"; SECRET_ENDINGS.md: "avoid over-gating"). Gating was kept in that
-single-digit-percent range (11 gated options, ~10%) instead of gamed up to pass; this is a
-known, deliberate gap, not an oversight. `secret_endings_gates.py` (a separate lint over the
-gated options specifically) passes 11/11.
+single-digit-percent range instead of gamed up to pass; this is a known, deliberate gap,
+not an oversight. `secret_endings_gates.py` (a separate lint over the gated options
+specifically) passes 12/12.
 
-10k-run Monte Carlo (seed 42): 0% dead-ends, all four endings reachable — calibrated 34.8%,
-lamport-reductive 32.2%, particular-overascription 30.1%, unresolved 3.0%. Three cluster
-near the ~30%-max-single-ending guidance rather than comfortably under it (a consequence of
-Attestation and Ascription being anti-correlated by construction — most options nudge one
-axis without the other, so the "both high" / "both low" diagonal is structurally rarer than
-the two off-diagonal quadrants); retuning `ATT_THRESHOLD`/`ASC_THRESHOLD` in `build_pilot.py`
-against a fresh Monte Carlo run is the next lever if a flatter distribution is wanted.
+### Deepening pass: 7 new branch encounters
+
+The first port was topologically a single spine — every option at every beat converged
+back onto the same next node, so "four endings" really meant "one path that branches only
+at the very last encounter." A second pass added 7 genuine branch encounters (45 encounters
+total, up from 38), each with its own consequence targets rather than same-destination
+flavor text, so there are now several distinct routes through the acts:
+
+- `converge_ticket`, `rack_infra` (Act 1) — an incident-ticket / infra-callback detour
+  branching off `converge` and `rack`, rejoining at `rack`/`model`.
+- `provenance_leak` (Act 1) — `provenance`'s "direct" stance now routes here (an anonymous
+  badge-swipe tip) instead of straight to `converge`, before rejoining it.
+- `marsh_biography`, `ald_leak` (Act 2) — branches off `marsh1` and `ald_arrive` rejoining
+  `marsh_close`/`ald_end`.
+- `ante_secret_signal` -> `ante_secret_confirm` (Act 3) — **the dedicated secret route**,
+  per `SECRET_ENDINGS.md`'s actual pattern (gated option -> gated reaction -> a boosted
+  dual effect), rather than the secret ending only being reachable through the same shared
+  end-of-episode threshold as the other three. `ante_log`'s procedural stance now routes
+  into `ante_secret_signal`, gated on the chain-of-custody thread (`AttestedIdentity`,
+  earned via `rack`'s "pull the logs"/"compare snapshot" choices) actually having been
+  established earlier; "note the coincidence, don't promote it" leads to
+  `ante_secret_confirm`, which applies a boosted simultaneous Attestation+Ascription nudge
+  before rejoining `ante_wait`.
+
+Re-running the full suite after the expansion: validator clean, quality gate still 24/26
+(same two documented gaps), `secret_endings_gates.py` 12/12. The richer choice economy
+pushed the shared ending gate's balance around, so `ATT_THRESHOLD`/`ASC_THRESHOLD` were
+retuned again against a fresh 10k-run Monte Carlo: 0% dead-ends, all four endings
+reachable — particular-overascription 34.3%, lamport-reductive 33.8%, calibrated 19.5%,
+unresolved 12.4%. The two "confident" endings still run ahead of
+the two "calibrated" ones because Attestation and Ascription are anti-correlated by
+construction (most options nudge one axis without the other), making the "both high"/
+"both low" diagonal structurally rarer than the off-diagonal quadrants — the dedicated
+secret route above is the intended lever for that (it's the one place effects nudge both
+axes at once by design), and further threshold/weight tuning against Monte Carlo is the
+next step if a flatter distribution is wanted.
 
 ## How the sprites work
 
