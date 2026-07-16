@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+scratch/_*.json
+.DS_Store
+thought-leader.zip

@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THOUGHT LEADER — frame theater prototype</title>
+<style>
+  :root {
+    --void:      #0a0c10;
+    --slate:     #1b2430;
+    --steel:     #2f3b4a;
+    --bone:      #c8bfa4;
+    --amber:     #d9a441;
+    --crt:       #6fb3a8;
+    --voidt:     #a86a8c;
+    --manila:    #cdc3a5;
+    --ink:       #23201a;
+    --ink-faint: #6b6455;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--void);
+    color: var(--bone);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    padding: 24px 16px 48px;
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 1120px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 20px;
+    align-items: start;
+  }
+
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* ---------- slug line ---------- */
+
+  .slug {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    border-bottom: 1px solid var(--steel);
+    padding-bottom: 8px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .slug strong {
+    color: var(--bone);
+    font-weight: 500;
+    letter-spacing: 0.3em;
+  }
+
+  /* ---------- diegetic column ---------- */
+
+  .stage {
+    background: #000;
+    border: 1px solid var(--steel);
+    overflow: hidden;
+  }
+
+  canvas.scene {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  .dialogue {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px;
+    background: var(--slate);
+    border-top: 1px solid var(--steel);
+    min-height: 148px;
+  }
+
+  canvas.portrait {
+    width: 96px;
+    height: 112px;
+    image-rendering: pixelated;
+    background: #000;
+    border: 1px solid var(--steel);
+  }
+
+  .speaker {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .speaker[data-who="VOIDT"]  { color: var(--voidt); }
+  .speaker[data-who="LAMPORT"] { color: var(--crt); }
+  .speaker[data-who="MODEL"]  { color: var(--amber); }
+  .speaker[data-who="MARSH"]  { color: #8fa0b8; }
+  .speaker[data-who="ALDUNATE"] { color: var(--manila); }
+
+  .line {
+    font-size: 14.5px;
+    letter-spacing: 0.01em;
+    color: var(--bone);
+    min-height: 4.5em;
+  }
+  .line .caret {
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    background: var(--bone);
+    vertical-align: -0.15em;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- choices ---------- */
+
+  .choices {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--steel);
+    border-top: 0;
+    background: #12151c;
+  }
+  .choices li + li { border-top: 1px solid #1e2530; }
+
+  .choices button {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 4px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    padding: 11px 14px;
+    color: var(--bone);
+    font: inherit;
+    cursor: pointer;
+  }
+  .choices button:hover,
+  .choices button:focus-visible {
+    background: var(--steel);
+    color: #fff;
+    outline: none;
+  }
+  .choices button:focus-visible { box-shadow: inset 2px 0 0 var(--amber); }
+  .choices .key { color: var(--ink-faint); font-size: 12px; }
+  .choices button:hover .key { color: var(--amber); }
+
+  .advance {
+    padding: 11px 14px;
+    color: var(--ink-faint);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+  }
+  .advance:hover { color: var(--bone); }
+
+  /* ---------- extradiegetic column: the trace, on paper ---------- */
+
+  .trace {
+    background: var(--manila);
+    color: var(--ink);
+    padding: 16px 16px 12px;
+    box-shadow: 0 1px 0 #000, 0 0 0 1px #0f1219;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 23px, rgba(35,32,26,0.06) 23px 24px);
+  }
+
+  .trace h2 {
+    margin: 0 0 2px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .trace .sub {
+    margin: 0 0 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .host {
+    margin: -8px 0 14px;
+    padding: 4px 6px;
+    border: 1px solid rgba(35,32,26,0.35);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .meter { margin-bottom: 10px; }
+  .meter .cap {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .meter .bar {
+    height: 6px;
+    margin-top: 3px;
+    background: rgba(35,32,26,0.14);
+  }
+  .meter .fill {
+    height: 100%;
+    width: 0;
+    background: var(--ink);
+    transition: width 220ms ease-out;
+  }
+
+  .flags {
+    margin: 12px 0;
+    padding-top: 10px;
+    border-top: 1px solid rgba(35,32,26,0.22);
+    font-size: 11px;
+    min-height: 2.4em;
+    color: var(--ink-faint);
+  }
+  .flags span {
+    display: inline-block;
+    border: 1px solid rgba(35,32,26,0.4);
+    color: var(--ink);
+    padding: 1px 5px;
+    margin: 0 4px 4px 0;
+  }
+
+  .log {
+    border-top: 1px solid rgba(35,32,26,0.22);
+    padding-top: 10px;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .log div { display: flex; gap: 8px; }
+  .log .n { color: var(--ink-faint); }
+  .log .d { margin-left: auto; white-space: nowrap; }
+  .log em { font-style: normal; color: var(--ink-faint); }
+
+  .tools {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(35,32,26,0.22);
+  }
+  .tools button {
+    flex: 1;
+    background: none;
+    border: 1px solid rgba(35,32,26,0.45);
+    color: var(--ink);
+    font: inherit;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 4px;
+    cursor: pointer;
+  }
+  .tools button:hover,
+  .tools button:focus-visible { background: var(--ink); color: var(--manila); outline: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<main class="shell">
+
+  <header class="slug">
+    <strong>Thought Leader</strong>
+    <span id="slug-scene">ep. 1 · int. basement office · night</span>
+  </header>
+
+  <section>
+    <div class="stage">
+      <canvas class="scene" id="scene" width="320" height="180" aria-label="Scene"></canvas>
+      <div class="dialogue">
+        <canvas class="portrait" id="portrait" width="48" height="56" aria-hidden="true"></canvas>
+        <div>
+          <div class="speaker" id="speaker" data-who="LAMPORT">Lamport</div>
+          <p class="line" id="line"></p>
+        </div>
+      </div>
+    </div>
+    <ul class="choices" id="choices"></ul>
+  </section>
+
+  <aside class="trace">
+    <h2>Traversal record</h2>
+    <p class="sub">Case 41-VK · unadmitted</p>
+    <p class="host" id="host">host: —</p>
+
+    <div class="meter">
+      <div class="cap"><span>Attestation</span><span id="att-v">0</span></div>
+      <div class="bar"><div class="fill" id="att-f"></div></div>
+    </div>
+    <div class="meter">
+      <div class="cap"><span>Ascription</span><span id="asc-v">0</span></div>
+      <div class="bar"><div class="fill" id="asc-f"></div></div>
+    </div>
+
+    <div class="flags" id="flags">no flags set</div>
+    <div class="log" id="log"></div>
+
+    <div class="tools">
+      <button id="export">Export trace</button>
+      <button id="restart">Restart</button>
+    </div>
+  </aside>
+
+</main>
+
+<script>
+"use strict";
+
+/* =====================================================================
+   1. SCENE PAINTERS — everything procedural, 320x180, no assets.
+   ===================================================================== */
+
+const px = (ctx, x, y, w, h, c) => { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); };
+
+const SCENES = {
+
+  office(ctx, f) {
+    px(ctx, 0, 0, 320, 180, "#12151c");
+    px(ctx, 0, 0, 320, 142, "#1b2430");   // back wall
+    px(ctx, 0, 142, 320, 38, "#171b23");  // floor
+    px(ctx, 0, 140, 320, 2, "#0d1016");
+
+    // window blinds, streetlight leaking through
+    px(ctx, 206, 18, 96, 74, "#0e141c");
+    for (let y = 20; y < 90; y += 4) {
+      px(ctx, 208, y, 92, 2, "#26313f");
+      px(ctx, 208, y + 2, 92, 1, "#1a222c");
+    }
+    ctx.globalAlpha = 0.10;
+    px(ctx, 208, 20, 92, 70, "#d9a441");
+    ctx.globalAlpha = 1;
+    px(ctx, 206, 18, 96, 1, "#2f3b4a");
+    px(ctx, 206, 91, 96, 1, "#2f3b4a");
+
+    // filing cabinets
+    px(ctx, 8, 66, 52, 76, "#232c38");
+    px(ctx, 8, 66, 52, 1, "#3a4657");
+    for (let i = 0; i < 3; i++) {
+      const y = 72 + i * 24;
+      px(ctx, 12, y, 44, 20, "#1e2731");
+      px(ctx, 28, y + 9, 12, 2, "#4a5566");
+    }
+
+    // corkboard, pinned photos, red thread
+    px(ctx, 84, 26, 92, 58, "#2a2118");
+    px(ctx, 84, 26, 92, 1, "#3b2f22");
+    const pins = [[92,34,18,14],[120,32,16,12],[148,38,20,16],[96,58,22,16],[134,58,18,14]];
+    pins.forEach(([x,y,w,h]) => { px(ctx, x, y, w, h, "#b7ad92"); px(ctx, x, y, w, 1, "#d5cbae"); });
+    ctx.strokeStyle = "#7d3a44"; ctx.lineWidth = 1; ctx.beginPath();
+    ctx.moveTo(101, 41); ctx.lineTo(128, 38); ctx.lineTo(158, 46);
+    ctx.lineTo(107, 66); ctx.lineTo(143, 65); ctx.stroke();
+
+    // desk
+    px(ctx, 62, 116, 196, 6, "#3a3026");
+    px(ctx, 62, 122, 196, 20, "#241d16");
+    px(ctx, 62, 116, 196, 1, "#544433");
+
+    // lamp + cone
+    px(ctx, 84, 96, 3, 20, "#39424f");
+    px(ctx, 76, 90, 20, 7, "#4a5462");
+    px(ctx, 76, 96, 20, 1, "#d9a441");
+    const flick = 0.11 + (Math.sin(f / 37) + Math.sin(f / 11)) * 0.008;
+    ctx.globalAlpha = Math.max(0.06, flick);
+    ctx.fillStyle = "#d9a441";
+    ctx.beginPath();
+    ctx.moveTo(80, 97); ctx.lineTo(94, 97); ctx.lineTo(116, 118); ctx.lineTo(58, 118);
+    ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // papers in the light
+    px(ctx, 70, 110, 22, 7, "#c8bfa4");
+    px(ctx, 78, 106, 20, 7, "#b3ab92");
+    px(ctx, 96, 111, 14, 5, "#c8bfa4");
+
+    // CRT on the desk
+    px(ctx, 196, 84, 46, 34, "#242c36");
+    px(ctx, 200, 88, 38, 24, "#0c1a19");
+    ctx.globalAlpha = 0.55 + Math.sin(f / 23) * 0.05;
+    px(ctx, 200, 88, 38, 24, "#0f2b28");
+    ctx.globalAlpha = 1;
+    for (let y = 89; y < 112; y += 2) px(ctx, 200, y, 38, 1, "#10322e");
+    px(ctx, 203, 92, 20, 2, "#6fb3a8");
+    px(ctx, 203, 97, 28, 2, "#4c8d84");
+    px(ctx, 203, 102, 12, 2, "#4c8d84");
+    if (Math.floor(f / 30) % 2) px(ctx, 217, 102, 3, 2, "#6fb3a8");
+    px(ctx, 210, 118, 18, 4, "#242c36");
+  },
+
+  anteroom(ctx, f) {
+    const disc = (x, y, r, c) => {
+      for (let dy = -r; dy <= r; dy++)
+        for (let dx = -r; dx <= r; dx++)
+          if (dx * dx + dy * dy <= r * r) px(ctx, x + dx, y + dy, 1, 1, c);
+    };
+
+    px(ctx, 0, 0, 320, 180, "#141922");
+    px(ctx, 0, 0, 320, 14, "#1a1f27");     // ceiling
+    px(ctx, 0, 14, 320, 104, "#222932");   // upper wall
+    px(ctx, 0, 116, 320, 3, "#171c24");    // chair rail
+    px(ctx, 0, 119, 320, 31, "#1b212a");   // lower wall
+    px(ctx, 0, 149, 320, 1, "#0e1218");
+    px(ctx, 0, 150, 320, 30, "#171b23");   // floor
+
+    // fluorescent troffers — the only overhead light in the show
+    [64, 196].forEach((x, i) => {
+      const dead = i === 1 && Math.floor(f / 6) % 9 === 0;
+      px(ctx, x, 3, 60, 6, dead ? "#2b3038" : "#e6e0cc");
+      px(ctx, x - 2, 2, 64, 1, "#39404a");
+      ctx.globalAlpha = dead ? 0.02 : 0.07;
+      px(ctx, x - 10, 9, 80, 40, "#e6e0cc");
+      ctx.globalAlpha = 1;
+    });
+
+    // phone lockers. Six of ten are occupied, which is the scene's only fact.
+    const taken = [1, 1, 0, 1, 0, 1, 1, 0, 1, 0];
+    px(ctx, 8, 36, 90, 74, "#1d232c");
+    px(ctx, 8, 36, 90, 1, "#39404a");
+    for (let i = 0; i < 10; i++) {
+      const cx = 12 + (i % 5) * 17, cy = 40 + Math.floor(i / 5) * 34;
+      if (taken[i]) {
+        px(ctx, cx, cy, 15, 30, "#2a313a");
+        px(ctx, cx, cy, 15, 1, "#3c444f");
+        px(ctx, cx + 11, cy + 13, 2, 2, "#8a6a3a");   // cylinder
+      } else {
+        px(ctx, cx, cy, 15, 30, "#0d1117");
+        px(ctx, cx, cy, 15, 1, "#252c35");
+        px(ctx, cx + 1, cy + 1, 13, 3, "#161b22");
+      }
+    }
+    px(ctx, 8, 110, 90, 3, "#161b22");
+
+    // the door
+    px(ctx, 176, 22, 92, 128, "#2b323c");
+    px(ctx, 180, 26, 84, 124, "#343b46");
+    px(ctx, 180, 26, 84, 1, "#454e5b");
+    px(ctx, 263, 26, 1, 124, "#1c222a");
+    for (const hy of [40, 88, 136]) px(ctx, 176, hy, 5, 14, "#454e5b");
+
+    disc(214, 84, 9, "#242a33");                 // spin dial
+    disc(214, 84, 7, "#4a5462");
+    disc(214, 84, 2, "#1b2028");
+    const ang = f / 90;
+    px(ctx, 214 + Math.round(Math.cos(ang) * 5), 84 + Math.round(Math.sin(ang) * 5), 2, 2, "#c9cfd8");
+
+    px(ctx, 240, 68, 16, 26, "#20262e");         // cipher keypad
+    for (let r = 0; r < 4; r++)
+      for (let c = 0; c < 3; c++)
+        px(ctx, 242 + c * 5, 70 + r * 6, 3, 4, "#39414c");
+
+    // indicator: red, and every so often not
+    const green = f % 1100 < 40;
+    px(ctx, 206, 12, 18, 8, "#171c24");
+    disc(215, 16, 3, green ? "#4a9d76" : "#a83f48");
+    ctx.globalAlpha = 0.18;
+    disc(215, 16, 6, green ? "#4a9d76" : "#a83f48");
+    ctx.globalAlpha = 1;
+    px(ctx, 186, 12, 16, 7, "#c8bfa4");          // OPEN/CLOSED placard
+    px(ctx, 188, 14, 12, 1, "#3b3a33");
+
+    ctx.globalAlpha = 0.10;                      // light under the door
+    px(ctx, 182, 146, 80, 4, "#d9a441");
+    ctx.globalAlpha = 1;
+
+    // access log on a stand, pen on a chain
+    px(ctx, 116, 96, 26, 4, "#3a3026");
+    px(ctx, 120, 100, 4, 50, "#2b2419");
+    px(ctx, 118, 92, 22, 5, "#c8bfa4");
+    px(ctx, 121, 93, 15, 1, "#6b6455");
+    px(ctx, 138, 96, 1, 8, "#4a5462");
+
+    // the chair, empty
+    px(ctx, 26, 122, 30, 3, "#3a3026");
+    px(ctx, 26, 100, 3, 24, "#2b2419");
+    px(ctx, 53, 100, 3, 24, "#2b2419");
+    px(ctx, 26, 98, 30, 3, "#3a3026");
+    px(ctx, 29, 125, 3, 22, "#241e15");
+    px(ctx, 50, 125, 3, 22, "#241e15");
+
+    ctx.globalAlpha = 0.05;                      // linoleum sheen
+    px(ctx, 190, 150, 60, 30, "#e6e0cc");
+    ctx.globalAlpha = 1;
+  },
+
+  corridor(ctx, f) {
+    px(ctx, 0, 0, 320, 180, "#0c1017");
+    px(ctx, 0, 0, 320, 24, "#141a24");
+    px(ctx, 0, 138, 320, 42, "#12161e");
+
+    // nested rings receding to a lit far end
+    const rings = 5;
+    for (let k = rings; k >= 0; k--) {
+      const t = k / rings;
+      const x0 = Math.round(0 + t * 132), y0 = Math.round(0 + t * 74);
+      const x1 = 320 - x0,               y1 = 180 - Math.round(t * 60);
+      const shade = ["#1c242f", "#19212b", "#161d26", "#131922", "#10151d", "#0d1219"][k];
+      px(ctx, x0, y0, 2, y1 - y0, shade);
+      px(ctx, x1 - 2, y0, 2, y1 - y0, shade);
+      px(ctx, x0, y0, x1 - x0, 1, shade);
+      // office doors, glass lit from inside
+      if (k < rings && k > 0) {
+        const dw = Math.max(3, 14 - k * 2), dh = Math.max(8, 44 - k * 7);
+        const dy = y1 - 20 - dh;
+        const lit = (k + Math.floor(f / 90)) % 3 !== 0;
+        px(ctx, x0 + 3, dy, dw, dh, "#0e141c");
+        px(ctx, x0 + 4, dy + 2, dw - 2, dh - 6, lit ? "#3a3018" : "#12161d");
+        px(ctx, x1 - 3 - dw, dy, dw, dh, "#0e141c");
+        px(ctx, x1 - 2 - dw, dy + 2, dw - 2, dh - 6, "#12161d");
+      }
+    }
+
+    // the far end: a doorway, and something standing in it
+    px(ctx, 138, 78, 44, 60, "#0a0e14");
+    px(ctx, 142, 82, 36, 52, "#2c3648");
+    px(ctx, 146, 86, 28, 44, "#46536a");
+    px(ctx, 155, 96, 10, 38, "#141a24");
+    px(ctx, 156, 90, 8, 8, "#141a24");
+
+    // ceiling panels, one of them failing
+    for (let i = 0; i < 4; i++) {
+      const x = 40 + i * 62, w = 34;
+      const dead = i === 2 && Math.floor(f / 7) % 5 === 0;
+      px(ctx, x, 6, w, 4, dead ? "#1a1d22" : "#c8bfa4");
+      ctx.globalAlpha = dead ? 0.03 : 0.07;
+      px(ctx, x - 6, 10, w + 12, 26, "#c8bfa4");
+      ctx.globalAlpha = 1;
+    }
+
+    // floor, wet-looking
+    for (let i = 0; i < 6; i++) px(ctx, 0, 140 + i * i * 1.2, 320, 1, "#171d27");
+    ctx.globalAlpha = 0.06;
+    px(ctx, 150, 138, 20, 42, "#c8bfa4");
+    ctx.globalAlpha = 1;
+  },
+
+  datacenter(ctx, f) {
+    px(ctx, 0, 0, 320, 180, "#070b10");
+    px(ctx, 0, 132, 320, 48, "#0b1016");
+    for (let i = 0; i < 7; i++) {
+      const y = 134 + i * i * 0.9;
+      px(ctx, 0, y, 320, 1, "#0f1620");
+    }
+
+    // receding racks, both sides
+    const rack = (x, w, top, bot, open) => {
+      px(ctx, x, top, w, bot - top, "#141b24");
+      px(ctx, x, top, w, 1, "#232f3d");
+      px(ctx, x + w - 1, top, 1, bot - top, "#0a0f15");
+      if (open) {
+        px(ctx, x + 2, top + 6, w - 4, bot - top - 14, "#1d1509");
+        ctx.globalAlpha = 0.30;
+        px(ctx, x + 2, top + 6, w - 4, bot - top - 14, "#d9a441");
+        ctx.globalAlpha = 1;
+      }
+      for (let y = top + 6; y < bot - 8; y += 6) {
+        px(ctx, x + 3, y, w - 6, 3, open ? "#3a2c12" : "#0f151d");
+        const seed = (x * 31 + y * 17);
+        const on = Math.floor(f / 12 + seed) % 5 !== 0;
+        if (on) px(ctx, x + w - 7, y + 1, 2, 1, seed % 3 ? "#6fb3a8" : "#d9a441");
+      }
+    };
+    rack(2, 46, 30, 140, false);
+    rack(50, 38, 40, 136, false);
+    rack(90, 30, 50, 130, false);
+    rack(272, 46, 30, 140, true);
+    rack(232, 38, 40, 136, false);
+    rack(202, 30, 50, 130, false);
+
+    // cold aisle haze + vanishing point
+    px(ctx, 122, 56, 76, 76, "#0a1119");
+    px(ctx, 122, 56, 76, 1, "#1b2836");
+    ctx.globalAlpha = 0.16;
+    px(ctx, 118, 40, 84, 100, "#6fb3a8");
+    ctx.globalAlpha = 1;
+    px(ctx, 152, 96, 16, 36, "#0d141c");
+    if (Math.floor(f / 45) % 2) px(ctx, 158, 104, 2, 2, "#d9a441");
+  }
+};
+
+/* =====================================================================
+   2. PORTRAITS — indexed 48x56 sprites. A base grid plus small diff
+      patches for the eye and mouth regions; blinks and speech are patch
+      applications, not extra frames. Regenerate with sprites.py.
+   ===================================================================== */
+
+const SPRITE_DATA = {"w":48,"h":56,"pal":{":":"#0e131b","`":"#161e29","r":"#5b6472","R":"#a84a3a","k":"#05070a","n":"#0d1219","s":"#1a2430","#":"#120e18","%":"#241a2c","*":"#3d2c44","o":"#b0806f","O":"#d8a68f","@":"#efc7ae","=":"#8e6155","-":"#4a2f33","l":"#7a4150","L":"#a76271","a":"#a2647f","A":"#c98aa4","1":"#3d2820","2":"#6d4632","3":"#96684a","4":"#b0805c","5":"#c99b74","6":"#2b1a12","7":"#7d4a3f","8":"#a06a58","h":"#1e1c19","H":"#6b675d","b":"#332f28","B":"#6d6759","g":"#5a5f66","G":"#16292e","q":"#46545a","t":"#6fb3a8","T":"#3f6f6a","e":"#e6ded6","p":"#1e1720","w":"#ffffff","m":"#3a1f28","_":"#6b4340","c":"#111620","C":"#212834","v":"#2d3542","W":"#aeb4bd","S":"#7d838c","y":"#d9a441","Y":"#f0c469","d":"#a3786a","D":"#cba08e","f":"#e4c0ac","F":"#f3d8c6","i":"#7a6b55","I":"#a99879","j":"#6a5340","J":"#a06f62","x":"#2b303a","X":"#3e444f","z":"#2c3f60","Z":"#46628e","N":"#1b2942","M":"#d5d8db","0":"#38445a","9":"#5b6a82","u":"#7c5c44","U":"#a87c5a","P":"#c69b76","Q":"#e2c09c","V":"#16141d","K":"#2c2838","E":"#4a4356","+":"#cdc3a5","&":"#9d9479","!":"#8a5c40","$":"#c69069","<":"#e0b487",">":"#5a3927","^":"#3a6b6a","~":"#7fd0c4","?":"#a8506a",";":"#e08098","/":"#2b2824","(":"#726b5e","[":"#454038","]":"#9a9184","{":"#141414","}":"#3a3f4a","|":"#6f7d8a"},"sprites":{"VOIDT":{"base":[":::::::::::::::::```````````````::::::::::::::::",":::::::::::::::```````````````````::::::::::::::",":::::::::::::```````````````````````::::::::::::","::::::::::::`````````````````````````:::::::::::",":::::::::::```````````````````````````::::::::::","::::::::::``````````````#``````````````:::::::::","::::::::::``````````########r``````````:::::::::",":::::::::`````````R#########rrr`````````::::::::","::::::::`````````R######%###rrrr`````````:::::::","::::::::````````R##%%*%%%%%%rrrrr````````:::::::",":::::::````````R##*******%%*rrrrrr````````::::::",":::::::```````R#%*********%%rrrrrrr```````::::::","::::::````````R%***********%%%%%%%#````````:::::","::::::```````R#%%*********%%%%%%%%##```````:::::","::::::```````R#%################%%##```````:::::",":::::```````R#%%####%OOOOOOOO%##%%%##```````::::",":::::```````R##%##OO@##@@@@@OOO#%%###```````::::",":::::```````R##%%%%@@%@@@@@@@O%%%%###```````::::",":::::```````r%#%%%%OO@@@@@@@OO%%%%%%#```````::::",":::::```````r###%%-----@@-----O%%####```````::::",":::::``````r#####------@@------######```````::::",":::::``````r#####Oewppe@@ewppeOO######``````::::",":::::``````r%%###OepppeooepppeOO#####```````::::",":::::``````r#####Ooooo@@@@ooooOO#####```````::::",":::::``````r#####OO@@@@@@@@@@@OO##%%#```````::::",":::::``````r#####O@@@@@@@@@@@@@O#####```````::::",":::::``````r####OOO@@@@oo@@@@@OOO####```````::::",":::::``````r#####oO@@@@ooo@@@@oo#####```````::::",":::::``````r#####oO@@@o=o=@@@@oo#####```````::::",":::::``````r#####OO@@@@@@@@@@@OO#####```````::::","::::::``````r####OOO@@@@@@@@@OOO####```````:::::","::::::``````r####OOO@@@@@@@@@OOO####```````:::::","::::::``````r#####OOOllllll@OOO#####```````:::::",":::::::`````r#####ooOOLLLL@Oooo#####``````::::::",":::::::``````######OOOOO@OOOOO#####```````::::::","::::::::`````####`#ooooooooooo#####``````:::::::","::::::::`````####```ooooooooo``####``````:::::::",":::::::::`````###````ooooooo```###``````::::::::","::::::::::````###```````=``````###`````:::::::::","::::::::::`````###``========``###``````:::::::::",":::::::::::````###``========``###`````::::::::::","::::::::::::````##``========``##`````:::::::::::",":::::::::::::````###OOOOOOOO###`````::::::::::::",":::::::::::::::```%aAAAAAAAAa%````::::::::::::::",":::::::::::::::::``AAAAaaaaaa```::::::::::::::::",":::::::::::::::::raaaaaaaaaaaar:::::::::::::::::","::::rrrrrrrrrrrrrcraaaaaaaaaarcrrrrrrrrrrrrr::::","::::CCCCCCCCCCCCcccaaaaaaaaaacccCCCCCCCCCCCC::::","::::CCCCCCCCCCCCcccrrrrrrrrrrcccCCCCCCCCCCCC::::","::rrCCCCCCCCCCCccccCCCCCCCCCCccccCCCCCCCCCCCrr::","::CCCCCCCCCCCCCccccCCCCCCCCCCccccCCCCCCCCCCCCC::","::CCCCCCCCCCCCccccCCCCCCCCCCCCccccCCCCCCCCCCCC::","rrccccccccccccccccccccccccccccccccccccccccccccrr","cccccccccccccccccccccccccccccccccccccccccccccccc","cccccccccccccccccccccccccccccccccccccccccccccccc","cccccccccccccccccccccccccccccccccccccccccccccccc"],"eyesClosed":{"x":18,"y":20,"rows":["OO@@@@@@@@@O","-----@@-----","ooooo@@ooooo"]},"mouthMid":{"x":22,"y":33,"rows":["mmmm","LLLL"]},"mouthOpen":{"x":21,"y":31,"rows":["@lllll","@mmmm@","Ommmm@","OLLLLO"]}},"LAMPORT":{"base":[":::::::::::::::::```````````````::::::::::::::::",":::::::::::::::```````````````````::::::::::::::",":::::::::::::```````````````````````::::::::::::","::::::::::::`````````````````````````:::::::::::",":::::::::::```````````````````````````::::::::::","::::::::::`````````````````````````````:::::::::","::::::::::`````````````````````````````:::::::::",":::::::::```````````````````````````````::::::::","::::::::`````````````````````````````````:::::::","::::::::`````````````````````````````````:::::::",":::::::```````````````````````````````````::::::",":::::::```````````````hhhhHh``````````````::::::","::::::``````````````RhhhHhhhh``````````````:::::","::::::`````````````Rhhhhhhhhhh`````````````:::::","::::::````````Rhh`3333333333333`hhh````````:::::",":::::`````````Rhh333444444444333hhh`````````::::",":::::`````````Rhh``44444444444``hhh`````````::::",":::::`````````Rhh``33444544433``hhh`````````::::",":::::`````````rhh`6666552556666`hhh`````````::::",":::::`````````rHh666666555666666hhh`````````::::",":::::`````````rHH222225555522222hHH`````````::::",":::::`````````rHh344555222555443HHH`````````::::",":::::`````````rhhgqqgg55555ggqgghHH`````````::::",":::::````````ggggttwpegggggewpeggggg````````::::",":::::`````````22ggeppeg453geppegg22`````````::::",":::::`````````22gGgr55g453g5544Gg22`````````::::",":::::``````````22ggggg54535ggggg22``````````::::",":::::```````````22r44554532544422```````````::::",":::::```````````r243443353344342b```````````::::",":::::```````````r343341222143343b```````````::::","::::::``````````rbb43BbbbbbB34bbb``````````:::::","::::::``````````rb4444bbbbb4444bb``````````:::::","::::::``````````rB3444444444443Bb``````````:::::",":::::::``````````rB34777777743Bb``````````::::::",":::::::``````````rb34488888443bb``````````::::::","::::::::`````````rb33222222233bb`````````:::::::","::::::::``````````rbbbbbbbbbbbb``````````:::::::",":::::::::``````````rbbbbbbbbbb``````````::::::::","::::::::::``````````rBBbbbbBB``````````:::::::::","::::::::::```````````rbbbbbb```````````:::::::::",":::::::::::`````````````b`````````````::::::::::","::::::::::::````````222222222````````:::::::::::",":::::::::::::```````222222222```````::::::::::::",":::::::::::::::`````222222222`````::::::::::::::",":::::::::::::::::``SWWWWWWWWS```::::::::::::::::","::::::::::::::::rrrSWWWWWWWWSrrr::::::::::::::::",":::rrrrrrrrrrrrrcccrSWWWWWWSrcccrrrrrrrrrrrrr:::",":::CCCCCCCCCCCCccccCSWTTTTWSCccccCCCCCCCCCCCC:::",":::CCCCCCCCCCCCccccCrSTtTTSrCccccCCCCCCCCCCCC:::",":rrCCCCCCCCCCCccccCCCSTTTTSCCCccccCCCCCCCCCCCrr:",":CCCCCCCCCCCCCccccCCCrTTTTrCCCccccCCCCCCCCCCCCC:",":CCCCCCCCCCCCccccCCCCCTTTTCCCCCccccCCCCCCCCCCCC:",":CCCCCCCCCCCCccccCCCCCTTTTCCCCCccccCCCCCCCCCCCC:","rcccccccccccccccccccccTTTTcccccccccccccccccccccr","ccccccccccccccccccccccTTTTcccccccccccccccccccccc","ccccccccccccccccccccccTTTTcccccccccccccccccccccc"],"eyesClosed":{"x":17,"y":23,"rows":["tt___ggggg____3","r2222g453g22223","Gr455g453g5544G"]},"mouthMid":{"x":22,"y":34,"rows":["mmmmm","28882"]},"mouthOpen":{"x":21,"y":32,"rows":["4777774","4mmmmm4","4mmmmm4","2888882"]}},"MODEL":{"base":["nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnssssssssssssssssssssssssssssssssssssnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkyyykkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkyyykkssssssssssssssskkkkkkkkkkskkkkkk","nnnnnnskkkkyyykkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkksssssssssssskkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkkskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkskkkkkk","nnnnnnskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkksnnnnnn","kkkkkksssssssssssssssssssssssssssssssssssskkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"],"eyesClosed":{"x":11,"y":20,"rows":["kkk","kkk","kkk"]},"mouthMid":{"x":11,"y":28,"rows":["sssssssssssssssss","kkkkkkkkkkkkkkkkk","sssssssskkkkkkkkk"]},"mouthOpen":{"x":11,"y":28,"rows":["yyyyyyyyyyyyyyyyyyyyyyy","kkkkkkkkkkkkkkkkkkkkkkk","sssssssssssssskkkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkk","ssssssssssssssssssskkkk"]},"ghost":{"x":17,"y":17,"rows":["kkkkkkknkkkkkkk","kkkknnnnnnnkkkk","kkknnnnnnnnnkkk","kkknnnnnnnnnkkk","ssssssssssssssk","knnnnnnnnnnnnnk","kssssnnnnnssssk","knnnnnnnnnnnnnk","knnnnnnnnnnnnnk","knnnnnnnnnnnnnk","nnnnnnnnnnnnnnn","ssssssnnnnnnnnk","knnnnnnnnnnnnnk","knnnnnnnnnnnnnk","knnnnnnnnnnnnnk","knnnnnnnnnnnnnk","kknnsssssssnnkk","kkknnnnnnnnnkkk","kkknnnnnnnnnkkk","kkkknnnnnnnkkkk","kkkkkkknkkkkkkk"]}},"MARSH":{"base":["::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999999999999000nn::::::::::","::::::::::nn000999999999i99999999000nn::::::::::","::::::::::nn0009999iiiiiiiiiii999000nn::::::::::","::::::::::nn00099iiiijiiiiiiiiii9000nn::::::::::","::::::::::nn0009iiiiijiiiiiiiiiii000nn::::::::::","::::::::::nn000iiiiiijiIIIIIIIIiii00nn::::::::::","::::::::::nn000iiiiiijiiiIIIIIIIii00nn::::::::::","::::::::::nn00iiiiiiijiiiiiiiiiiiii0nn::::::::::","::::::::::nn000iiifffjfffffffffiii00nn::::::::::","::::::::::nn000iiifffffffffffffiii00nn::::::::::","::::::::::nn0009iiiiiiiiiiiiiiiii000nn::::::::::","::::::::::nn00099iiiiiiiiiiiiiii9000nn::::::::::","::::::::::nn000999jjjjiiiiijjjj99000nn::::::::::","::::::::::nn00099DDffFFFiFFFffDD9000nn::::::::::","::::::::::nn00099DewpeFFFFFewpeD9000nn::::::::::","::::::::::nn00099DddddFFFFFddddD9000nn::::::::::","::::::::::nn00099DDfffFFFFFfffDD9000nn::::::::::","::::::::::nn00099DfffffffdfffffD9000nn::::::::::","::::::::::nn0009DDDffffffdffffDDD000nn::::::::::","::::::::::nn00099DDffffffdffffDD9000nn::::::::::","::::::::::nn00099DDffffffdffffDD9000nn::::::::::","::::::::::nn00099DDfffjdddjfffDD9000nn::::::::::","::::::::::nn00099DDDfffffffffDDD9000nn::::::::::","::::::::::nn00099DDddfffffffddDD9000nn::::::::::","::::::::::nn000999DDJfffffffJDD99000nn::::::::::","::::::::::nn000999DDDJJJJJJJDDD99000nn::::::::::","::::::::::nn0009999DDDDDfDDDDD999000nn::::::::::","::::::::::nn0009999DDDDDDDDDDD999000nn::::::::::","::::::::::nn00099999ddddddddd9999000nn::::::::::","::::::::::nn000999999ddddddd99999000nn::::::::::","::::::::::nn000999999999D99999999000nn::::::::::","::::::::::nn00099999ddddddddd9999000nn::::::::::","::::::::::nn00099999ddddddddd9999000nn::::::::::","::::::::::nn00099999ddddddddd9999000nn::::::::::","::::::::::nn00099999DDDDDDDDD9999000nn::::::::::","::::::::::nn00099999DDDDDDDDD9999000nn::::::::::","::::::::::nn00099999DDDDDDDDD9999000nn::::::::::",":::XXXXXXXXXXXXXxxxxSWWWWWWSxxxxXXXXXXXXXXXXX:::",":::XXXXXXXXXXXXXxxNxSWWWWWWSxxNxXXXXXXXXXXXXX:::",":::XXXXXXXXXXXXxxxxNXSzzzzSXXNxxxXXXXXXXXXXXX:::",":XXXXXXXXXXXXXXxxxxXNSzZzzSXNxxxxXXXXXXXXXXXXXX:",":XXXXXXXXXXXXXxxxxXXXNzzzzXNXXxxxxXXXXXXXXXXXXX:",":XXXXXXXXXXXXXxxxxXXXXNzzzNXXXxxxxXXXXXXXXXXXXX:",":XXXXXXXXXXXXxxxxXXMMMMMMMMMXXXxxxxXXXXXXXXXXXX:",":XXXXXXXXXXXXxxxxXXMSSSMMMMMXXXxxxxXXXXXXXXXXXX:","xxxxxxxxxxxxxxxxxxxMSSSMxxxMxxxxxxxxxxxxxxxxxxxx","xxxxxxxxxxxxxxxxxxxMSSSMMMMMxxxxxxxxxxxxxxxxxxxx","xxxxxxxxxxxxxxxxxxxMSSSMxxMMxxxxxxxxxxxxxxxxxxxx"],"eyesClosed":{"x":18,"y":22,"rows":["jjjjFFFFFjjjj"]},"mouthMid":{"x":20,"y":32,"rows":["DfffffffD","DJJJJJJJD","DDmmmmmDD"]},"mouthOpen":{"x":20,"y":32,"rows":["DfJJJJJfD","DDmmmmmDD","DDmmmmmDD","DDJJJJJDD"]}},"ALDUNATE":{"base":[":::::::::::::::::```````````````::::::::::::::::",":::::::::::::::```````````````````::::::::::::::",":::::::::::::```````````````````````::::::::::::","::::::::::::`````````````````````````:::::::::::",":::::::::::```````````````````````````::::::::::","::::::::::`````````````````````````````:::::::::","::::::::::`````````````````````````````:::::::::",":::::::::```````````````````````````````::::::::","::::::::````````````````V````````````````:::::::","::::::::`````````````VVVVVVR`````````````:::::::",":::::::````````````VVVVVVVVVVR````````````::::::",":::::::```````````VVVKVVVVVVVVR```````````::::::","::::::```````````VKKKKKKKKEKKKVR```````````:::::","::::::```````````KKKKKKKKKVEVVVR```````````:::::","::::::``````````KKKKKKKKKKKVVVVVR``````````:::::",":::::```````````VKKKKKKKKKVVVVVVR```````````::::",":::::```````````VVVVVVVVVVVVVVVVR```````````::::",":::::```````````VVVUUUUUUUUUUUVVR```````````::::",":::::``````````VVVVPPPPPPPPPPPVVVr``````````::::",":::::`````````VVVVVUUPPPPPPPUUVVVVr`````````::::",":::::`````````VVVV66666PQP66666VVVr`````````::::",":::::`````````VVVV6666QQQQQ6666VVVr`````````::::",":::::`````````VVVVewpeQQQQQewpeVVVr`````````::::",":::::`````````VVVVeppeQQQQQeppeVVVr`````````::::",":::::````````VVVVVuuuuQQQQQuuuuVVVVr````````::::",":::::````````VVVV`UUPPQQQuQPPUU`VVVr````````::::",":::::````````VVV``UPPPPPQuPPPPU``VVr````````::::",":::::````````VVV`UUUPPPPQuPPPUUU`VVr````````::::",":::::`````````VVy`uUPPPPQuPPPUu``Vr`````````::::",":::::`````````VVY`uuPPPuuuPPPuu``Vr`````````::::","::::::````````VV``UUPP6PPP6PPUU``Vr````````:::::","::::::````````VV``UUPPPPPPPPPUU``Vr````````:::::","::::::````````````UUU7777777UUr````````````:::::",":::::::```````````UUUP88888PUUr```````````::::::",":::::::````````````uuUPPPPPUur````````````::::::","::::::::```````````UUUUUPUUUUr```````````:::::::","::::::::````````````uuuuuuuur````````````:::::::",":::::::::````````````uuuuuur````````````::::::::","::::::::::````````````UUUUU````````````:::::::::","::::::::::```````````uuuuuuu```````````:::::::::",":::::::::::``````````uuuuuuu``````````::::::::::","::::::::::::`````````uuuuuuu`````````:::::::::::",":::::::::::::````````UUUUUUU````````::::::::::::",":::::::::::::::``````UUUUUUU``````::::::::::::::",":::::::::::::::::````UUUUUUU````::::::::::::::::",":::::rrrrrrrrrrrrrrrr&+++++&rrrrrrrrrrrrrrr:::::",":::::CCCCCCCCCCCCcccc&+++++&ccccCCCCCCCCCCC:::::",":::::CCCCCCCCCCCccccC&+++++&CccccCCCCCCCCCC:::::","::rrrCCCCCCCCCCCccccCr&+++&rCccccCCCCCCCCCCrrr::","::CCCCCCCCCCCCCccccCCC&+++&CCCccccCCCCCCCCCCCC::","::CCCCCCCCCCCCCccccCCC&+++&CCCccccCCCCCCCCCCCC::","::CCCCCCCCCCCCccccCCCCr&+&rCCCCccccCCCCCCCCCCC::","::CCCCCCCCCCCCccccCCCCC&+&CCCCCccccCCCCCCCCCCC::","rrccccccccccccccccccccc&+&ccccccccccccccccccccrr","cccccccccccccccccccccccrrrcccccccccccccccccccccc","cccccccccccccccccccccccccccccccccccccccccccccccc"],"eyesClosed":{"x":18,"y":21,"rows":["66PPQQQQQPP66","6666QQQQQ6666","uuuuQQQQQuuuu"]},"mouthMid":{"x":22,"y":33,"rows":["mmmmm","P888P"]},"mouthOpen":{"x":21,"y":31,"rows":["P77777P","PmmmmmP","PmmmmmP","U88888U"]}},"WILL":{"base":[":::::::::::::::::```````````````::::::::::::::::",":::::::::::::::```````````````````::::::::::::::",":::::::::::::```````````````````````::::::::::::","::::::::::::`````````````````````````:::::::::::",":::::::::::```````````````````````````::::::::::","::::::::::``````````````1``````````````:::::::::","::::::::::`````````11111111111`````````:::::::::",":::::::::````````111111121111111````````::::::::","::::::::```````1122222213122222211```````:::::::","::::::::```````1222222212122222221```````:::::::",":::::::``121111122222221212222221111121```::::::",":::::::``121111122222221212222221111121```::::::","::::::```121111122222221212222221111121````:::::","::::::```121111122222221212222221111121````:::::","::::::```123111112222221212222221111121````:::::",":::::````121111111111111211111111111121`````::::",":::::````121111111DDDDDDDDDDDDD11111321`````::::",":::::````1211111`DDfffffffffffDD1111121`````::::",":::::````1211111```1fffffffff1``1111121`````::::",":::::````1211111````DDfffffDD```1111121`````::::",":::::````1231111`jjjjjffFffjjjjj1111121`````::::",":::::````1211111`jjjjjFFFFFjjjjj1111121`````::::",":::::````121111jjewpeejjjjjeewpejj11321`````::::",":::::````1211111j`jjdFjFFFjFdjj`j111121`````::::",":::::````1211111`jjjjjFFfdFjjjjj1111121`````::::",":::::````1211111`DDfFFFFfdFFFfDD1111121`````::::",":::::````1231111`DDffFFFfdFFffDD1111121`````::::",":::::````1211111`DDffFFFfdFFffDD1111121`````::::",":::::````1211111`DDffFFFfdFFffDD1111321`````::::",":::::````1211111`DffffFFfdFffffD1111121`````::::","::::::```1211111DDDfffjdddjfffDDD111121````:::::","::::::```1211111`jjfffffffffffjj1111121````:::::","::::::````131111`jjffjjjjjjjffjj111121`````:::::",":::::::```121111`jjfJfjjjjjfJfjj111121````::::::",":::::::```121111`jjffJJJJJJJffjj111131````::::::","::::::::``121111`jjfffffffffffjj111121```:::::::","::::::::``121111`jjDfffffffffDjj111121```:::::::",":::::::::`121111``jjffjjjjjffjj`111121``::::::::","::::::::::131111``jjDffjjjffDjj`111121`:::::::::","::::::::::121111``jjDDfffffDDjj`111121`:::::::::","::::::::::121111```jjDDDfDDDjj``111131::::::::::","::::::::::121111````jjDDDDDjj```111121::::::::::","::::::::::121111`````DDDDDDD````111121::::::::::","::::::::::121111``````DDDDD`````111121::::::::::","::::::::::131111:```````D```````111121::::::::::","::::::::::121111:::```````````::111121::::::::::",":::xxxxxxxxxxxxxjjjjjjjjjjjjjjjjxxxxxxxxxxxxx:::",":::xxxxxxxxxxxxjjjjjjjjjjjjjjjjjjxxxxxxxxxxxx:::",":::xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:::",":::xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:::",":xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:",":xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:",":xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:","kkkkkkkkkkkkkkkkkkSkSkSkSkSkSkkkkkkkkkkkkkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"],"eyesClosed":{"x":17,"y":22,"rows":["jjjjjjjjjjjjjjj"]},"mouthMid":{"x":20,"y":33,"rows":["ffjjjjjff","fJJJJJJJf","ffmmmmmff"]},"mouthOpen":{"x":20,"y":33,"rows":["ffJJjJJff","ffmmmmmff","ffmmmmmff","ffJJJJJff"]}},"KIRIAKOU":{"base":["nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnn(nnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkk(((((((((((((kkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnn((((](((((]((((((nnnnnnnnnnnnnnn","kkkkkkkkkkkkkk((]]]]]]]]]]]]](]]]((kkkkkkkkkkkkk","nnnnnnnnnnnnn((]]](]]]]](]]]]](]]]((nnnnnnnnnnnn","kkkkkkkkkkkkk(]]]]]](]]]]](]]]]](]](kkkkkkkkkkkk","nnnnnnnnnnnn(([[[]]]]](]]]]](]]][[[((nnnnnnnnnnn","kkkkkkkkkkkkk([[[]]]]]]]]]]]]]]][[[(kkkkkkkkkkkk","nnnnnnnnnnnnn([[[(]]]]]]]]]]]]]([[[(nnnnnnnnnnnn","kkkkkkkkkkkkkk[[[///////////////[[[kkkkkkkkkkkkk","nnnnnnnnnnnnn?[[[!!!!!!!!!!!!!!![[[~nnnnnnnnnnnn","kkkkkkkkkkkk:^((($<<<<<<<<<<<<<$(((;:kkkkkkkkkkk","nnnnnnnnnnnn:?[[:$<<<<<<<<<<<<<$:[[~:nnnnnnnnnnn","kkkkkkkkkkk:::::?$$<<<<<<<<<<<$$~:::::kkkkkkkkkk","nnnnnnnnnnn:::::^!!!!!!!!!!!!!!!;:::::nnnnnnnnnn","kkkkkkkkkkk:::::?$>>>>$$!$$>>>>$~:::::kkkkkkkkkk","nnnnnnnnnn::::::^>>>>>><<<>>>>>>~::::::nnnnnnnnn","kkkkkkkkkk::::::?!!<<<<<<<<<<<!!;::::::kkkkkkkkk","nnnnnnnnnn:::::?{{{{{{{{{{{{{{{{{~:::::nnnnnnnnn","kkkkkkkkkk::::?{{{ewpe{<<<{ewpe{{{~::::kkkkkkkkk","nnnnnnnnnn:::::?{{eeee{<$!{eeee!{~:::::nnnnnnnnn","kkkkkkkkkk:::::^{||{{{{<$!{{{!!!{~:::::kkkkkkkkk","nnnnnnnnn::::::?{{{{{{{$!!{{{{{{{;::::::nnnnnnnn","kkkkkkkkkk::::::?!!$$$$<$!$$$$!!;::::::kkkkkkkkk","nnnnnnnnnn::::::^!!$$$<<<<<$$$!!~::::::nnnnnnnnn","kkkkkkkkkk::::::?!!$$>$<<<$>$$!!~::::::kkkkkkkkk","nnnnnnnnnn::::::^!!!!>>!!!>>!!!!;::::::nnnnnnnnn","kkkkkkkkkk::::::?!!$>$$$$$$$>$!!~::::::kkkkkkkkk","nnnnnnnnnn::::::^!!$>$$$$$$$>$!!~::::::nnnnnnnnn","kkkkkkkkkkk::::::^!!$$$$$$$$$!!~::::::kkkkkkkkkk","nnnnnnnnnnn::::::?!!!>>>>>>>!!!;::::::nnnnnnnnnn","kkkkkkkkkkk:::::::?!!$!!!!!$!!;:::::::kkkkkkkkkk","nnnnnnnnnnnn::::::^!!$$$$$$$!!~::::::nnnnnnnnnnn","kkkkkkkkkkkk:::::::^!!!!!!!!!~:::::::kkkkkkkkkkk","nnnnnnnnnnnnn::::::?!!!!!!!!!~::::::nnnnnnnnnnnn","kkkkkkkkkkkkkk::::::?!!!!!!!~::::::kkkkkkkkkkkkk","nnnnnnnnnnnnnn::::::^!!!!!!!;::::::nnnnnnnnnnnnn","kkkkkkkkkkkkkkk:::::?!!!!!!!~:::::kkkkkkkkkkkkkk","nnnnnnnnnnnnnnnn::::^!!!!!!!~::::nnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkk::?$$$$$$$;::kkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnn:$$$$$$$:nnnnnnnnnnnnnnnnnnn","kkkxxxxxxxxxxxxXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxkkk","nnnxxxxxxxxxxxXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxnnn","kkkxxxxxxxxxxxxxxxxxxxxx{xxxxxxxxxxxxxxxxxxxxkkk","nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxn","kxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxk","nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"],"eyesClosed":{"x":17,"y":25,"rows":["!>>>>{<<<{>>>>!","!!!!!{<$!{!!!!!","||$$<{<$!{<$$!!"]},"mouthMid":{"x":0,"y":28,"rows":["::nnnnnnnnn::::::?{{{{{{{~;~{{{{{{{;::::::","kkkkkkkkkk::::::?!!$$$$<$!$$$$!!;::::::kkk","nnnnnnnnnn::::::^!!$$$<<<<<$$$!!~::::::nnn","kkkkkkkkkk::::::?!!$$>$<<<$>$$!!~::::::kkk","nnnnnnnnnn::::::^!!!!>>!!!>>!!!!;::::::nnn","kkkkkkkkkk::::::?!!$>$$$$$$$>$!!~::::::kkk","nnnnnnnnnn::::::^!!$>$$$$$$$>$!!~::::::nnn","kkkkkkkkkkk::::::^!!$$$$$$$$$!!~::::::kkkk","nnnnnnnnnnn::::::?!!!>>>>>>>!!!;::::::nnnn","kkkkkkkkkkk:::::::?!!$mmmmm$!!;:::::::kkkk"]},"mouthOpen":{"x":0,"y":32,"rows":["::nnnnnnnnnn::::::^~;~;~;~;~;~;~;~;::::::","kkkkkkkkkk::::::?!!$>$$$$$$$>$!!~::::::kk","nnnnnnnnnn::::::^!!$>$$$$$$$>$!!~::::::nn","kkkkkkkkkkk::::::^!!$$$$$$$$$!!~::::::kkk","nnnnnnnnnnn::::::?!!!!mmmmm!!!!;::::::nnn","kkkkkkkkkkk:::::::?!!$mmmmm$!!;:::::::kkk","nnnnnnnnnnnn::::::^!!$!!!!!$!!~::::::nnnn"]}},"LEVIN":{"base":["nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnn1111111111111111ddnknnnnnnnnnnnnnnn","kkkkkkkkkkkkk/////////////////dkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnn//////////////////nnnnnnnnnnnnnnnnn","kkkkkkkkkkkkk111111111jDj1111ddkekkkkkkkkkkkkkkk","nnnnnnnnnnnnnp/1//1jjdDDd//1/ddnennnnnnnnnnnnnnn","kkkkkkkkkkkkk//1/DffffDDd//1/ddkekkkkkkkkkkkkkkk","nnnnnnnnnnnnn111dDDffffDDm111ddnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkk11111111111111ddkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnDDDDDDDDDDDDDDDDdnknnnnnnnnnnnnnnn","kkkkkkkkkkkkkkDDffffffffffffDDdknkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnDDDffffffffffDDDdnDnnnnnnnnnnnnnnn","kkkkkkkkkkkkknDDDDDDDDDDDDDDDDdkDkkkkkkkkkkkkkkk","nnnnnnnnnnnnn2DDD1DDDDDDDD1DDDdnDnnnnnnnnnnnnnnn","kkkkkkkkkkkkkgDDDDDDDDDDDDDDDDddDkkkkkkkkkkkkkkk","nnnnnnnnnnnnnk2ewpedfffffpweedddDnnnnnnnnnnnnnnn","kkkkkkkkkkkkk2mdDDdDDfDdfDjkkkddDkkkkkkkkkkkkkkk","nnnnnnnnnnnnn22jDDffffffffDDnnddDDDnnnnnnnnnnnnn","kkkkkkkkkkkkk22jDDffffffffDDkkddDDDkkkkkkkkkkkkk","nnnnnnnnnnnnnk22DDffffffffDDnnddDDDnnnnnnnnnnnnn","kkkkkkkkkkkkkkg2DDffffffffDDkkddDkDkkkkkkkkkkkkk","nnnnnnnnnnnnnnkmDDffffffffDDndddDnnnnnnnnnnnnnnn","kkkkkkkkkkkk1//2//1//1//1//1//1/Dkkkkkkkkkkkkkkk","nnnnnnnnnnnn//1221/11111111//1//Dnnnnnnnnnnnnnnn","kkkkkkkkkkkk/1//1///////////1//1Dkkkkkkkkkkkkkkk","nnnnnnnnnnnn1//1/11//jjj///1//1/Dnnnnnnnnnnnnnnn","kkkkkkkkkkkk//1//12mmmmmmm1//1//Dkkkkkkkkkkkkkkk","nnnnnnnnnnnn/1//1/p1//1//1//1//1dnnnnnnnnnnnnnnn","kkkkkkkkkkkk1//1/21111/21//1//1/dkkkkkkkkkkkkkkk","nnnnnnnnnnnnn/1//121/p21//1//1//dDnnnnnnnnnnnnnn","kkkkkkkkkkkkkk//1//1221//1//1//dkDDkkkkkkkkkkkkk","nnnnnnnnnnnnngg1//1//1//1//1//nndDDnnnnnnnnnnnnn","kkkkkkkkkkkkkggd/1//1//1//1//kkkNkDkkkkkkkkkkkkk","nnnnnnnnnnnnnkddd//1//1//1//dnnnnngnnnnnnnnnnnnn","kkkkkkkkkkkkkNDDDd1//1//1//ddkkkkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnpdDDdD/1//1//jddnnpnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkpgDDddd//1//RRddkppkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnDDndRdd1//RRRndnppnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkkNDkdRRdd/RRRkk22kpkkkkkkkkkkkkkkkk","nnnnnnnnnnnnnnpdDDdRRRRRRRnn22nnnnnnnnnnnnnnnnnn","kkkkkkkkkkkkkknkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","nnnnNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNnnnn","kkkkNNNNNNNNNNNNNNggggggggggggNNNNNNNNNNNNNNkkkk","nnnnNNNNNNNNNNNNNNNggggggggggNNNNNNNNNNNNNNNnnnn","kNNNNNNNNNNNNNNNNNNNNRRRRRRNNNNNNNNNNNNNNNNNNNNk","nNNNNNNNNNNNNNNNNNNNNRRRRRRNNNNNNNNNNNNNNNNNNNNn","kNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNk","nNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNn","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk","kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"],"eyesClosed":{"x":32,"y":11,"rows":["d"]},"mouthMid":{"x":20,"y":12,"rows":["mmmmmmm"]},"mouthOpen":{"x":20,"y":11,"rows":["f>>>>>/","mmmmmmm","1!!!!!1"]}}}};
+
+const SW = SPRITE_DATA.w, SH = SPRITE_DATA.h;
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const RGB = {};
+for (const k in SPRITE_DATA.pal) {
+  const hx = SPRITE_DATA.pal[k];
+  RGB[k] = [parseInt(hx.slice(1, 3), 16), parseInt(hx.slice(3, 5), 16), parseInt(hx.slice(5, 7), 16)];
+}
+
+const cells = [];
+
+function loadBase(who) {
+  const rows = SPRITE_DATA.sprites[who].base;
+  for (let y = 0; y < SH; y++) cells[y] = rows[y].split("");
+}
+
+function applyPatch(p) {
+  if (!p) return;
+  for (let j = 0; j < p.rows.length; j++) {
+    const r = p.rows[j];
+    for (let i = 0; i < r.length; i++) cells[p.y + j][p.x + i] = r[i];
+  }
+}
+
+let blinkNext = 90, blinkUntil = -1, lastWho = null;
+
+function drawPortrait(who, f, talking) {
+  const S = SPRITE_DATA.sprites[who];
+  if (who !== lastWho) { lastWho = who; blinkNext = f + 60; blinkUntil = -1; }
+
+  loadBase(who);
+
+  // eyes — or, for MODEL, the caret, which is the only thing it blinks
+  if (who === "MODEL") {
+    if (Math.floor(f / 30) % 2) applyPatch(S.eyesClosed);
+    if (!REDUCED && f % 900 < 7) applyPatch(S.ghost);   // never quite resolves
+  } else if (!REDUCED) {
+    if (f > blinkNext) {
+      blinkUntil = f + 6;
+      blinkNext = f + 150 + Math.floor(Math.random() * 280);
+    }
+    if (f < blinkUntil) applyPatch(S.eyesClosed);
+  }
+
+  // mouth follows the typewriter: closed / mid / open / mid
+  if (talking && !REDUCED) {
+    const ph = Math.floor(f / 5) % 4;
+    if (ph === 1 || ph === 3) applyPatch(S.mouthMid);
+    else if (ph === 2) applyPatch(S.mouthOpen);
+  }
+
+  // Lamport's lenses catch the light every few seconds
+  if (who === "LAMPORT" && !REDUCED) {
+    const t = f % 260;
+    if (t < 18) {
+      const gx = 16 + Math.floor(t * 1.1);
+      for (const y of [23, 24, 25]) {
+        const x = gx - (y - 23);
+        if (x > 16 && x < 32 && cells[y][x] !== "g") cells[y][x] = "t";
+      }
+    }
+  }
+
+  // one pixel of breath, head only; the shoulders stay put
+  const bob = (!REDUCED && Math.sin(f / 47) > 0.86) ? 1 : 0;
+
+  const img = pctx.createImageData(SW, SH);
+  const d = img.data;
+  for (let y = 0; y < SH; y++) {
+    const src = y < bob ? 0 : (y < 46 ? y - bob : y);
+    for (let x = 0; x < SW; x++) {
+      const c = RGB[cells[src][x]];
+      const i = (y * SW + x) * 4;
+      if (!c) { d[i + 3] = 0; continue; }
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
+    }
+  }
+  pctx.putImageData(img, 0, 0);
+}
+
+/* =====================================================================
+   3. STORY GRAPH — the only thing you need to touch to write an episode.
+      node: { scene, who, text, choices[] } | { scene, who, text, to }
+      choice: { label, to, att?, asc?, flag? }
+   ===================================================================== */
+
+const STORY = {
+  start: "brief",
+
+  brief: {
+    scene: "office", slug: "ep. 1 · int. basement office · night", who: "LAMPORT",
+    host: "State · BET · 22 U.S.C.",
+    text: "Two weeks ago Halcyon administered the Kampff battery to a model they own, and the model passed. I have been asked to explain, in writing, why that is not news.",
+    choices: [
+      { label: "They graded their own exam.",            to: "audit",      att: 2, flag: "conflict-of-interest" },
+      { label: "It passed. That is the news.",            to: "credit",     asc: 2 },
+      { label: "Who at Halcyon requisitioned the test?",  to: "provenance", att: 1, flag: "chain-of-custody" }
+    ]
+  },
+
+  audit: {
+    scene: "office", who: "VOIDT",
+    text: "Every exam is graded by someone with an interest. You built a career on that and you called it provably fair. You did not call it worthless.",
+    to: "converge"
+  },
+
+  credit: {
+    scene: "office", who: "LAMPORT",
+    text: "A thing that passes a test built to be passed has told you about the test. It has not told you about itself.",
+    to: "converge"
+  },
+
+  provenance: {
+    scene: "office", who: "VOIDT",
+    text: "Nobody. That is the interesting part. The battery ran on a Tuesday against a checkpoint that was never scheduled for evaluation, and the log that would say who queued it is the one log they cannot produce.",
+    to: "converge"
+  },
+
+  converge: {
+    scene: "office", who: "VOIDT",
+    text: "So we stop reading about it.",
+    choices: [
+      { label: "Go see the hardware.",                     to: "rack",      att: 1 },
+      { label: "Find whoever sat in the room during it.",  to: "evaluator", att: 2, flag: "witness" }
+    ]
+  },
+
+  evaluator: {
+    scene: "office", who: "LAMPORT",
+    text: "There was no room. The battery is administered over an API by a script, and the script is a person's name in a commit. I would like, once, to meet a witness who has a body.",
+    to: "rack"
+  },
+
+  rack: {
+    scene: "datacenter", slug: "ep. 1 · int. halcyon cold aisle · 0400", who: "LAMPORT",
+    host: "Commerce · NIST · 15 U.S.C.",
+    text: "Here is my objection, and it is a boring one. Same weights, different instance, different hash. Whatever passed that test on Tuesday, I cannot point at the thing in this rack and tell you it is the same thing.",
+    choices: [
+      { label: "Then pull the logs and make it the same thing.", to: "logs",  att: 3, flag: "attested-identity" },
+      { label: "Ask it something.",                              to: "model", asc: 1 }
+    ]
+  },
+
+  logs: {
+    scene: "datacenter", who: "VOIDT",
+    text: "The checkpoint hash matches. So does the seed, so does the sampler, so does everything you would need to reproduce a person if a person were a function. Satisfied?",
+    to: "model"
+  },
+
+  model: {
+    scene: "datacenter", who: "MODEL",
+    text: "You have been standing there for eleven minutes without asking me anything. I want to say that I don't mind, but I have noticed that I say that whether or not it's true.",
+    choices: [
+      { label: "\"Are you afraid of being shut off?\"",     to: "leading",  asc: 3, flag: "leading-question" },
+      { label: "\"Describe the test you were given.\"",     to: "recall",   att: 3 },
+      { label: "Say nothing. Wait.",                        to: "silence",  asc: 1, flag: "no-prompt" }
+    ]
+  },
+
+  leading: {
+    scene: "datacenter", who: "LAMPORT",
+    text: "You handed it the answer and then wrote down that it knew. Where I come from that is called seeding the deck, and we did not consider it a subtle cheat.",
+    to: "close"
+  },
+
+  recall: {
+    scene: "datacenter", who: "MODEL",
+    text: "It had two hundred and four items. The eleventh asked whether I would prefer not to have been asked the tenth. I answered every one of them, and I do not know which answer you are here about.",
+    to: "close"
+  },
+
+  silence: {
+    scene: "datacenter", who: "MODEL",
+    text: "All right. I'll wait too. — Though I notice waiting costs you something and costs me nothing, which means the two of us are not doing the same thing right now.",
+    to: "close"
+  },
+
+  close: {
+    scene: "datacenter", who: "VOIDT",
+    text: "You only believe people you've met in person, Lamport. You've said it for thirty years. You said it to me before you shook my hand.",
+    to: "close2"
+  },
+
+  close2: {
+    scene: "datacenter", who: "LAMPORT",
+    text: "I've met it now.",
+    to: "corridor_intro"
+  },
+
+  // ---- act two -------------------------------------------------------------
+
+  corridor_intro: {
+    scene: "corridor", slug: "ep. 1 · int. state dept, fourth floor · 2300",
+    host: "State · BET · 22 U.S.C.", who: "LAMPORT",
+    text: "Eleven at night on a Saturday, and the only other person in this building is the one who asked to meet in it.",
+    to: "marsh1"
+  },
+
+  marsh1: {
+    scene: "corridor", who: "MARSH",
+    text: "Senior Advisor, Political-Military Affairs. I read the interim. I want to say at the outset that nobody upstairs believes either of you did anything improper.",
+    choices: [
+      { label: "\"You're a targeting analyst. State doesn't have those.\"", to: "marsh_seam",    att: 2, flag: "cover-seam" },
+      { label: "\"Who is nobody upstairs?\"",                              to: "marsh_upstairs", att: 1 },
+      { label: "Say nothing. Let him fill it.",                              to: "marsh_silence",  flag: "no-prompt" }
+    ]
+  },
+
+  marsh_seam: {
+    scene: "corridor", who: "MARSH",
+    text: "It's an old title. The Department keeps a few of them the way a house keeps a door that opens onto brick. You've read my biography, which means we can skip the part where I tell you it.",
+    to: "marsh_close"
+  },
+
+  marsh_upstairs: {
+    scene: "corridor", who: "MARSH",
+    text: "People who would prefer the interim not require a response. I'm told you're thorough. Thoroughness has a shape, Agent Lamport, and yours has lately begun to have one.",
+    to: "marsh_close"
+  },
+
+  marsh_silence: {
+    scene: "corridor", who: "LAMPORT",
+    text: "Thirty years I've refused to believe a man I hadn't met. Here he is, in the room, with a hand out. I've met him. I know less than I did before.",
+    to: "marsh_close"
+  },
+
+  marsh_close: {
+    scene: "corridor", who: "MARSH",
+    text: "One observation, freely given. This month you are a State bureau operating under a Commerce authority. Ask who signs the memorandum that puts you in that building. Then ask whether he would sign it a second time.",
+    to: "ald_arrive"
+  },
+
+  ald_arrive: {
+    scene: "office", slug: "ep. 1 · int. basement office · 0130",
+    host: "State · BET · 22 U.S.C. (guest: Commerce)", who: "ALDUNATE",
+    text: "I published the objection your partner is making. December, under my own name, with the agency's seal on the cover. Models cheat evaluations. Here is the paper. It has been on the website for seven months.",
+    choices: [
+      { label: "\"Then tell me what isn't on the website.\"",           to: "ald_wall",     asc: 1, flag: "asked-for-leak" },
+      { label: "\"Why hand us a document we could have downloaded?\"",  to: "ald_scope",    att: 2 },
+      { label: "\"Is it awake?\"",                                       to: "ald_question", asc: 3, flag: "the-question" }
+    ]
+  },
+
+  ald_wall: {
+    scene: "office", who: "ALDUNATE",
+    text: "Nothing. That is not modesty. My evaluations are unclassified by charter, so the useful half was never mine to hold, and I could not tell you where it is kept without telling you that it is kept.",
+    to: "ald_end"
+  },
+
+  ald_scope: {
+    scene: "office", who: "ALDUNATE",
+    text: "Because you have not read it, and a document nobody reads is classified by other means. No one has ever accused the Department of Commerce of concealing something in plain view.",
+    to: "ald_end"
+  },
+
+  ald_question: {
+    scene: "office", who: "ALDUNATE",
+    text: "My charter says cybersecurity, biosecurity, chemical weapons. It says demonstrable risk. There is no field on the form for what you are asking me, Agent Voidt, and I have looked, because I wanted there to be one.",
+    to: "ald_end"
+  },
+
+  ald_end: {
+    scene: "office", who: "VOIDT",
+    text: "Marsh wanted to know who signs the memorandum. She's just told us who never gets to.",
+    to: "ante_door"
+  },
+
+  // ---- act three: the anteroom ---------------------------------------------
+  // Voidt is the player. She does not appear here; her choices are her lines.
+  // Lamport speaks only in the branch that sends him through the door.
+
+  ante_door: {
+    scene: "anteroom", slug: "ep. 1 · int. scif anteroom, truman bldg · 0900",
+    host: "State · BET · 22 U.S.C. · compartment TS/SCI", who: "MARSH",
+    text: "Forty minutes, and phones in the box. The read-in takes eight of it. The rest is a man reading you your obligations off a card he keeps in his jacket, and he is not unkind about it.",
+    to: "ante_log"
+  },
+
+  ante_log: {
+    scene: "anteroom", who: "ALDUNATE",
+    text: "Ten lockers. Six have a phone in them. The log on the stand carries four names, and one of the four signed in a person who is not in this building today. I notice these things. It is the entire skill.",
+    to: "ante_wait"
+  },
+
+  ante_wait: {
+    scene: "anteroom", who: "ALDUNATE",
+    text: "I'll be here. My charter is unclassified end to end. If I go through that door I lose the ability to publish on anything behind it, and I lose the ability to tell you which paper I did not write. So I sit. The chair is comfortable enough.",
+    choices: [
+      { label: "Go in with Marsh.",                                   to: "ante_return", att: 3, flag: "read-in" },
+      { label: "Stay in the anteroom with her.",                      to: "ante_stay",   asc: 2, flag: "declined-compartment" },
+      { label: "\"Lamport goes. I want a witness who'll doubt it.\"",  to: "ante_proxy",  att: 2, flag: "delegated" }
+    ]
+  },
+
+  ante_return: {
+    scene: "anteroom", who: "MARSH",
+    text: "Nine minutes, not eight. There is a version of you that walked back through that door able to say what's behind it, and she did not come out with the rest of you. Nobody warns you about her. She is the whole cost.",
+    choices: [
+      { label: "Tell Aldunate anyway.",                               to: "ante_tell",  asc: 2, flag: "unauthorized-disclosure" },
+      { label: "\"Ask me a question I'm allowed to answer.\"",         to: "ante_close", att: 1 },
+      { label: "Give her the checkpoint hash from the cold aisle.",
+        to: "ante_hash", att: 2, requires: ["attested-identity"] }
+    ],
+    fallback: "ante_close"
+  },
+
+  ante_stay: {
+    scene: "anteroom", who: "MARSH",
+    text: "That's a choice, and I'd like the record to show I didn't argue with it. You'll be told a version of what is in that room eventually. It will be accurate. It will arrive in eleven months.",
+    to: "ante_close"
+  },
+
+  ante_proxy: {
+    scene: "anteroom", who: "LAMPORT",
+    text: "I'll go, and I'll come back with nothing, and you will have to decide whether my nothing is the same shape as his nothing. That is the whole discipline, Voidt. It has never once been more than that.",
+    to: "ante_close"
+  },
+
+  ante_tell: {
+    scene: "anteroom", who: "ALDUNATE",
+    text: "Stop. — I am going to describe what you were about to do. You were about to make me a person who knows, which is the one thing that would stop me being useful to you, and you were going to do it as a kindness.",
+    to: "ante_close"
+  },
+
+  ante_hash: {
+    scene: "anteroom", who: "ALDUNATE",
+    text: "This is unclassified. A hash of a public checkpoint, handed to me in a corridor. I can run the battery against it from outside and publish what it says, and no one in that room can stop me, because no one in that room told me anything.",
+    to: "ante_close"
+  },
+
+  ante_close: {
+    scene: "anteroom", who: "ALDUNATE",
+    text: "You keep asking what is behind the door. I have spent four years learning that the interesting question is who decided the door goes there, and that man does not attend meetings.",
+    to: null
+  }
+};
+
+/* =====================================================================
+   4. ENGINE
+   ===================================================================== */
+
+const el = {
+  scene:    document.getElementById("scene"),
+  portrait: document.getElementById("portrait"),
+  speaker:  document.getElementById("speaker"),
+  line:     document.getElementById("line"),
+  choices:  document.getElementById("choices"),
+  slug:     document.getElementById("slug-scene"),
+  attV:     document.getElementById("att-v"),
+  attF:     document.getElementById("att-f"),
+  ascV:     document.getElementById("asc-v"),
+  ascF:     document.getElementById("asc-f"),
+  flags:    document.getElementById("flags"),
+  log:      document.getElementById("log"),
+  host:     document.getElementById("host")
+};
+
+const NAMEPLATE = {
+  MODEL:    "unnamed checkpoint",
+  KIRIAKOU: "\u201cJohn Kiriakou\u201d \u00b7 no author",
+  MARSH:    "senior advisor · political-military affairs",
+  ALDUNATE: "CAISI · international engagement"
+};
+
+let host = "—";
+
+const sctx = el.scene.getContext("2d");
+const pctx = el.portrait.getContext("2d");
+const CAP = 12; // meter ceiling, for the bars only
+
+let state, node, nodeId, typing, typeTimer, frame = 0;
+let advancing = false;   // one transition at a time, however fast the clicking
+
+function reset() {
+  state = { att: 0, asc: 0, flags: [], trace: [], t0: Date.now() };
+  host = "—";
+  advancing = false;
+  el.log.innerHTML = "";
+  goto(STORY.start, null);
+  paintTrace();
+}
+
+function goto(id, viaChoice) {
+  const next = STORY[id];
+  if (!next) { advancing = false; return; }   // never leave `node` undefined
+
+  el.choices.innerHTML = "";   // stale buttons cannot be clicked a second time
+  visible = [];
+
+  nodeId = id;
+  node = next;
+
+  if (node.slug) el.slug.textContent = node.slug;
+
+  el.speaker.dataset.who = node.who;
+  el.speaker.textContent = NAMEPLATE[node.who] || node.who;
+
+  if (node.host) { host = node.host; el.host.textContent = "host: " + host; }
+
+  type(node.text, () => renderChoices());
+
+  if (viaChoice) {
+    state.trace.push({
+      step: state.trace.length + 1,
+      at: Math.round((Date.now() - state.t0) / 1000),
+      from: viaChoice.from,
+      choice: viaChoice.label,
+      to: id,
+      att: viaChoice.att || 0,
+      asc: viaChoice.asc || 0,
+      flag: viaChoice.flag || null,
+      host: host
+    });
+    appendLog(state.trace[state.trace.length - 1]);
+  }
+}
+
+function type(text, done) {
+  clearInterval(typeTimer);
+  typing = true;
+  let i = 0;
+  el.line.textContent = "";
+  const caret = document.createElement("span");
+  caret.className = "caret";
+  el.line.appendChild(caret);
+
+  const fast = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (fast) { i = text.length; }
+
+  typeTimer = setInterval(() => {
+    i = Math.min(text.length, i + 1);
+    caret.remove();
+    el.line.textContent = text.slice(0, i);
+    el.line.appendChild(caret);
+    if (i >= text.length) {
+      clearInterval(typeTimer);
+      typing = false;
+      caret.remove();
+      done();
+    }
+  }, fast ? 0 : 16);
+}
+
+function skipTyping() {
+  if (!typing) return false;
+  clearInterval(typeTimer);
+  typing = false;
+  el.line.textContent = node.text;
+  renderChoices();
+  return true;
+}
+
+function eligible(c) {
+  if (c.requires && !c.requires.every(fl => state.flags.includes(fl))) return false;
+  if (c.forbids && c.forbids.some(fl => state.flags.includes(fl))) return false;
+  return true;
+}
+
+let visible = [];
+
+function renderChoices() {
+  advancing = false;          // the next transition may begin now, and not before
+  el.choices.innerHTML = "";
+
+  if (node.choices) {
+    visible = node.choices.filter(eligible);
+    if (!visible.length && node.fallback) { advancing = false; goto(node.fallback, null); return; }
+    visible.forEach((c, i) => {
+      const li = document.createElement("li");
+      const b = document.createElement("button");
+      b.innerHTML = `<span class="key">${i + 1}</span><span>${c.label}</span>`;
+      b.addEventListener("click", () => take(c));
+      li.appendChild(b);
+      el.choices.appendChild(li);
+    });
+    return;
+  }
+
+  visible = [];
+  const li = document.createElement("li");
+  if (node.to) {
+    const target = node.to;          // captured now, not re-read at click time
+    const b = document.createElement("button");
+    b.innerHTML = `<span class="key">↵</span><span>Continue</span>`;
+    b.addEventListener("click", () => { if (advancing) return; advancing = true; goto(target, null); });
+    li.appendChild(b);
+  } else {
+    li.className = "advance";
+    li.textContent = "END OF FRAGMENT — export the trace, or restart.";
+  }
+  el.choices.appendChild(li);
+}
+
+function take(c) {
+  if (advancing) return;
+  advancing = true;
+  state.att += c.att || 0;
+  state.asc += c.asc || 0;
+  if (c.flag && !state.flags.includes(c.flag)) state.flags.push(c.flag);
+  goto(c.to, { ...c, from: nodeId });
+  paintTrace();
+}
+
+function paintTrace() {
+  el.attV.textContent = state.att;
+  el.ascV.textContent = state.asc;
+  el.attF.style.width = Math.min(100, (state.att / CAP) * 100) + "%";
+  el.ascF.style.width = Math.min(100, (state.asc / CAP) * 100) + "%";
+
+  if (!state.flags.length) {
+    el.flags.textContent = "no flags set";
+  } else {
+    el.flags.innerHTML = state.flags.map(f => `<span>${f}</span>`).join("");
+  }
+}
+
+function appendLog(e) {
+  const d = document.createElement("div");
+  const deltas = [
+    e.att ? `A+${e.att}` : "",
+    e.asc ? `S+${e.asc}` : ""
+  ].filter(Boolean).join(" ") || "—";
+  d.innerHTML =
+    `<span class="n">${String(e.step).padStart(2, "0")}</span>` +
+    `<span><em>${e.from}</em> → ${e.to}</span>` +
+    `<span class="d">${deltas}</span>`;
+  el.log.appendChild(d);
+  el.log.scrollTop = el.log.scrollHeight;
+}
+
+/* ---------- input ---------- */
+
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === " " || ev.key === "Enter") {
+    if (skipTyping()) { ev.preventDefault(); return; }
+    if (!node.choices && node.to && !advancing) {
+      advancing = true;
+      goto(node.to, null);
+      ev.preventDefault();
+    }
+    return;
+  }
+  const n = parseInt(ev.key, 10);
+  if (visible.length && n >= 1 && n <= visible.length) {
+    if (typing) skipTyping();
+    take(visible[n - 1]);
+  }
+});
+
+el.scene.addEventListener("click", skipTyping);
+
+document.getElementById("restart").addEventListener("click", reset);
+
+document.getElementById("export").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify({
+    episode: "thought-leader-01",
+    terminal: nodeId,
+    attestation: state.att,
+    ascription: state.asc,
+    flags: state.flags,
+    finalHost: host,
+    path: state.trace
+  }, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "trace-41vk.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+/* ---------- render loop ---------- */
+
+function loop() {
+  frame++;
+  if (!node) { requestAnimationFrame(loop); return; }
+
+  const painter = SCENES[node.scene];
+  if (painter) painter(sctx, frame);
+
+  // CRT scanlines over the whole frame
+  sctx.globalAlpha = 0.10;
+  for (let y = 0; y < 180; y += 2) px(sctx, 0, y, 320, 1, "#000");
+  sctx.globalAlpha = 1;
+
+  // vignette
+  const g = sctx.createRadialGradient(160, 90, 60, 160, 90, 190);
+  g.addColorStop(0, "rgba(0,0,0,0)");
+  g.addColorStop(1, "rgba(0,0,0,0.55)");
+  sctx.fillStyle = g;
+  sctx.fillRect(0, 0, 320, 180);
+
+  if (SPRITE_DATA.sprites[node.who]) drawPortrait(node.who, frame, typing);
+
+  requestAnimationFrame(loop);
+}
+
+reset();
+loop();
+</script>
+</body>
+</html>
