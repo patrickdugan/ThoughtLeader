@@ -70,7 +70,7 @@ Then re-inline `build/sprites.js` into the HTML files (replace the existing
 | key       | who                          | track      | role in the fiction |
 |-----------|------------------------------|------------|---------------------|
 | VOIDT     | Agent Kaitlyn Voidt          | clean      | believer; ex-welfare-lab (Eleos-type); thinks the interior is real |
-| LAMPORT   | Agent Lamport                | clean      | skeptic; cyber background (CISA-type); won't attest what he can't verify |
+| LAMPORT   | Agent Dudley Lamport         | clean      | skeptic; cyber background (CISA-type); won't attest what he can't verify |
 | MARSH     | "Marsh"                      | clean      | CIA officer covered as State PM-Affairs; unverifiable in person |
 | ALDUNATE  | Ximena Aldunate              | clean      | CAISI / International Engagement; scoped *out* of the question |
 | WILL      | Will Brown (cameo)           | clean      | Prime Intellect; built the distributed stack, not for this |
